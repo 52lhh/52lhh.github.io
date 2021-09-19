@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在学习HTML过程中做的笔记，个人笔记可能会存在一些错误您在阅读中如若发现，欢迎您的指正本人邮箱：&amp;#x33;&amp;#51;&amp;#x35;&amp;#53;&amp;#57;&amp;#x34;&amp;#57;&amp;#x37;&amp;#x39;&amp;#x35;&amp;#x40;&amp;#x71;&amp;#113;&amp;#46;&amp;#99;&amp;#x6f;&amp;#109; Emmet语法快速生成HTML结构语法 生成标签直接输入标签名按tab键即可比如div 然后tab键，就可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS的元素显示模式与背景">
+<meta property="og:url" content="http://example.com/2021/09/20/CSS%E7%9A%84%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%83%8C%E6%99%AF/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="在学习HTML过程中做的笔记，个人笔记可能会存在一些错误您在阅读中如若发现，欢迎您的指正本人邮箱：&amp;#x33;&amp;#51;&amp;#x35;&amp;#53;&amp;#57;&amp;#x34;&amp;#57;&amp;#x37;&amp;#x39;&amp;#x35;&amp;#x40;&amp;#x71;&amp;#113;&amp;#46;&amp;#99;&amp;#x6f;&amp;#109; Emmet语法快速生成HTML结构语法 生成标签直接输入标签名按tab键即可比如div 然后tab键，就可以">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-19T16:48:19.762Z">
+<meta property="article:modified_time" content="2021-09-19T17:18:13.905Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/09/20/CSS%E7%9A%84%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%83%8C%E6%99%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CSS的元素显示模式与背景 | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/20/CSS%E7%9A%84%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%83%8C%E6%99%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="记录自学中的每一个脚步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS的元素显示模式与背景
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-20 00:48:19 / 修改时间：01:18:13" itemprop="dateCreated datePublished" datetime="2021-09-20T00:48:19+08:00">2021-09-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/CSS%E7%9A%84%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%83%8C%E6%99%AF/" itemprop="url" rel="index"><span itemprop="name">CSS的元素显示模式与背景</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在学习HTML过程中做的笔记，个人笔记可能会存在一些错误<br>您在阅读中如若发现，欢迎您的指正<br>本人邮箱：<a href="mailto:&#x33;&#51;&#x35;&#53;&#57;&#x34;&#57;&#x37;&#x39;&#x35;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#109;">&#x33;&#51;&#x35;&#53;&#57;&#x34;&#57;&#x37;&#x39;&#x35;&#x40;&#x71;&#113;&#46;&#99;&#x6f;&#109;</a></p>
+<h1 id="Emmet语法"><a href="#Emmet语法" class="headerlink" title="Emmet语法"></a>Emmet语法</h1><h2 id="快速生成HTML结构语法"><a href="#快速生成HTML结构语法" class="headerlink" title="快速生成HTML结构语法"></a>快速生成HTML结构语法</h2><ol>
+<li>生成标签直接输入标签名按tab键即可比如div 然后tab键，就可以生成<div> </div></li>
+<li>如果想要生成多个相同标签加上<em>可以了比如div</em>3 就可以快速生成3个div</li>
+<li>如果有父子 关系的标签，可以用&gt;比如ul &gt; li</li>
+<li>如果有兄弟关系的标签，用+就可以了比如div+p</li>
+<li>如果生成带有类名或者id名的，直接写标签名.demo或者标签名#two后按tab 键</li>
+<li>如果生成的div 类名是有顺序的，可以用自增符号$</li>
+<li>如果想要在生成的标签内部写内容可以用{}表示</li>
+</ol>
+<h2 id="快速格式化代码"><a href="#快速格式化代码" class="headerlink" title="快速格式化代码"></a>快速格式化代码</h2><h3 id="手动格式化"><a href="#手动格式化" class="headerlink" title="手动格式化"></a>手动格式化</h3><ol>
+<li>快捷键：shift + alt + f</li>
+</ol>
+<h3 id="自动格式化代码"><a href="#自动格式化代码" class="headerlink" title="自动格式化代码"></a>自动格式化代码</h3><ol>
+<li>文件 –&gt;首选项 –&gt;设置</li>
+<li>搜索emmet.include<ol>
+<li>新版本直接搜索format，勾选保存自动格式化即可</li>
+</ol>
+</li>
+<li>在setting.json下的用户中添加以下语句<pre><code>&quot;editor.formatOnType&quot;:true
+&quot;editor.formatOnSave&quot;:true
+</code></pre>
+</li>
+<li>只需要设置一次即可</li>
+</ol>
+<h1 id="CSS的元素显示模式"><a href="#CSS的元素显示模式" class="headerlink" title="CSS的元素显示模式"></a>CSS的元素显示模式</h1><h2 id="什么是元素显示模式"><a href="#什么是元素显示模式" class="headerlink" title="什么是元素显示模式"></a>什么是元素显示模式</h2><ol>
+<li>元素显示模式：元素（标签）以什么方式进行显示。如<code>&lt;div&gt;</code>独占一行，<code>&lt;span&gt;</code>一行可以放多个</li>
+<li>HTML元素一般分为块元素和行内元素</li>
+</ol>
+<h3 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h3><ol>
+<li>常见的块元素<code>&lt;h1&gt;~&lt;h6&gt;、&lt;p&gt;、&lt;div&gt;、&lt;ul&gt;、&lt;ol&gt;、&lt;li&gt;</code>，其中<code>&lt;div&gt;</code>标签是最典型的块元素</li>
+<li>块元素的特点<ol>
+<li>独占一行</li>
+<li>高速，宽度，外边距以及内边距都可以控制</li>
+<li>宽度默认是容器（父级宽度）的100%</li>
+<li>是一个容器</li>
+</ol>
+</li>
+<li>注意<ol>
+<li>文字类的元素内不能使用块级元素</li>
+<li><code>&lt;p&gt;</code>标签主要用于存放文字，因此<code>&lt;p&gt;</code>里面不能放块级元素，尤其是<code>&lt;div&gt;</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="行内元素（内联元素）"><a href="#行内元素（内联元素）" class="headerlink" title="行内元素（内联元素）"></a>行内元素（内联元素）</h3><ol>
+<li>常见的行内元素有<code>&lt;a&gt;、&lt;strong&gt;、&lt;b&gt;、&lt;em&gt;、&lt;i&gt;、&lt;del&gt;、&lt;s&gt;、&lt;ins&gt;、&lt;u&gt;、&lt;span&gt;</code>等，其中<code>&lt;span&gt;</code>是最典型的行内元素</li>
+<li>特点<ol>
+<li>相邻行内元素在一行上，一行可以显示多个</li>
+<li>高、宽，直接设置无效</li>
+<li>默认宽度就是它本身内容的宽度</li>
+<li>行内元素只能容纳文本或者其他行内元素</li>
+</ol>
+</li>
+<li>注意<ol>
+<li>链接里面不能再放链接</li>
+<li>特殊情况链接<a>里面可以放块级元素，但是给<a>转换为块级模式最安全</li>
+</ol>
+</li>
+</ol>
+<h3 id="行内块元素"><a href="#行内块元素" class="headerlink" title="行内块元素"></a>行内块元素</h3><ol>
+<li>在行内元素中有几个特殊的标签——<img/>、<input/>、<td>，同时具有块元素和行内元素的特点，有些资料他们为行内块元素</li>
+<li>特点<ol>
+<li>和相邻行内块元素（行内块）在一行上，但是他们之间会有空白缝隙。一行可以显示多个（行内元素特点）</li>
+<li>默认宽度就是它本身内容的宽度（行内元素特点）</li>
+<li>高度，行高，外边距以及内边距都可以控制（块级元素特点）</li>
+</ol>
+</li>
+</ol>
+<h3 id="元素显示模式的转换"><a href="#元素显示模式的转换" class="headerlink" title="元素显示模式的转换"></a>元素显示模式的转换</h3><ol>
+<li>一个模式的元素需要另外一种模式的特性<ol>
+<li>转换为块元素：display:block；</li>
+<li>转换为行内元素：display:inline；</li>
+<li>转换为行内块：display:inline-block；</li>
+</ol>
+</li>
+</ol>
+<h3 id="元素显示模式"><a href="#元素显示模式" class="headerlink" title="元素显示模式"></a>元素显示模式</h3><table>
+<thead>
+<tr>
+<th>元素模式</th>
+<th align="left">元素排列</th>
+<th align="left">设置样式</th>
+<th align="left">默认宽度</th>
+<th>包含</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>块级元素</td>
+<td align="left">一行只能放一个块级元素</td>
+<td align="left">以设置宽度高度</td>
+<td align="left">容器的100%</td>
+<td>容器既可以包含任何标签</td>
+</tr>
+<tr>
+<td>行内元素</td>
+<td align="left">一行可以放多个行内元素</td>
+<td align="left">不可以直接设置宽度高度</td>
+<td align="left">它本身内容的宽的</td>
+<td>容纳文本或者其他行内元素</td>
+</tr>
+<tr>
+<td>行内块元素</td>
+<td align="left">一行放多个行内块元素</td>
+<td align="left">可以设置宽度和高度</td>
+<td align="left">它本身内容的宽度</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="CSS的背景"><a href="#CSS的背景" class="headerlink" title="CSS的背景"></a>CSS的背景</h1><h2 id="背景属性"><a href="#背景属性" class="headerlink" title="背景属性"></a>背景属性</h2><ol>
+<li>背景属性可以设置背景颜色，背景图片，背景平铺，背景图片位置，背景图像固定等</li>
+</ol>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ol>
+<li>background-image：背景图片<ul>
+<li>background-image: none | url(url)</li>
+</ul>
+</li>
+<li>background-color：背景颜色</li>
+<li>背景平铺</li>
+<li>background-repeat    背景平铺    <ol>
+<li>背景图片不平铺：background-repeat：no-repeat;</li>
+<li>背景图片平铺（默认）：background-repeat：repeat;</li>
+<li>背景图片沿着x轴平铺：background-repeat：repeat-x;</li>
+<li>背景图片沿着x轴平铺：background-repeat：repeat-y;</li>
+</ol>
+</li>
+</ol>
+<h3 id="背景图片位置"><a href="#背景图片位置" class="headerlink" title="背景图片位置"></a>背景图片位置</h3><ol>
+<li>背景图片位置参数可以是方位名词，可以是精确单位，也可以是混合单位（方位名词+精确单位）</li>
+<li>background-position：可以改变图片在背景中的位置<ul>
+<li>background-position: x y;</li>
+<li>参数代表的意思是：x坐标和y坐标，可以使用方位名词或者精确单位<table>
+<thead>
+<tr>
+<th>参数值</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td align="left">百分数、有浮点数字和单位标识符组成的长度值</td>
+</tr>
+<tr>
+<td>position</td>
+<td align="left">top、center、bottom、lef、right、方位名词</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="背景图像固定"><a href="#背景图像固定" class="headerlink" title="背景图像固定"></a>背景图像固定</h3><ol>
+<li>back-attachment属性设置背景图像是否固定或者随着页面的其余部分滚动，后期可以制作视差滚动效果</li>
+<li>代码参数<ul>
+<li>back-attachment: scroll、fixed<table>
+<thead>
+<tr>
+<th>参数</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>scroll</td>
+<td align="left">背景图像随对象内容滚动</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td align="left">背景图像固定</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="背景复合写法（重点）"><a href="#背景复合写法（重点）" class="headerlink" title="背景复合写法（重点）"></a>背景复合写法（重点）</h3><ol>
+<li>为了简化背景属性的代码，将这些属性合并简写在同一个属性background中，一般顺序为：<ol>
+<li>background:背景颜色 背景图片地址 背景平铺 背景图像滚动 背景图片位置;<ul>
+<li>background: balck url(image.jpg) no-repeat fixed 20px center;</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="背景颜色半透明"><a href="#背景颜色半透明" class="headerlink" title="背景颜色半透明"></a>背景颜色半透明</h3><ol>
+<li>代码参数<ol>
+<li>background：rgba(0,0,0,0.3);</li>
+<li>rgba:r表示red红色，g表示green绿色，b代表blue蓝色。a代表alpha透明度，取值范围为0-1之间</li>
+</ol>
+</li>
+</ol>
+<h2 id="背景小结"><a href="#背景小结" class="headerlink" title="背景小结"></a>背景小结</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="left">作用</th>
+<th align="left">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>background-color</td>
+<td align="left">背景颜色</td>
+<td align="left">预定义的颜色值/十六进制/RGB代码</td>
+</tr>
+<tr>
+<td>background-image</td>
+<td align="left">背景图片</td>
+<td align="left">url（图片路径）</td>
+</tr>
+<tr>
+<td>background-repeat</td>
+<td align="left">是否平铺</td>
+<td align="left">repeat/no-repeat/repeat-x/repeat-y</td>
+</tr>
+<tr>
+<td>background-position</td>
+<td align="left">背景位置</td>
+<td align="left">length/position 分别是x和y坐标</td>
+</tr>
+<tr>
+<td>background-attachment</td>
+<td align="left">背景附着</td>
+<td align="left">scroll（背景滚动）/fixed（背景固定）</td>
+</tr>
+<tr>
+<td>背景简写</td>
+<td align="left">书写更简单</td>
+<td align="left">背景颜色 背景图片地址 背景平铺 背景图像滚动 背景图片位置</td>
+</tr>
+<tr>
+<td>背景色半透明</td>
+<td align="left">背景颜色半透明</td>
+<td align="left">background：rgba(0,0,0,0.3);  后面必须是4个值</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/17/CSS%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8%E3%80%81%E5%B1%9E%E6%80%A7%E3%80%81%E5%92%8C%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F/" rel="prev" title="CSS的选择器、属性、和引入方式">
+      <i class="fa fa-chevron-left"></i> CSS的选择器、属性、和引入方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/20/CSS%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%E3%80%81%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E3%80%81%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%E4%B8%8E%E9%98%B4%E5%BD%B1/" rel="next" title="CSS的三大特性、盒子模型、圆角边框与阴影">
+      CSS的三大特性、盒子模型、圆角边框与阴影 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Emmet%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Emmet语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90HTML%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">快速生成HTML结构语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">快速格式化代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">手动格式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">自动格式化代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS%E7%9A%84%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">CSS的元素显示模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是元素显示模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E5%85%83%E7%B4%A0"><span class="nav-number">2.1.1.</span> <span class="nav-text">块元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%EF%BC%88%E5%86%85%E8%81%94%E5%85%83%E7%B4%A0%EF%BC%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">行内元素（内联元素）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E5%9D%97%E5%85%83%E7%B4%A0"><span class="nav-number">2.1.3.</span> <span class="nav-text">行内块元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.1.4.</span> <span class="nav-text">元素显示模式的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.5.</span> <span class="nav-text">元素显示模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS%E7%9A%84%E8%83%8C%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">CSS的背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%B1%9E%E6%80%A7"><span class="nav-number">3.1.</span> <span class="nav-text">背景属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">3.1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E4%BD%8D%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">背景图片位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%9B%BE%E5%83%8F%E5%9B%BA%E5%AE%9A"><span class="nav-number">3.1.3.</span> <span class="nav-text">背景图像固定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">3.1.4.</span> <span class="nav-text">背景复合写法（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E5%8D%8A%E9%80%8F%E6%98%8E"><span class="nav-number">3.1.5.</span> <span class="nav-text">背景颜色半透明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E5%B0%8F%E7%BB%93"><span class="nav-number">3.2.</span> <span class="nav-text">背景小结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">记录自学中的每一个脚步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
