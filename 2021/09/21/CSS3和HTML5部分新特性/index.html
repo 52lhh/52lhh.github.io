@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习笔记：HTML5和CSS3部分新特性个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5和CSS3部分新特性">
+<meta property="og:url" content="http://example.com/2021/09/21/CSS3%E5%92%8CHTML5%E9%83%A8%E5%88%86%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="学习笔记：HTML5和CSS3部分新特性个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/09/21/images/%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE.png">
+<meta property="og:image" content="http://example.com/2021/09/21/images/%E8%BE%B9%E6%A1%86%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="http://example.com/2021/09/21/images/%E8%BE%B9%E6%A1%86%E5%9B%BE%E7%89%87%E6%A1%88%E4%BE%8B.png">
+<meta property="article:published_time" content="2021-09-20T16:04:13.022Z">
+<meta property="article:modified_time" content="2021-09-20T17:38:14.754Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/09/21/images/%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE.png">
+
+<link rel="canonical" href="http://example.com/2021/09/21/CSS3%E5%92%8CHTML5%E9%83%A8%E5%88%86%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTML5和CSS3部分新特性 | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/21/CSS3%E5%92%8CHTML5%E9%83%A8%E5%88%86%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="记录自学中的每一个脚步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML5和CSS3部分新特性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-21 00:04:13 / 修改时间：01:38:14" itemprop="dateCreated datePublished" datetime="2021-09-21T00:04:13+08:00">2021-09-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/HTML5%E5%92%8CCSS3%E9%83%A8%E5%88%86%E6%96%B0%E7%89%B9%E6%80%A7/" itemprop="url" rel="index"><span itemprop="name">HTML5和CSS3部分新特性</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习笔记：HTML5和CSS3部分新特性<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正  </p>
+<span id="more"></span>
+
+<h1 id="HTML5新特性-页首"><a href="#HTML5新特性-页首" class="headerlink" title="HTML5新特性  (页首)"></a>HTML5新特性  (页首)</h1><h2 id="CSS初始化-页首"><a href="#CSS初始化-页首" class="headerlink" title="CSS初始化  (页首)"></a>CSS初始化  (页首)</h2><ol>
+<li>不同浏览器对有些标签的默认值是不同的，为了消除不同浏览器对HTML文本呈现的差异，照顾浏览器的兼容，我们需要对CSS初始化</li>
+<li>简单理解：CSS初始化是指重设浏览器的样式（也称为CSS reset）</li>
+<li>每个网页都必须首先进行CSS初始化</li>
+</ol>
+<h2 id="HTML5新特性-页首-1"><a href="#HTML5新特性-页首-1" class="headerlink" title="HTML5新特性  (页首)"></a>HTML5新特性  (页首)</h2><ol>
+<li>HTML5的新特性主要针对以前的不足，增加了一些新的标签，新的表单和新的表单属性</li>
+</ol>
+<h3 id="HTML5新增的语义化标签-页首"><a href="#HTML5新增的语义化标签-页首" class="headerlink" title="HTML5新增的语义化标签  (页首)"></a>HTML5新增的语义化标签  (页首)</h3><ol>
+<li><code>&lt;header&gt;</code>: 头部标签</li>
+<li><code>&lt;nav&gt;</code>: 导航标签</li>
+<li><code>&lt;article&gt;</code>: 内容标签</li>
+<li><code>&lt;section&gt;</code>: 定义文档某个区域</li>
+<li><code>&lt;aside&gt;</code>: 侧边栏标签</li>
+<li><code>&lt;footer&gt;</code>: 尾部标签</li>
+<li><img src="../images/%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE.png" alt="语义化标签图示"></li>
+</ol>
+<h3 id="HTML5新增的多媒体标签-页首"><a href="#HTML5新增的多媒体标签-页首" class="headerlink" title="HTML5新增的多媒体标签  (页首)"></a>HTML5新增的多媒体标签  (页首)</h3><ol>
+<li>新增的多媒体标签主要包含两个<ol>
+<li>音频：<code>&lt;audio&gt;</code></li>
+<li>视频：<code>&lt;video&gt;</code></li>
+</ol>
+</li>
+<li>使用这些标签可以很方便的在页面中嵌入音频和视频，而不再去使用flash和其他浏览器插件</li>
+<li>视频<code>&lt;video&gt;</code><ol>
+<li>语法：<code>&lt;video src=&quot;文件地址&quot; controls=&quot;controls&quot;&gt;&lt;/video&gt;</code></li>
+</ol>
+</li>
+<li>视频常见属性<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>autoplay</td>
+<td align="center">autoplay</td>
+<td>视频就绪自动播放（谷歌浏览器需要添加muted来解决自动播放的问题）</td>
+</tr>
+<tr>
+<td>controls</td>
+<td align="center">controls</td>
+<td>向用户显示播放控件</td>
+</tr>
+<tr>
+<td>width</td>
+<td align="center">pixels（像素）</td>
+<td>设置播放器宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td align="center">pixels（像素）</td>
+<td>设置播放器高度</td>
+</tr>
+<tr>
+<td>loop</td>
+<td align="center">loop</td>
+<td>播放完是否继续播放该视频，循环播放</td>
+</tr>
+<tr>
+<td>preload</td>
+<td align="center">auto（预先加载视频）none（不加载视频）</td>
+<td>规定是否预先加载视频（如果有了autoplay则忽略该属性）</td>
+</tr>
+<tr>
+<td>src</td>
+<td align="center">url</td>
+<td>视频url地址</td>
+</tr>
+<tr>
+<td>poster</td>
+<td align="center">imgurl</td>
+<td>加载等待的画面图片</td>
+</tr>
+<tr>
+<td>muted</td>
+<td align="center">muted</td>
+<td>静音播放</td>
+</tr>
+</tbody></table>
+</li>
+<li>音频常见属性<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="center">值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>autoplay</td>
+<td align="center">autoplay</td>
+<td>如果出现该属性，则音频在就绪后立即播放（谷歌浏览器不支持）</td>
+</tr>
+<tr>
+<td>controls</td>
+<td align="center">controls</td>
+<td>如果出现该属性，则向用户显示控件，比如播放按钮</td>
+</tr>
+<tr>
+<td>loop</td>
+<td align="center">loop</td>
+<td>如果出现该属性，则当音频结束时重新开始播放</td>
+</tr>
+<tr>
+<td>src</td>
+<td align="center">url</td>
+<td>要播放音频的URL</td>
+</tr>
+</tbody></table>
+</li>
+<li>多媒体标签总结<ol>
+<li>音频标签和视频标签使用方式基本一致</li>
+<li>浏览器支持情况不同</li>
+<li>谷歌浏览器把音频和视频自动播放禁止 了</li>
+<li>可以给视频标签添加muted属性来静音播放视频，音频不可以（通过JavaScript解决）</li>
+<li>视频标签是重点，经常设置自动播放，不使用controls控件，循环和设置大小属性</li>
+</ol>
+</li>
+</ol>
+<h2 id="HTML5新增的input类型-页首"><a href="#HTML5新增的input类型-页首" class="headerlink" title="HTML5新增的input类型  (页首)"></a>HTML5新增的input类型  (页首)</h2><ol>
+<li>重点记忆：number tel search这三个</li>
+<li>属性值<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type=”email”</td>
+<td align="left">限制用户输入必须为email类型</td>
+</tr>
+<tr>
+<td>type=”url”</td>
+<td align="left">限制用户输入必须为url类型</td>
+</tr>
+<tr>
+<td>type=”date”</td>
+<td align="left">限制用户输入必须为日期类型</td>
+</tr>
+<tr>
+<td>type=”time”</td>
+<td align="left">限制用户输入必须为时间类型</td>
+</tr>
+<tr>
+<td>type=”month”</td>
+<td align="left">限制用户输入必须为月类型</td>
+</tr>
+<tr>
+<td>type=”week”</td>
+<td align="left">限制用户输入必须为周类型</td>
+</tr>
+<tr>
+<td>type=”number”</td>
+<td align="left">限制用户输入必须为数字类型</td>
+</tr>
+<tr>
+<td>type=”tel”</td>
+<td align="left">电话号码</td>
+</tr>
+<tr>
+<td>type=”search”</td>
+<td align="left">搜索框</td>
+</tr>
+<tr>
+<td>type=”color”</td>
+<td align="left">生成一个颜色选择表单</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="HTML5新增表单属性-页首"><a href="#HTML5新增表单属性-页首" class="headerlink" title="HTML5新增表单属性  (页首)"></a>HTML5新增表单属性  (页首)</h2><ol>
+<li>属性值<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="center">值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>required</td>
+<td align="center">required</td>
+<td>表单拥有该属性表示其内容不能为空，必填</td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td align="center">提示文本</td>
+<td>表单的提示信息，存在默认值将不显示</td>
+</tr>
+<tr>
+<td>autofocus</td>
+<td align="center">autofocus</td>
+<td>自动聚焦属性，页面加载完成自动聚焦到指定表单</td>
+</tr>
+<tr>
+<td>autocomplete</td>
+<td align="center">off/on</td>
+<td>当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项；默认已经打开，如：autocomplete=”on”，关闭autocomplete=”off”需要放在表单内，同时加上name属性，同时成功提交</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td align="center">multiple</td>
+<td>可以多选提交文件</td>
+</tr>
+</tbody></table>
+</li>
+<li>注意：可以通过设置以下方式修改placehoder里面的字体颜色<pre><code>input::placeholder &#123;
+  color: pink;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h1 id="CSS3的新特性-页首"><a href="#CSS3的新特性-页首" class="headerlink" title="CSS3的新特性  (页首)"></a>CSS3的新特性  (页首)</h1><h2 id="属性选择器-页首"><a href="#属性选择器-页首" class="headerlink" title="属性选择器  (页首)"></a>属性选择器  (页首)</h2><ol>
+<li>属性选择器可以根据元素特定的属性来选择元素。可以不借助于类或者id选择器<table>
+<thead>
+<tr>
+<th>选择符</th>
+<th align="left">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>E[att]</code></td>
+<td align="left">选择具有att属性的E元素</td>
+</tr>
+<tr>
+<td><code>E[att=&quot;val&quot;]</code>（重点掌握）</td>
+<td align="left">选择具有att属性且属性值等于val的E元素</td>
+</tr>
+<tr>
+<td>E[att^=”val”]</td>
+<td align="left">匹配具有att属性且值以val开头的E元素</td>
+</tr>
+<tr>
+<td><code>E[att$=&quot;val&quot;]</code></td>
+<td align="left">匹配具有att属性且值以val结尾的E元素</td>
+</tr>
+<tr>
+<td><code>E[att*=&quot;val&quot;]</code></td>
+<td align="left">匹配具有att属性且值中含有val的E元素</td>
+</tr>
+</tbody></table>
+</li>
+<li>属性选择器，类选择器，伪类选择器，权重都为10<ul>
+<li>例：<code>div[class^=icon]</code>权重为11；其中div为标签选择器，权重为1；class^=icon为属性选择器，权重为10</li>
+</ul>
+</li>
+</ol>
+<h2 id="结构伪类选择器-页首"><a href="#结构伪类选择器-页首" class="headerlink" title="结构伪类选择器  (页首)"></a>结构伪类选择器  (页首)</h2><ol>
+<li>结构伪类选择器主要根据文档结构来选择元素，常用于根据父级选择器里面的子元素</li>
+<li>nth-child<table>
+<thead>
+<tr>
+<th>选择符</th>
+<th align="left">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E:first-child</td>
+<td align="left">匹配父元素中的第一个子元素E</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td align="left">匹配父元素中最后一个子元素E</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td align="left">匹配父元素中的第n个子元素E</td>
+</tr>
+</tbody></table>
+<ol>
+<li>选择某个父元素的一个或者多个特定的子元素<ul>
+<li>n可以是数字，关键字和公式</li>
+<li>n如果可以是数字，就是选择第n个子元素，里面数字从1开始</li>
+<li>n可以是关键字：even偶数，odd奇数</li>
+<li>n可以是公式：常见的公式如下（如果n是公式，则从0开始计算，但是第0个元素或者超出了元素的个数会被忽略）<table>
+<thead>
+<tr>
+<th>公式</th>
+<th align="left">取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2n</td>
+<td align="left">偶数</td>
+</tr>
+<tr>
+<td>2n+1</td>
+<td align="left">奇数</td>
+</tr>
+<tr>
+<td>5n</td>
+<td align="left">5的倍数</td>
+</tr>
+<tr>
+<td>n+5</td>
+<td align="left">从第5个开始（包含第五个）到最后</td>
+</tr>
+<tr>
+<td>-n+5</td>
+<td align="left">前5个（包含第5个）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>nth-of-type<table>
+<thead>
+<tr>
+<th>选择符</th>
+<th align="left">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E:first-of-type</td>
+<td align="left">指定类型E的第一个</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td align="left">指定类型E的最后一个</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td align="left">指定类型E的第n个,公式同上</td>
+</tr>
+</tbody></table>
+</li>
+<li>区别（重点）<ol>
+<li>nth-child：对父类元素里面所有孩子排序选择（序号是固定的）先找到第n个孩子，然后看是否和E匹配</li>
+<li>nth-of-type：对父类元素里面指定子元素进行排序选择；先去匹配E，然后再根据E找第n个孩子</li>
+</ol>
+</li>
+</ol>
+<h2 id="伪元素选择器（重点）-页首"><a href="#伪元素选择器（重点）-页首" class="headerlink" title="伪元素选择器（重点）  (页首)"></a>伪元素选择器（重点）  (页首)</h2><ol>
+<li>伪元素选择器可以帮助我们利用CSS创建新标签元素，而不需要HTML标签，从而简化HTML结构<table>
+<thead>
+<tr>
+<th>选择符</th>
+<th align="left">简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>::before</td>
+<td align="left">在元素内部的前面插入元素</td>
+</tr>
+<tr>
+<td>::after</td>
+<td align="left">在元素内部的后面插入元素</td>
+</tr>
+</tbody></table>
+</li>
+<li>注意：<ol>
+<li>before和after创建一个元素，但是属于行内元素</li>
+<li>新创建的这个元素再文档树中是找不到的，所以我们称为伪元素</li>
+<li>语法：element::before{}</li>
+<li>before和after必须有content属性</li>
+<li>before在父元素内容的前面创建元素，after在父元素内容的后面插入元素</li>
+<li>伪元素选择器和标签选择器一样，权重为1</li>
+</ol>
+</li>
+</ol>
+<h2 id="CSS3盒子模型-重点-页首"><a href="#CSS3盒子模型-重点-页首" class="headerlink" title="CSS3盒子模型(重点)  (页首)"></a>CSS3盒子模型(重点)  (页首)</h2><ol>
+<li>CSS3中可以通过box-sizing来指定盒模型，有两个值:<ul>
+<li>box-sizing: content-box   盒子大小为width + padding + border(默认，W3C标准盒子模型)</li>
+<li>box-sizing: border-box    盒子大小为width(即padding和border不会撑大盒子)</li>
+</ul>
+</li>
+</ol>
+<h2 id="CSS3其他特性-页首"><a href="#CSS3其他特性-页首" class="headerlink" title="CSS3其他特性  (页首)"></a>CSS3其他特性  (页首)</h2><h3 id="CSS3滤镜filter-页首"><a href="#CSS3滤镜filter-页首" class="headerlink" title="CSS3滤镜filter  (页首)"></a>CSS3滤镜filter  (页首)</h3><ol>
+<li>filter: CSS属性将模糊或颜色偏移等图形效果应用于元素</li>
+<li>语法: filter: 函数();<ul>
+<li>(此函数为虚化函数)<pre><code>&lt;style&gt;
+  div img &#123;
+      filter: blur(10px);
+  &#125;
+&lt;/style&gt;
+</code></pre>
+<h3 id="CSS3-calc函数-页首"><a href="#CSS3-calc函数-页首" class="headerlink" title="CSS3 calc函数  (页首)"></a>CSS3 calc函数  (页首)</h3></li>
+</ul>
+</li>
+<li>calc(): 此函数用于在声明CSS属性值时执行一些计算</li>
+<li>例: 子盒子的宽高永远比父盒子小30px<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        .father &#123;
+            width: 300px;
+            height: 170px;
+            background-color: skyblue;
+        &#125;
+        .son &#123;
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            background-color: pink;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;father&quot;&gt;
+        &lt;div class=&quot;son&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="边框图片-页首"><a href="#边框图片-页首" class="headerlink" title="边框图片 (页首)"></a>边框图片 (页首)</h3><ol>
+<li>边框图片使用场景：盒子大小不一，但是边框样式相同，此时就需要边框图片来完成</li>
+<li>为了实现丰富多彩的边框效果，在CSS3中，新增了border-image属性，这个新属性允许指定一幅图像作为元素的边框</li>
+<li>边框图片切图原理（重要）：九宫格切法<ol>
+<li><img src="../images/%E8%BE%B9%E6%A1%86%E5%9B%BE%E7%89%87.png" alt="边框图片"></li>
+</ol>
+</li>
+<li>切图顺序：上右下左</li>
+<li>边框图片使用语法（重要）<ol>
+<li>属性<table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>border-image-source</td>
+<td align="left">用在边框的图片的路径</td>
+</tr>
+<tr>
+<td>border-image-slice</td>
+<td align="left">图片边框向内偏移（裁剪的尺寸，一定不加单位，上右下左顺序）</td>
+</tr>
+<tr>
+<td>border-image-width</td>
+<td align="left">图片边框的宽度（需要加单位），不是边框的宽度而是边框图片的宽度，边框图片的宽度不会挤压文字，默认为边框的宽度</td>
+</tr>
+<tr>
+<td>border-image-repeat</td>
+<td align="left">图像边框是否应平铺（repeat）、铺满（round）或拉伸（stretch）默认拉伸</td>
+</tr>
+</tbody></table>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        div &#123;
+            width: 300px;
+            height: 300px;
+            border: 2px solid pink;
+            /* 边框图片的路径 */
+            border-image-source: url(img/边框图片.png);
+            /* 裁剪边框图片 */
+            border-image-slice: 49 49 49 49;
+            /* 图片边框的宽度 */
+            border-image-width: 10;
+            /* 图像边框是否应平铺（repeat）、铺满（round）或拉伸（stretch） */
+            border-image-repeat: stretch;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><img src="../images/%E8%BE%B9%E6%A1%86%E5%9B%BE%E7%89%87%E6%A1%88%E4%BE%8B.png" alt="边框图片案例"></li>
+</ol>
+</li>
+</ol>
+<h2 id="CSS3过渡特性-重点-页首"><a href="#CSS3过渡特性-重点-页首" class="headerlink" title="CSS3过渡特性(重点)  (页首)"></a>CSS3过渡特性(重点)  (页首)</h2><ol>
+<li>过渡(transition)是CSS3中具有颠覆性的特征之一,我们可以在不使用Flash动画或javaScript的情况下,当元素从一种样式变换为另一种样式时为元素添加效果</li>
+<li>过渡动画: 是从一个状态渐渐的过渡到另外一个状态</li>
+<li>经常和:hover一起搭配使用</li>
+<li>属性值<ol>
+<li>属性: 想要变化的CSS属性，宽度，高度，背景，颜色，内外边距都可以。如果所有的属性都需要变化过渡,则属性值为all</li>
+<li>花费时间: 单位是秒(必须写单位) 比如0.5s</li>
+<li>运动曲线: 默认是ease(可以省略)</li>
+<li>何时开始: 单位是秒(必须写单位)可以设置延迟触发事件,默认为0s(可以省略)</li>
+</ol>
+</li>
+<li>语法: 过渡属性 花费时间 运动曲线 何时开始;</li>
+<li>过渡口诀: 谁做过渡(动画)给谁加<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        div &#123;
+            width: 200px;
+            height: 80px;
+            background-color: pink;
+            /* transition: width 1s; */
+            /* 想要写多个属性，则用逗号进行分隔 */
+            transition: width 1s, hight 1s;
+            /* 所有的属性都需要变化过渡,则属性值为all,开发中常用 */
+            transition: all 1s;
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+        &#125;
+        div:hover &#123;
+            width: 700px;
+            height: 300px;
+            background-color: skyblue;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h1 id="2D转换-页首"><a href="#2D转换-页首" class="headerlink" title="2D转换 (页首)"></a>2D转换 (页首)</h1><ol>
+<li>transform是CSS3中具有颠覆性的特征之一，可以实现多元素的位移，旋转缩放等效果<ol>
+<li>移动：translate</li>
+<li>旋转：rotate</li>
+<li>缩放：scale</li>
+</ol>
+</li>
+</ol>
+<h2 id="二维坐标系-页首"><a href="#二维坐标系-页首" class="headerlink" title="二维坐标系 (页首)"></a>二维坐标系 (页首)</h2><ol>
+<li>2D转换是改变在二维平面上的位置和1形状的一种技术</li>
+<li>网页二维坐标系：x轴正轴水平向右，y轴正轴水平向下</li>
+</ol>
+<h2 id="转换之移动translate-页首"><a href="#转换之移动translate-页首" class="headerlink" title="转换之移动translate (页首)"></a>转换之移动translate (页首)</h2><ol>
+<li>2D移动还是2D转换里面的一种功能，可以改变元素在页面中的位置，类似定位</li>
+<li>语法：<ol>
+<li>transform：translate(x,y);</li>
+<li>分开写：<ul>
+<li>transform: translateX(n);</li>
+<li>transform: translateY(n);</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>例：<pre><code>&lt;style&gt;
+    div &#123;
+        width: 200px;
+        height: 200px;
+        background-color: skyblue;
+        /* transform：translate(x,y); */
+        transform: translate(100px, 100px);
+        /* transform: translateX(n); */
+        transform: translateX(100px);
+        /* transform: translateY(n); */
+        transform: translateY(100px);
+    &#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+<li>重点：<ol>
+<li>定义2D转换中的移动，沿着X和Y轴移动元素</li>
+<li>translate最大的优点：不会影响到其他元素的位置</li>
+<li>translate中的百分比单位是相对于自身元素的translate:(50%, 50%);</li>
+<li>对行内标签没有效果</li>
+</ol>
+</li>
+<li>小技巧：让盒子实现水平垂直居中<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        div &#123;
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: skyblue;
+        &#125;
+        p &#123;
+            position: absolute;
+            /* 定位 */
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 移动 */
+            transform: translate(-50%, -50%);
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;p&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="转换之2D旋转rotate-页首"><a href="#转换之2D旋转rotate-页首" class="headerlink" title="转换之2D旋转rotate (页首)"></a>转换之2D旋转rotate (页首)</h2><ol>
+<li>2D旋转是指让元素在2维平面内顺时针旋转或者逆时针旋转</li>
+<li>语法<ul>
+<li>transform: rotate(度数)</li>
+</ul>
+</li>
+<li>重点<ol>
+<li>rotate里面跟度数，单位是deg     比如: totate(45deg)</li>
+<li>角度为正时，顺时针；角度为负时，为逆时针</li>
+<li>默认旋转的中心点是元素的中心点</li>
+</ol>
+</li>
+<li>例：<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        img &#123;
+            width: 200px;
+            height: 200px;
+            border: 2px solid pink;
+            border-radius: 100px;
+            transition: all 1s;
+        &#125;
+        img:hover &#123;
+            /* rotate旋转 */
+            transform: rotate(360deg);
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;img src=&quot;../../images/fat.png&quot; alt=&quot;&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li>2D转换中心点transform-origin<ol>
+<li>语法：<ul>
+<li>transform-origin: x y;</li>
+</ul>
+</li>
+<li>重点<ul>
+<li>注意后面参数x和y要用空格隔开</li>
+<li>x y 默认转换的中心点是元素的中心点(50% 50%)</li>
+<li>还可以给x y设置像素或者方位名词(top bottom left right center)</li>
+</ul>
+</li>
+<li>例<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        div &#123;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            margin: 200px auto;
+            transition: all 1s;
+            /* 旋转中心点为左下角 */
+            transform-origin: left bottom;
+            /* 旋转中心点为距离盒子上边框和左边框各30px */
+            transform-origin: 30px 30px;
+        &#125;
+        div:hover &#123;
+            transform: rotate(360deg)
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="2D转换之缩放scale-页首"><a href="#2D转换之缩放scale-页首" class="headerlink" title="2D转换之缩放scale (页首)"></a>2D转换之缩放scale (页首)</h2><ol>
+<li>缩放：可以将元素放大和缩小。只要给元素添加上这个属性就能控制它放大或缩小</li>
+<li>语法<ul>
+<li>transform: scale(x, y);</li>
+</ul>
+</li>
+<li>注意<ol>
+<li>注意其中的x和y用逗号分隔</li>
+<li>transform: scale(1, 1)：宽和高都放大了一倍，相当于没有放大</li>
+<li>transform: scale(2, 2)：宽和高都放大了2倍</li>
+<li>transform: scale(2)：只写一个参数，第二个参数则和第一个参数一样，相当于scale(2, 2)</li>
+<li>transform: scale(0.5, 0.5)：缩小</li>
+<li>sacle缩放的最大优势：可以设置转换中心点缩放，默认以中心点缩放，而且不影响其他盒子</li>
+</ol>
+</li>
+<li>演示：<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        div &#123;
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            margin: 100px auto;
+            transition: all 1s;
+        &#125;
+        div:hover &#123;
+            /* transform: scale(2, 2)：宽和高都放大了2倍 */
+            /* transform: scale(2, 2); */
+            /* transform: scale(2)：只写一个参数，第二个参数则和第一个参数一样，相当于scale(2, 2) */
+            /* transform: scale(2); */
+            /* transform: scale(0.5, 0.5)：缩小 */
+            transform: scale(0.5, 0.5);
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="2D转换综合写法-页首"><a href="#2D转换综合写法-页首" class="headerlink" title="2D转换综合写法 (页首)"></a>2D转换综合写法 (页首)</h2><ol>
+<li>注意<ol>
+<li>同时使用多个转换，语法为：<ul>
+<li>ransform: translate() rotate() scale();</li>
+</ul>
+</li>
+<li>其顺序会影响转换的效果（先旋转会改变坐标轴的方向）</li>
+<li>当我们同时有位移和其他属性的时候，记得要将位移放到最前面<pre><code>&lt;style&gt;
+    div &#123;
+        width: 150px;
+        height: 150px;
+        background-color: pink;
+        transition: all 0.5s;
+    &#125;
+    div:hover &#123;
+        transform: translate(200px, 100px) rotate(180deg) scale(1.5);
+    &#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="动画-页首"><a href="#动画-页首" class="headerlink" title="动画 (页首)"></a>动画 (页首)</h1><ol>
+<li>动画是CSS3中具有颠覆性的特征之一，可以通过设置多个节点来精确控制一个或一组动画，常用来实现复杂的动画效果；相比于过度，动画可以实现更多变化，更多控制，连续自动播放等效果</li>
+<li>制作动画分为两步<ol>
+<li>定义动画</li>
+<li>使用（调用）动画</li>
+</ol>
+</li>
+</ol>
+<h2 id="动画的基本使用-页首"><a href="#动画的基本使用-页首" class="headerlink" title="动画的基本使用 (页首)"></a>动画的基本使用 (页首)</h2><ol>
+<li>0%是动画的开始，100%是动画的完成。这样的规则就是动画序列</li>
+<li>在@keyframes中规定某项CSS样式，就能创建由当前样式逐渐改为新样式的动画效果</li>
+<li>动画是使元素从一种样式逐渐变化为另一种样式的效果，可以改变任意多的样式任意多的次数</li>
+<li>请用百分比来规定变化发生的时间，或者关键词”from”和”to”，等同于0%和100%</li>
+</ol>
+<h3 id="用keyframes定义动画（类似定义类选择器）-页首"><a href="#用keyframes定义动画（类似定义类选择器）-页首" class="headerlink" title="用keyframes定义动画（类似定义类选择器） (页首)"></a>用keyframes定义动画（类似定义类选择器） (页首)</h3><pre><code>```
+@keyframes 动画名称 &#123;
+  0% &#123;
+    width: 100px;
+  &#125;
+  100% &#123;
+    width: 200px;
+  &#125;
+&#125;
+```
+</code></pre>
+<h3 id="元素使用动画-页首"><a href="#元素使用动画-页首" class="headerlink" title="元素使用动画 (页首)"></a>元素使用动画 (页首)</h3><pre><code>```
+div &#123;
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+  margin: 100px auto;
+  /* 调用动画 */
+  animation-name: 动画名称；
+  /* 持续时间 */
+  animation-duration: 持续时间； 
+&#125;
+```
+</code></pre>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><pre><code>&lt;style&gt;
+    /* 定义动画 */
+    @keyframes move &#123;
+        0% &#123;
+            transform: translate(0, 0);
+        &#125;
+        25% &#123;
+            transform: translate(800px, 0);
+        &#125;
+        50% &#123;
+            transform: translate(800px, 500px);
+        &#125;
+        75% &#123;
+            transform: translate(0, 500px);
+        &#125;
+        100% &#123;
+            transform: translate(0, 0);
+        &#125;
+    &#125;
+    div &#123;
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        /* 调用动画 */
+        animation-name: move;
+        /* 持续时间 */
+        animation-duration: 8s;
+    &#125;
+&lt;/style&gt;
+</code></pre>
+<h2 id="动画常见属性-页首"><a href="#动画常见属性-页首" class="headerlink" title="动画常见属性 (页首)"></a>动画常见属性 (页首)</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@keyframes</td>
+<td align="left">规定动画</td>
+</tr>
+<tr>
+<td>animation</td>
+<td align="left">所有动画属性的简写属性，除了animation-play-state属性</td>
+</tr>
+<tr>
+<td>animation-name</td>
+<td align="left">规定@keyframes动画的名称（必须的）</td>
+</tr>
+<tr>
+<td>animation-duration</td>
+<td align="left">规定动画完成一个周期所花费的秒或毫秒，默认是0（必须的）</td>
+</tr>
+<tr>
+<td>animation-timing-function</td>
+<td align="left">规定动画的速度曲线，默认是“ease”，匀速“linear”</td>
+</tr>
+<tr>
+<td>animation-delay</td>
+<td align="left">规定动画何时开始，默认是0</td>
+</tr>
+<tr>
+<td>animation-iteration-count</td>
+<td align="left">规定动画被播放次数，默认是1，还有infinite(无限)—–iteration（匀速的）</td>
+</tr>
+<tr>
+<td>animation-direction</td>
+<td align="left">规定动画是否在下一周期逆向播放，默认是“normal”，“alternate”为逆向播放</td>
+</tr>
+<tr>
+<td>animation-play-state</td>
+<td align="left">规定动画是否正在运行或暂停。默认是运行“running”，暂停“paused”</td>
+</tr>
+<tr>
+<td>animation-fill-mode</td>
+<td align="left">规定动画结束后状态，保持forward，回到起始backwards</td>
+</tr>
+</tbody></table>
+<ol>
+<li>例：<pre><code> &lt;style&gt;
+   @keyframes move &#123;
+       0% &#123;
+           transform: translateX(0, 0);
+       &#125;
+       100% &#123;
+           transform: translate(1000px);
+       &#125;
+   &#125;
+   div &#123;
+       width: 100px;
+       height: 100px;
+       background-color: pink;
+       /* @keyframes动画的名称 */
+       animation-name: move;
+       /* 规定动画完成一个周期所花费的秒或毫秒，默认是0 */
+       animation-duration: 3s;
+       /* 规定动画的速度曲线，默认是“ease” */
+       animation-timing-function: ease;
+       /* 规定动画何时开始，默认是0 */
+       animation-delay: 2s;
+       /* 规定动画被播放次数，默认是1，还有infinite(无限) */
+       animation-iteration-count: 3;
+       /* 规定动画是否在下一周期逆向播放，默认是“normal”，“alternate”为逆向播放 */
+       animation-direction: alternate;
+       /* 规定动画结束购状态，保持forward，回到起始backwards */
+       animation-fill-mode: backwards;
+   &#125;
+   div:hover &#123;
+       /* 规定动画是否正在运行或暂停。默认是运行“running”，暂停“paused” */
+       animation-play-state: paused;
+   &#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="动画简写-页首"><a href="#动画简写-页首" class="headerlink" title="动画简写 (页首)"></a>动画简写 (页首)</h3><ol>
+<li>animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画起始或者结束的状态; </li>
+<li>注意<ol>
+<li>简写属性里面不包括animation-play-state（停止动画）</li>
+<li>暂停动画：animation-play-state: puased; 经常和鼠标经过等其他配合使用</li>
+<li>想要动画走回来，而不是直接跳回来: animation-direction: alternate;</li>
+<li>盒子动画结束后，停在结束位置: animation-fill-mode: forwards;</li>
+</ol>
+</li>
+</ol>
+<h3 id="速度曲线细节-页首"><a href="#速度曲线细节-页首" class="headerlink" title="速度曲线细节 (页首)"></a>速度曲线细节 (页首)</h3><ol>
+<li>animation-timing-function: 规定动画的速度曲线，默认是“ease”<table>
+<thead>
+<tr>
+<th>值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>liner</td>
+<td align="left">动画从头到尾的速度是相同的，匀速</td>
+</tr>
+<tr>
+<td>ease</td>
+<td align="left">默认。动画以低速开始，然后加快，在结束前变慢</td>
+</tr>
+<tr>
+<td>ease-in</td>
+<td align="left">动画以低速开始</td>
+</tr>
+<tr>
+<td>ease-in-out</td>
+<td align="left">动画以低速开始和结束</td>
+</tr>
+<tr>
+<td>steps()</td>
+<td align="left">指定了时间函数中的间隔数量（步长）</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h1 id="3D转换-页首"><a href="#3D转换-页首" class="headerlink" title="3D转换  (页首)"></a>3D转换  (页首)</h1><h2 id="三维坐标系-页首"><a href="#三维坐标系-页首" class="headerlink" title="三维坐标系 (页首)"></a>三维坐标系 (页首)</h2><ol>
+<li>三维坐标是指的是立体空间，立体空间是由3个轴共同组成的<ol>
+<li>x轴：水平向右—注意：x右边为正值，左边为负值</li>
+<li>y轴：垂直向下—注意：y往下为正值，往上为负值</li>
+<li>z轴：垂直屏幕—注意：z往外为正值，往内为负值</li>
+</ol>
+</li>
+</ol>
+<h2 id="3D移动-translate3d-页首"><a href="#3D移动-translate3d-页首" class="headerlink" title="3D移动 translate3d (页首)"></a>3D移动 translate3d (页首)</h2><ol>
+<li>3D移动在2D移动的基础上多加了一个可以移动的方向，就是z轴方向<ol>
+<li>transform: translateX(100px)：在x轴上移动</li>
+<li>transform: translateY(100px)：在y轴上移动</li>
+<li>transform: translateZ(100px)：在z轴上移动(注意：translateZ一般用px单位)</li>
+<li>transform: translate3d(x, y, z)：其中x, y, z分别指移动的轴的方向的距离<pre><code>&lt;style&gt;
+  div &#123;
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      margin: 200px auto;
+      /* 在x轴上移动 */
+      transform: translateX(100px);
+      /* 在y轴上移动 */
+      transform: translateY(100px);
+      /* 在z轴上移动(注意：translateZ一般用px单位) */
+      transform: translateZ(100px);
+      /* 其中x, y, z分别指移动的轴的方向的距离 */
+      transform: translate3d(50px, 50px, 50px)
+  &#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="透视-perspective-页首"><a href="#透视-perspective-页首" class="headerlink" title="透视 perspective (页首)"></a>透视 perspective (页首)</h2><ol>
+<li>近大远小</li>
+<li>透视也称为视距：视距就是人的眼睛到屏幕的距离</li>
+<li>透视的单位是像素</li>
+<li>透视写在被观察元素的父盒子上面</li>
+<li>d：视距（透视），视距就是一个距离，人的眼睛到屏幕的距离</li>
+<li>z：z轴，物体距离屏幕的距离，z轴越大（正值）我们看到的物体就愈大<pre><code>&lt;style&gt;
+    body &#123;
+        /* 透视写在被观察元素的父盒子上面 */
+        perspective: 200px;
+    &#125;
+    div &#123;
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+        margin: 200px auto;
+        transform: translateZ(100px);
+    &#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="3D转换-rotate3d-页首"><a href="#3D转换-rotate3d-页首" class="headerlink" title="3D转换 rotate3d (页首)"></a>3D转换 rotate3d (页首)</h2><ol>
+<li>3D旋转指可以让元素在三维平面内沿着x轴，y轴，z轴或者自定义轴进行旋转</li>
+<li>语法</li>
+<li>transform: rotateX(45deg)：沿着x轴正方向旋转45度</li>
+<li>transform: rotateY(45deg)：沿着y轴正方向旋转45度</li>
+<li>transform: rotateZ(45deg)：沿着z轴正方向旋转45度</li>
+<li>transform3d: rotate3d(x, y, z, deg)：沿着自定义轴旋转deg角度（了解即可）    - x y z表示旋转轴的矢量<ul>
+<li>例：transform3d: rotate3d(1, 1, 0, 45deg)</li>
+<li>就是沿着x轴和y轴矢量方向的对角线旋转45deg<pre><code>&lt;style&gt;
+  body &#123;
+      /* 透视写在被观察元素的父盒子上面 */
+      perspective: 300px;
+  &#125;
+  div &#123;
+      width: 320px;
+      height: 250px;
+      margin: 200px auto;
+      transition: all 1s;
+  &#125;
+  img &#123;
+      width: 100%;
+      height: 100%;
+  &#125;
+  div:hover &#123;
+      /* 沿着x轴正方向旋转45度 */
+      transform: rotateX(360deg);
+      /* 沿着y轴正方向旋转45度 */
+      transform: rotateY(360deg);
+      /* 沿着z轴正方向旋转45度 */
+      transform: rotateZ(360deg);
+  &#125;
+&lt;/style&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="3D呈现transform-style-页首"><a href="#3D呈现transform-style-页首" class="headerlink" title="3D呈现transform-style (页首)"></a>3D呈现transform-style (页首)</h2><ol>
+<li><p> 控制子元素是否开启三维立体环境</p>
+</li>
+<li><p>transfrom-style: flat;子元素不开启3d立体空间 默认的</p>
+</li>
+<li><p>transform-style: preserve-3d; 子元素开启立体空间</p>
+</li>
+<li><p>代码写给父级，但是影响的是子盒子</p>
+</li>
+<li><p>这个属性很重要，后面必用</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;style&gt;
+
+body &#123;
+    perspective: 300px;
+&#125;
+.box &#123;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    transition: all 1s;
+    /* 代码写给父级，但是影响的是子盒子 */
+    transform-style: preserve-3d;
+&#125;
+.box:hover &#123;
+    transform: rotateY(60deg);
+&#125;
+.box div &#123;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+&#125;
+.one &#123;
+    background-color: pink;
+&#125;
+.two &#123;
+    background-color: skyblue;
+    transform: rotateX(60deg);
+&#125;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;box&quot;&gt;
+        &lt;div class=&quot;one&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;two&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创学习笔记分享，您的支持将成为我源源不断的学习动力~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="二十七 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="二十七 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>二十七
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/09/21/CSS3%E5%92%8CHTML5%E9%83%A8%E5%88%86%E6%96%B0%E7%89%B9%E6%80%A7/" title="HTML5和CSS3部分新特性">http://example.com/2021/09/21/CSS3和HTML5部分新特性/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/20/CSS%E7%9A%84%E7%B2%BE%E7%81%B5%E5%9B%BE%E3%80%81%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E3%80%81%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/" rel="prev" title="CSS的精灵图、字体图标、用户界面">
+      <i class="fa fa-chevron-left"></i> CSS的精灵图、字体图标、用户界面
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/21/CSS%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2%E6%90%AD%E5%BB%BA/" rel="next" title="CSS静态页面搭建">
+      CSS静态页面搭建 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML5%E6%96%B0%E7%89%B9%E6%80%A7-%E9%A1%B5%E9%A6%96"><span class="nav-number">1.</span> <span class="nav-text">HTML5新特性  (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS%E5%88%9D%E5%A7%8B%E5%8C%96-%E9%A1%B5%E9%A6%96"><span class="nav-number">1.1.</span> <span class="nav-text">CSS初始化  (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5%E6%96%B0%E7%89%B9%E6%80%A7-%E9%A1%B5%E9%A6%96-1"><span class="nav-number">1.2.</span> <span class="nav-text">HTML5新特性  (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5%E6%96%B0%E5%A2%9E%E7%9A%84%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE-%E9%A1%B5%E9%A6%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">HTML5新增的语义化标签  (页首)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5%E6%96%B0%E5%A2%9E%E7%9A%84%E5%A4%9A%E5%AA%92%E4%BD%93%E6%A0%87%E7%AD%BE-%E9%A1%B5%E9%A6%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">HTML5新增的多媒体标签  (页首)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5%E6%96%B0%E5%A2%9E%E7%9A%84input%E7%B1%BB%E5%9E%8B-%E9%A1%B5%E9%A6%96"><span class="nav-number">1.3.</span> <span class="nav-text">HTML5新增的input类型  (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5%E6%96%B0%E5%A2%9E%E8%A1%A8%E5%8D%95%E5%B1%9E%E6%80%A7-%E9%A1%B5%E9%A6%96"><span class="nav-number">1.4.</span> <span class="nav-text">HTML5新增表单属性  (页首)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.</span> <span class="nav-text">CSS3的新特性  (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.1.</span> <span class="nav-text">属性选择器  (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.2.</span> <span class="nav-text">结构伪类选择器  (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E5%85%83%E7%B4%A0%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.3.</span> <span class="nav-text">伪元素选择器（重点）  (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B-%E9%87%8D%E7%82%B9-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.4.</span> <span class="nav-text">CSS3盒子模型(重点)  (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3%E5%85%B6%E4%BB%96%E7%89%B9%E6%80%A7-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.5.</span> <span class="nav-text">CSS3其他特性  (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3%E6%BB%A4%E9%95%9Cfilter-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.5.1.</span> <span class="nav-text">CSS3滤镜filter  (页首)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3-calc%E5%87%BD%E6%95%B0-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.5.2.</span> <span class="nav-text">CSS3 calc函数  (页首)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%A1%86%E5%9B%BE%E7%89%87-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.5.3.</span> <span class="nav-text">边框图片 (页首)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3%E8%BF%87%E6%B8%A1%E7%89%B9%E6%80%A7-%E9%87%8D%E7%82%B9-%E9%A1%B5%E9%A6%96"><span class="nav-number">2.6.</span> <span class="nav-text">CSS3过渡特性(重点)  (页首)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2D%E8%BD%AC%E6%8D%A2-%E9%A1%B5%E9%A6%96"><span class="nav-number">3.</span> <span class="nav-text">2D转换 (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB-%E9%A1%B5%E9%A6%96"><span class="nav-number">3.1.</span> <span class="nav-text">二维坐标系 (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E4%B9%8B%E7%A7%BB%E5%8A%A8translate-%E9%A1%B5%E9%A6%96"><span class="nav-number">3.2.</span> <span class="nav-text">转换之移动translate (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E4%B9%8B2D%E6%97%8B%E8%BD%ACrotate-%E9%A1%B5%E9%A6%96"><span class="nav-number">3.3.</span> <span class="nav-text">转换之2D旋转rotate (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D%E8%BD%AC%E6%8D%A2%E4%B9%8B%E7%BC%A9%E6%94%BEscale-%E9%A1%B5%E9%A6%96"><span class="nav-number">3.4.</span> <span class="nav-text">2D转换之缩放scale (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2D%E8%BD%AC%E6%8D%A2%E7%BB%BC%E5%90%88%E5%86%99%E6%B3%95-%E9%A1%B5%E9%A6%96"><span class="nav-number">3.5.</span> <span class="nav-text">2D转换综合写法 (页首)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.</span> <span class="nav-text">动画 (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.1.</span> <span class="nav-text">动画的基本使用 (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8keyframes%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB%EF%BC%88%E7%B1%BB%E4%BC%BC%E5%AE%9A%E4%B9%89%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%89-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.1.1.</span> <span class="nav-text">用keyframes定义动画（类似定义类选择器） (页首)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E4%BD%BF%E7%94%A8%E5%8A%A8%E7%94%BB-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.1.2.</span> <span class="nav-text">元素使用动画 (页首)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%94%E7%A4%BA"><span class="nav-number">4.1.3.</span> <span class="nav-text">演示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB%E5%B8%B8%E8%A7%81%E5%B1%9E%E6%80%A7-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.2.</span> <span class="nav-text">动画常见属性 (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB%E7%AE%80%E5%86%99-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.2.1.</span> <span class="nav-text">动画简写 (页首)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9F%E5%BA%A6%E6%9B%B2%E7%BA%BF%E7%BB%86%E8%8A%82-%E9%A1%B5%E9%A6%96"><span class="nav-number">4.2.2.</span> <span class="nav-text">速度曲线细节 (页首)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3D%E8%BD%AC%E6%8D%A2-%E9%A1%B5%E9%A6%96"><span class="nav-number">5.</span> <span class="nav-text">3D转换  (页首)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%BB%B4%E5%9D%90%E6%A0%87%E7%B3%BB-%E9%A1%B5%E9%A6%96"><span class="nav-number">5.1.</span> <span class="nav-text">三维坐标系 (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E7%A7%BB%E5%8A%A8-translate3d-%E9%A1%B5%E9%A6%96"><span class="nav-number">5.2.</span> <span class="nav-text">3D移动 translate3d (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%8F%E8%A7%86-perspective-%E9%A1%B5%E9%A6%96"><span class="nav-number">5.3.</span> <span class="nav-text">透视 perspective (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E8%BD%AC%E6%8D%A2-rotate3d-%E9%A1%B5%E9%A6%96"><span class="nav-number">5.4.</span> <span class="nav-text">3D转换 rotate3d (页首)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D%E5%91%88%E7%8E%B0transform-style-%E9%A1%B5%E9%A6%96"><span class="nav-number">5.5.</span> <span class="nav-text">3D呈现transform-style (页首)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">记录自学中的每一个脚步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
