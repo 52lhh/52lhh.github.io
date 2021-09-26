@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013400.png">
 <meta property="article:published_time" content="2021-09-26T16:45:37.193Z">
-<meta property="article:modified_time" content="2021-09-26T17:37:56.457Z">
+<meta property="article:modified_time" content="2021-09-26T18:36:19.344Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-27 00:45:37 / 修改时间：01:37:56" itemprop="dateCreated datePublished" datetime="2021-09-27T00:45:37+08:00">2021-09-27</time>
+              <time title="创建时间：2021-09-27 00:45:37 / 修改时间：02:36:19" itemprop="dateCreated datePublished" datetime="2021-09-27T00:45:37+08:00">2021-09-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -357,14 +357,12 @@ console.log(date.getTime()); // 就是现在时间距离1970年1月1日总的毫
 </code></pre>
 </li>
 <li><p>简单写法（最常用）</p>
-<pre><code> ```
+<pre><code> var date = +new Date(); // +new Date() 返回的就是总的毫秒数
 </code></pre>
-<p> var date = +new Date(); // +new Date() 返回的就是总的毫秒数<br> ```</p>
 </li>
 <li><p>H5新增获取总毫秒数</p>
-<pre><code> ```
+<pre><code> console.log(Date.new());
 </code></pre>
-<p> console.log(Date.new());<br> ```</p>
 </li>
 <li><p>将总毫秒数转换为天、时、分、秒（时间戳转换为时分秒）</p>
 <ol>
@@ -627,9 +625,10 @@ str.length;
 </ol>
 <h3 id="字符串操作方法（重点）"><a href="#字符串操作方法（重点）" class="headerlink" title="字符串操作方法（重点）"></a>字符串操作方法（重点）</h3><ol>
 <li>concat(str1, str2, str3..)：用于连接两个或多个字符串，拼接字符串，等效与+，但+更常用<ol>
-<li>语法<pre><code>  ```        
+<li>语法<pre><code>str.concat(str1, str2, str3..)
+str.concat(&#39;red&#39;);
 </code></pre>
-str.concat(str1, str2, str3..)<br>str.concat(‘red’);<br>```</li>
+</li>
 </ol>
 </li>
 <li>substr(start, length)：从start位置开始（索引号），length为取的个数<ol>
