@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习笔记：ES6中Array的扩展方法个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6中Array的扩展方法">
+<meta property="og:url" content="http://example.com/2021/10/08/ES6%E4%B8%ADArray%E7%9A%84%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="学习笔记：ES6中Array的扩展方法个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-07T16:32:29.469Z">
+<meta property="article:modified_time" content="2021-10-07T16:41:10.762Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="ES6">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/10/08/ES6%E4%B8%ADArray%E7%9A%84%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ES6中Array的扩展方法 | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/08/ES6%E4%B8%ADArray%E7%9A%84%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="记录自学中的每一个脚步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES6中Array的扩展方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-08 00:32:29 / 修改时间：00:41:10" itemprop="dateCreated datePublished" datetime="2021-10-08T00:32:29+08:00">2021-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习笔记：ES6中Array的扩展方法<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正  </p>
+<span id="more"></span>
+
+<h1 id="Array的扩展方法"><a href="#Array的扩展方法" class="headerlink" title="Array的扩展方法"></a>Array的扩展方法</h1><h3 id="扩展运算符（展开语法）"><a href="#扩展运算符（展开语法）" class="headerlink" title="扩展运算符（展开语法）"></a>扩展运算符（展开语法）</h3><ol>
+<li><p>扩展运算符可以将数组或者对象转化为用逗号分隔的参数序列</p>
+<pre><code>&lt;script&gt;
+  let arr = [1, 2, 3, 4];
+  // ...arr; 相当于1, 2, 3, 4
+  // 因此console.log(...arr);相当于console.log(1, 2, 3, 4);
+  // 在输出时，console.log();语句会自动将&#39;,&#39;看作分隔符，因此输出时没有逗号
+  console.log(...arr);
+  // console.log(1, 2, 3, 4);
+&lt;/script&gt;
+</code></pre>
+</li>
+<li><p>扩展运算符可以应用</p>
+<ol>
+<li>数组合并<pre><code>&lt;script&gt;
+  let arr1 = [1, 2, 3];
+  let arr2 = [&#39;张三&#39;, &#39;李四&#39;, &#39;王五&#39;];
+  // let arr = [...arr1, ...arr2];
+  arr1.push(...arr2);
+  console.log(arr1); // [1, 2, 3, &quot;张三&quot;, &quot;李四&quot;, &quot;王五&quot;]
+&lt;/script&gt;
+</code></pre>
+</li>
+<li>将伪数组转化为数组，从而方便的调用数组中的方法<pre><code>&lt;body&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;script&gt;
+        let divs = document.querySelectorAll(&#39;div&#39;);
+        console.log(divs); // NodeList(5) [div, div, div, div, div]
+        // 将伪数组转化为数组 
+        var arr = [...divs];
+        console.log(arr); // [div, div, div, div, div]
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="构造函数方法Array-from"><a href="#构造函数方法Array-from" class="headerlink" title="构造函数方法Array.from()"></a>构造函数方法Array.from()</h3><ol>
+<li>将伪数组或可遍历的对象转换为真正的数组（伪数组内必须有length属性）</li>
+<li>方法返回值为转换完毕后的数组<pre><code>let arrayLink = &#123;
+    &#39;0&#39;: &#39;张三&#39;,
+    &#39;1&#39;: &#39;男&#39;,
+    &#39;length&#39;: &#39;2&#39;
+&#125;;
+let arr = Array.from(arrayLink);
+console.log(arr);
+</code></pre>
+</li>
+<li>方法还可以接受第二个参数，用来对每个元素进行处理，将处理后的值放入返回的数组<pre><code>let arr1 = &#123;
+    &#39;0&#39;: &#39;1&#39;,
+    &#39;1&#39;: &#39;2&#39;,
+    &#39;2&#39;: &#39;3&#39;,
+    &#39;length&#39;: &#39;3&#39;
+&#125;
+var ary = Array.from(arr1, item =&gt; item * 2);
+console.log(ary);
+</code></pre>
+</li>
+</ol>
+<h3 id="实例方法：find"><a href="#实例方法：find" class="headerlink" title="实例方法：find()"></a>实例方法：find()</h3><ol>
+<li>用于找出第一个符合条件的数组成员，返回值为该数组成员，若没有找到返回undefined<pre><code>&lt;script&gt;
+  let array = [&#123;
+    id: 1,
+    name: &#39;张三&#39;
+  &#125;, &#123;
+    id: 2,
+    name: &#39;李四&#39;
+  &#125;]
+  // 寻找id值为2的数组成员
+  var ary = array.find(item =&gt; item.id == 2);
+  console.log(ary); // &#123;id: 2, name: &quot;李四&quot;&#125;
+&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="实例方法：findIndex"><a href="#实例方法：findIndex" class="headerlink" title="实例方法：findIndex()"></a>实例方法：findIndex()</h3><ol>
+<li>用于找出第一个符合条件的数组成员的位置，找到返回数组元素，若没有找到返回-1<pre><code>&lt;script&gt;
+  let arr = [4, 5, 77, 13, 49, 6];
+  // 查询数组中第一个大于10的元素位置索引
+  var result = arr.findIndex(value =&gt; value &gt; 10)
+  console.log(result); // 2
+&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="实例方法：includes"><a href="#实例方法：includes" class="headerlink" title="实例方法：includes()"></a>实例方法：includes()</h3><ol>
+<li>表示某个数组是否包含给定的值，返回布尔值<pre><code>&lt;script&gt;
+    let arr = [4, 5, 77, 13, 49, 6];
+    var flag1 = arr.includes(5); // true
+    var flag2 = arr.includes(47); // false
+    console.log(flag1, flag2);
+&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创学习笔记分享，您的支持将成为我源源不断的学习动力~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="二十七 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="二十七 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>二十七
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/10/08/ES6%E4%B8%ADArray%E7%9A%84%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95/" title="ES6中Array的扩展方法">http://example.com/2021/10/08/ES6中Array的扩展方法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/08/ES6%E5%89%A9%E4%BD%99%E5%8F%82%E6%95%B0/" rel="prev" title="ES6剩余参数">
+      <i class="fa fa-chevron-left"></i> ES6剩余参数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/08/ES6%E4%B8%ADString%E7%9A%84%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95/" rel="next" title="ES6中String的扩展方法">
+      ES6中String的扩展方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Array%E7%9A%84%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Array的扩展方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88%E5%B1%95%E5%BC%80%E8%AF%AD%E6%B3%95%EF%BC%89"><span class="nav-number">1.0.1.</span> <span class="nav-text">扩展运算符（展开语法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%96%B9%E6%B3%95Array-from"><span class="nav-number">1.0.2.</span> <span class="nav-text">构造函数方法Array.from()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%9Afind"><span class="nav-number">1.0.3.</span> <span class="nav-text">实例方法：find()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%9AfindIndex"><span class="nav-number">1.0.4.</span> <span class="nav-text">实例方法：findIndex()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%9Aincludes"><span class="nav-number">1.0.5.</span> <span class="nav-text">实例方法：includes()</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">记录自学中的每一个脚步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
