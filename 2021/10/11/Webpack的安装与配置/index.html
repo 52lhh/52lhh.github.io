@@ -278,8 +278,8 @@
 <h2 id="webpack安装"><a href="#webpack安装" class="headerlink" title="webpack安装"></a>webpack安装</h2><ol>
 <li>安装webpack首先需要安装Node.js，Node.js自带了软件包管理工具npm</li>
 <li>查看node版本：node -v</li>
-<li>全局安装webpack：npm install <a href="mailto:&#119;&#x65;&#x62;&#112;&#x61;&#99;&#107;&#64;&#x33;&#x2e;&#54;&#x2e;&#x30;">&#119;&#x65;&#x62;&#112;&#x61;&#99;&#107;&#64;&#x33;&#x2e;&#54;&#x2e;&#x30;</a> -g<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011003252.png"></li>
-<li>webpack（后续才需要）：npm install <a href="mailto:&#x77;&#101;&#x62;&#x70;&#x61;&#99;&#x6b;&#64;&#51;&#x2e;&#x36;&#x2e;&#48;">&#x77;&#101;&#x62;&#x70;&#x61;&#99;&#x6b;&#64;&#51;&#x2e;&#x36;&#x2e;&#48;</a> –save-dev<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011003330.png"></li>
+<li>全局安装webpack：npm install <a href="mailto:&#119;&#101;&#x62;&#112;&#x61;&#99;&#107;&#x40;&#51;&#x2e;&#x36;&#46;&#x30;">&#119;&#101;&#x62;&#112;&#x61;&#99;&#107;&#x40;&#51;&#x2e;&#x36;&#46;&#x30;</a> -g<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011003252.png"></li>
+<li>webpack（后续才需要）：npm install <a href="mailto:&#119;&#101;&#x62;&#112;&#97;&#99;&#107;&#x40;&#x33;&#x2e;&#x36;&#46;&#48;">&#119;&#101;&#x62;&#112;&#97;&#99;&#107;&#x40;&#x33;&#x2e;&#x36;&#46;&#48;</a> –save-dev<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011003330.png"></li>
 <li>为什么全局安装后，还需要局部安装呢？<ol>
 <li>在终端直接执行webpack命令，使用的全局安装的webpack</li>
 <li>当在package.json中定义了scripts时，其中包含了webpack命令，那么使用的是局部webpack</li>
@@ -324,7 +324,7 @@
 </li>
 <li>第一步：项目中需要安装自己的局部的webpack<ol>
 <li>这里我们让局部安装webpack3.6.0</li>
-<li>webpack局部安装：npm install <a href="mailto:&#119;&#101;&#98;&#x70;&#x61;&#99;&#x6b;&#x40;&#51;&#x2e;&#x36;&#x2e;&#x30;">&#119;&#101;&#98;&#x70;&#x61;&#99;&#x6b;&#x40;&#51;&#x2e;&#x36;&#x2e;&#x30;</a> –save-dev<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011003455.png"></li>
+<li>webpack局部安装：npm install <a href="mailto:&#119;&#101;&#98;&#112;&#x61;&#99;&#107;&#64;&#x33;&#x2e;&#x36;&#x2e;&#x30;">&#119;&#101;&#98;&#112;&#x61;&#99;&#107;&#64;&#x33;&#x2e;&#x36;&#x2e;&#x30;</a> –save-dev<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011003455.png"></li>
 </ol>
 </li>
 <li>第二步：在package.json中的scripts中定义执行脚本，package.json中的scripts脚本执行时，会按照一定的顺序寻找命令对应的位置<ol>
@@ -454,7 +454,7 @@
 </li>
 <li>将子组件在vue文件中书写完毕并导出后，在main.js中进行引入<br> <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004106.png"><ol>
 <li>此时进行npm run build会报错，因为没有安装vue-loader和vue-template-compiler，注意版本问题！<ul>
-<li>npm install <a href="mailto:&#118;&#117;&#x65;&#x2d;&#x6c;&#x6f;&#x61;&#x64;&#101;&#114;&#64;&#49;&#x33;&#46;&#48;&#46;&#x30;">&#118;&#117;&#x65;&#x2d;&#x6c;&#x6f;&#x61;&#x64;&#101;&#114;&#64;&#49;&#x33;&#46;&#48;&#46;&#x30;</a> <a href="mailto:&#x76;&#x75;&#101;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#97;&#116;&#x65;&#45;&#99;&#111;&#x6d;&#x70;&#x69;&#108;&#101;&#x72;&#64;&#50;&#46;&#x36;&#46;&#x31;&#52;">&#x76;&#x75;&#101;&#x2d;&#x74;&#x65;&#x6d;&#x70;&#x6c;&#97;&#116;&#x65;&#45;&#99;&#111;&#x6d;&#x70;&#x69;&#108;&#101;&#x72;&#64;&#50;&#46;&#x36;&#46;&#x31;&#52;</a> –save-dev</li>
+<li>npm install <a href="mailto:&#x76;&#117;&#101;&#45;&#x6c;&#x6f;&#97;&#x64;&#x65;&#x72;&#64;&#49;&#51;&#x2e;&#48;&#46;&#x30;">&#x76;&#117;&#101;&#45;&#x6c;&#x6f;&#97;&#x64;&#x65;&#x72;&#64;&#49;&#51;&#x2e;&#48;&#46;&#x30;</a> <a href="mailto:&#x76;&#117;&#x65;&#45;&#x74;&#x65;&#109;&#112;&#x6c;&#x61;&#x74;&#x65;&#x2d;&#x63;&#x6f;&#x6d;&#x70;&#x69;&#108;&#101;&#114;&#64;&#50;&#x2e;&#54;&#x2e;&#x31;&#x34;">&#x76;&#117;&#x65;&#45;&#x74;&#x65;&#109;&#112;&#x6c;&#x61;&#x74;&#x65;&#x2d;&#x63;&#x6f;&#x6d;&#x70;&#x69;&#108;&#101;&#114;&#64;&#50;&#x2e;&#54;&#x2e;&#x31;&#x34;</a> –save-dev</li>
 </ul>
 </li>
 <li>配置webpack.config.js文件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004126.png"></li>
@@ -466,7 +466,7 @@
 <li>目前，index.html文件是存放在项目根目录的<ol>
 <li>在真实发布项目时，发布的是dist文件夹中的内容，但是dist文件夹中如果没有index.html文件，那么打包的js等文件也就没有意义了</li>
 <li>所以，我们需要将index.html文件打包到dist文件夹中，这个时候就可以使用html-webpack-plugin插件<ul>
-<li>npm install –save-dev <a href="mailto:&#104;&#x74;&#x6d;&#x6c;&#x2d;&#119;&#101;&#x62;&#x70;&#97;&#99;&#107;&#45;&#x70;&#x6c;&#x75;&#x67;&#105;&#x6e;&#64;&#x33;&#x2e;&#x32;&#46;&#48;">&#104;&#x74;&#x6d;&#x6c;&#x2d;&#119;&#101;&#x62;&#x70;&#97;&#99;&#107;&#45;&#x70;&#x6c;&#x75;&#x67;&#105;&#x6e;&#64;&#x33;&#x2e;&#x32;&#46;&#48;</a></li>
+<li>npm install –save-dev <a href="mailto:&#104;&#x74;&#109;&#108;&#x2d;&#x77;&#x65;&#98;&#x70;&#97;&#x63;&#x6b;&#x2d;&#x70;&#x6c;&#117;&#x67;&#105;&#110;&#x40;&#51;&#x2e;&#x32;&#x2e;&#48;">&#104;&#x74;&#109;&#108;&#x2d;&#x77;&#x65;&#98;&#x70;&#97;&#x63;&#x6b;&#x2d;&#x70;&#x6c;&#117;&#x67;&#105;&#110;&#x40;&#51;&#x2e;&#x32;&#x2e;&#48;</a></li>
 </ul>
 </li>
 <li>配置webpack.config.js文件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004157.png"><br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004206.png"><br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004215.png"></li>
@@ -478,7 +478,7 @@
 <h3 id="压缩丑化的plugin"><a href="#压缩丑化的plugin" class="headerlink" title="压缩丑化的plugin"></a>压缩丑化的plugin</h3><ol>
 <li>在项目发布之前，我们需要对js等文件进行压缩处理<ol>
 <li>这里需要使用一个第三方插件uglifyjs-webpack-plugin，并且指定版本号1.1.1，和CLI2保持一致<ul>
-<li>npm install <a href="mailto:&#x75;&#x67;&#x6c;&#x69;&#102;&#x79;&#x6a;&#115;&#x2d;&#x77;&#101;&#98;&#112;&#x61;&#x63;&#x6b;&#45;&#x70;&#108;&#x75;&#103;&#x69;&#110;&#64;&#49;&#46;&#49;&#x2e;&#x31;">&#x75;&#x67;&#x6c;&#x69;&#102;&#x79;&#x6a;&#115;&#x2d;&#x77;&#101;&#98;&#112;&#x61;&#x63;&#x6b;&#45;&#x70;&#108;&#x75;&#103;&#x69;&#110;&#64;&#49;&#46;&#49;&#x2e;&#x31;</a> –save-dev</li>
+<li>npm install <a href="mailto:&#117;&#x67;&#108;&#x69;&#102;&#121;&#x6a;&#x73;&#x2d;&#119;&#101;&#x62;&#112;&#97;&#x63;&#x6b;&#x2d;&#112;&#x6c;&#x75;&#x67;&#x69;&#110;&#x40;&#x31;&#46;&#x31;&#x2e;&#x31;">&#117;&#x67;&#108;&#x69;&#102;&#121;&#x6a;&#x73;&#x2d;&#119;&#101;&#x62;&#112;&#97;&#x63;&#x6b;&#x2d;&#112;&#x6c;&#x75;&#x67;&#x69;&#110;&#x40;&#x31;&#46;&#x31;&#x2e;&#x31;</a> –save-dev</li>
 </ul>
 </li>
 <li>配置webpack.config.js文件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004253.png"><br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004300.png"></li>
@@ -489,7 +489,7 @@
 <h3 id="搭建本地服务器"><a href="#搭建本地服务器" class="headerlink" title="搭建本地服务器"></a>搭建本地服务器</h3><ol>
 <li>webpack提供了一个可选的本地开发服务器，这个本地服务器基于node.js搭建，内部使用express框架，可以实现我们想要的让浏览器自动刷新显示我们修改后的结果</li>
 <li>不过它是一个单独的模块，在webpack中使用之前需要先安装它<ul>
-<li>npm install –save-dev <a href="mailto:&#x77;&#101;&#x62;&#112;&#x61;&#99;&#x6b;&#45;&#x64;&#x65;&#x76;&#x2d;&#115;&#101;&#x72;&#x76;&#101;&#114;&#64;&#x32;&#x2e;&#57;&#46;&#x33;">&#x77;&#101;&#x62;&#112;&#x61;&#99;&#x6b;&#45;&#x64;&#x65;&#x76;&#x2d;&#115;&#101;&#x72;&#x76;&#101;&#114;&#64;&#x32;&#x2e;&#57;&#46;&#x33;</a></li>
+<li>npm install –save-dev <a href="mailto:&#x77;&#x65;&#x62;&#112;&#x61;&#99;&#107;&#x2d;&#x64;&#x65;&#118;&#45;&#x73;&#101;&#x72;&#x76;&#101;&#x72;&#64;&#x32;&#x2e;&#x39;&#46;&#51;">&#x77;&#x65;&#x62;&#112;&#x61;&#99;&#107;&#x2d;&#x64;&#x65;&#118;&#45;&#x73;&#101;&#x72;&#x76;&#101;&#x72;&#64;&#x32;&#x2e;&#x39;&#46;&#51;</a></li>
 </ul>
 </li>
 <li>devserver也是作为webpack中的一个选项，选项本身可以设置如下属性<ol>
@@ -525,7 +525,7 @@
 </ul>
 </li>
 <li>如上，为了在开发时能将项目所需配置文件合并在一起，则需要安装插件webpack-merge<ul>
-<li>npm install <a href="mailto:&#x77;&#x65;&#x62;&#x70;&#x61;&#99;&#x6b;&#45;&#x6d;&#101;&#114;&#x67;&#101;&#x40;&#52;&#x2e;&#49;&#x2e;&#x35;">&#x77;&#x65;&#x62;&#x70;&#x61;&#99;&#x6b;&#45;&#x6d;&#101;&#114;&#x67;&#101;&#x40;&#52;&#x2e;&#49;&#x2e;&#x35;</a> –save-dev</li>
+<li>npm install <a href="mailto:&#119;&#x65;&#98;&#112;&#97;&#x63;&#x6b;&#x2d;&#109;&#101;&#114;&#x67;&#x65;&#x40;&#x34;&#46;&#49;&#x2e;&#x35;">&#119;&#x65;&#98;&#112;&#97;&#x63;&#x6b;&#x2d;&#109;&#101;&#114;&#x67;&#x65;&#x40;&#x34;&#46;&#49;&#x2e;&#x35;</a> –save-dev</li>
 </ul>
 </li>
 <li>下载完毕后在dev.config.js和prod.config.js文件中需要进行导入插件，然后在两者中都引入base.config.js文件，最后利用插件进行合并文件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004450.png"><br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211011004500.png"></li>
