@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习笔记：Vue-router路由个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue-router路由">
+<meta property="og:url" content="http://example.com/2021/10/12/Vue/Vue-router%E8%B7%AF%E7%94%B1/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="学习笔记：Vue-router路由个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000901.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000920.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000940.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000959.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001022.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001044.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001122.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001140.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001158.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001216.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001233.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001256.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001324.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001340.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001424.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001443.png">
+<meta property="article:published_time" content="2021-10-11T16:05:40.537Z">
+<meta property="article:modified_time" content="2021-10-11T16:28:02.766Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000901.png">
+
+<link rel="canonical" href="http://example.com/2021/10/12/Vue/Vue-router%E8%B7%AF%E7%94%B1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue-router路由 | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/12/Vue/Vue-router%E8%B7%AF%E7%94%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="记录自学中的每一个脚步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue-router路由
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-12 00:05:40 / 修改时间：00:28:02" itemprop="dateCreated datePublished" datetime="2021-10-12T00:05:40+08:00">2021-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习笔记：Vue-router路由<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正  </p>
+<span id="more"></span>
+
+<h1 id="什么是路由"><a href="#什么是路由" class="headerlink" title="什么是路由"></a>什么是路由</h1><ol>
+<li>路由是一个网络工程里面的术语</li>
+<li>路由（routing）就是通过互联的网络把信息从源地址传输到目的地址的活动</li>
+<li>路由器提供了两种机制：路由和传送<ol>
+<li>路由是决定数据包来源到目的地的路径</li>
+<li>传送将输入端的数据转移到合适的输出端</li>
+</ol>
+</li>
+<li>路由中有一个非常重要的概念叫路由表<ol>
+<li>路由表的本质就是一个映射表，决定了数据包的指向</li>
+</ol>
+</li>
+</ol>
+<h2 id="前端渲染后端渲染和前端路由后端路由"><a href="#前端渲染后端渲染和前端路由后端路由" class="headerlink" title="前端渲染后端渲染和前端路由后端路由"></a>前端渲染后端渲染和前端路由后端路由</h2><h3 id="后端路由阶段"><a href="#后端路由阶段" class="headerlink" title="后端路由阶段"></a>后端路由阶段</h3><ol>
+<li>早期的网站开发整个HTML页面是由服务器来渲染的<ol>
+<li>服务器直接生产渲染好对应的HTML页面，返回给客户端进行展示</li>
+</ol>
+</li>
+<li>但是，一个网站，这么多页面服务器如何处理呢<ol>
+<li>一个页面有自己对应的网址，也就是URL</li>
+<li>URL会发送到服务器，服务器会通过正则对该URL进行匹配，并且最后交给一个Controller进行处理</li>
+<li>Controller进行各种处理，最终生成HTML或者数据，返回给前端</li>
+</ol>
+</li>
+<li>这就完成了一个IO操作</li>
+<li>上面的这种操作，就是后端路由<ol>
+<li>当我们页面中需要请求不同的路径内容时，交给服务器来进行处理，服务器渲染好整个页面，并且将页面返回给客户顿</li>
+<li>这种情况下渲染好的页面，不需要单独加载任何的js和css，可以直接交给浏览器展示，这样也有利于SEO的优化</li>
+</ol>
+</li>
+<li>后端路由的缺点<ol>
+<li>一种情况是整个页面的模块由后端人员来编写和维护的</li>
+<li>另一种情况是前端开发人员如果要开发页面，需要通过PHP和Java等语言来编写页面代码</li>
+<li>而且通常情况下HTML代码和数据以及对应的逻辑会混在一起，编写和维护都是非常糟糕的事情</li>
+</ol>
+</li>
+</ol>
+<h3 id="前端路由阶段"><a href="#前端路由阶段" class="headerlink" title="前端路由阶段"></a>前端路由阶段</h3><ol>
+<li>前后端分离阶段<ol>
+<li>随着Ajax的出现，有了前后端分离的开发模式</li>
+<li>后端只提供API来返回数据，前端通过Ajax获取数据，并且可以通过JavaScript将数据渲染到页面中</li>
+<li>这样做最大的优点就是前后端责任的清晰，后端专注于数据上,前端专注于交互和可视化上</li>
+<li>并且当移动端（iOS/Android）出现后，后端不需要进行任何处理，依然使用之前的一套API即可</li>
+<li>目前很多的网站依然采用这种模式开发</li>
+</ol>
+</li>
+<li>单页面富应用阶段<ol>
+<li>其实SPA最主要的特点就是在前后端分离的基础上加了一层前端路由</li>
+<li>也就是前端来维护下套路由规则 </li>
+</ol>
+</li>
+</ol>
+<h1 id="Vue-router"><a href="#Vue-router" class="headerlink" title="Vue-router"></a>Vue-router</h1><h2 id="路由的介绍"><a href="#路由的介绍" class="headerlink" title="路由的介绍"></a>路由的介绍</h2><h3 id="认识Vue-router"><a href="#认识Vue-router" class="headerlink" title="认识Vue-router"></a>认识Vue-router</h3><ol>
+<li>vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用</li>
+<li>我们可以访问其官方网站对其进行学习： <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh/">https://router.vuejs.org/zh/</a></li>
+<li>vue-router是基于路由和组件的<ol>
+<li>路由用于设定访问路径，将路径和组件映射起来</li>
+<li>在vue-router的单页面应用中，页面的路径的改变就是组件的切换</li>
+</ol>
+</li>
+</ol>
+<h2 id="路由的安装和使用"><a href="#路由的安装和使用" class="headerlink" title="路由的安装和使用"></a>路由的安装和使用</h2><h3 id="安装Vue-router"><a href="#安装Vue-router" class="headerlink" title="安装Vue-router"></a>安装Vue-router</h3><ol>
+<li>步骤一：安装vue-router<ul>
+<li>npm install –save vue-router</li>
+</ul>
+<ol>
+<li>在创建项目时可以直接选择安装路由</li>
+</ol>
+</li>
+<li>步骤二：在模块化工程中使用它（因为是一个插件，所以可以通过Vue.use()来安装路由功能）<ol>
+<li>第一步：导入路由对象，并且调用Vue.use(VueRouter)</li>
+<li>第二步：创建路由实例，并且传入路由映射配置（配置路由和组件之间的关系）</li>
+<li>第三步：在Vue实例中挂载创建的路由实例<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000901.png"><br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000920.png"></li>
+</ol>
+</li>
+</ol>
+<h3 id="使用vue-router"><a href="#使用vue-router" class="headerlink" title="使用vue-router"></a>使用vue-router</h3><ol>
+<li>第一步：创建路由组件</li>
+<li>第二步：配置路由映射 — 组件和路径映射关系<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000940.png"></li>
+<li>第三步：使用路由 — 通过<code>&lt;router-link&gt;</code>和<code>&lt;router-view&gt;</code><ol>
+<li><code>&lt;router-link&gt;&lt;/router-link&gt;</code>：该标签是一个vue-router中已经内置的组件，它最终会被渲染成一个<a>标签，用于显示标签</li>
+<li><code>&lt;router-view&gt;&lt;/router-view&gt;</code>：用于占位<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012000959.png"></li>
+</ol>
+</li>
+</ol>
+<h3 id="路由的默认路径和修改为history模式"><a href="#路由的默认路径和修改为history模式" class="headerlink" title="路由的默认路径和修改为history模式"></a>路由的默认路径和修改为history模式</h3><ol>
+<li>需要实现当打开网页是，路径默认跳到首页，就需要多配置一个映射</li>
+<li>配置解析<ol>
+<li>我们在routes中又配置了一个映射</li>
+<li>path配置的是根路径：/</li>
+<li>redirect是重定向，也就是我们将路径重定向到/home的路径下<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001022.png"></li>
+</ol>
+</li>
+<li>修改为history模式<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001044.png"></li>
+</ol>
+<h3 id="router-link补充"><a href="#router-link补充" class="headerlink" title="router-link补充"></a>router-link补充</h3><ol>
+<li><code>&lt;router-link&gt;</code>有关属性的补充<ol>
+<li>to — 用于指定跳转的路径<ul>
+<li>例：<code>&lt;router-link to=&#39;/home&#39;&gt;</code></li>
+</ul>
+</li>
+<li>tag — tag可以指定<code>&lt;router-link&gt;</code>之后渲染成什么组件（比如按钮）<ul>
+<li>例：<code>&lt;router-link to=&#39;/home&#39; tag=&#39;button&#39;&gt;</code></li>
+</ul>
+</li>
+<li>replace — replace不会留下history记录，指定replace的情况下，后退件不能返回上一个页面，这个属性没有属性值<ul>
+<li>例：<code>&lt;router-link to=&#39;/home&#39; tag=&#39;button&#39; replace&gt;</code></li>
+</ul>
+</li>
+<li>active-class：当<code>&lt;router-link&gt;</code>对应的路由匹配成功时，会自动给当前元素设置一个router-link-active的class，设置active-class可以修改默认的名称<ul>
+<li>可以通过router-link-active这个类给被正在使用路由的<code>&lt;router-link&gt;</code>标签设置点击特效，如字体变色</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="通过代码的方式跳转路由"><a href="#通过代码的方式跳转路由" class="headerlink" title="通过代码的方式跳转路由"></a>通过代码的方式跳转路由</h3><ol>
+<li>之前跳转路由是通过<router-link></li>
+<li>现在要求使用代码的方式进行跳转</li>
+<li>$router属性是创建出的路由对象的属性，可以调用一些方法，如push()方法，replace()方法，进行相关路由跳转<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001122.png"></li>
+</ol>
+<h3 id="动态路由"><a href="#动态路由" class="headerlink" title="动态路由"></a>动态路由</h3><ol>
+<li>在某些情况下，一个页面的path路径可能是不确定的，比如我们进入用户界面时，希望是如下的路径：<ol>
+<li>/user/aaaa或/user/bbbb</li>
+<li>除了有前面的/user之外，后面还跟上了用户的ID</li>
+<li>这种path和Component的匹配关系，称为动态路由（也是路由传递数据的一种方式）</li>
+</ol>
+</li>
+<li>实现方法<ol>
+<li>首先创建一个User路由组件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001140.png"></li>
+<li>然后在index.js里面配置路由映射<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001158.png"></li>
+<li>在App.vue中使用路由<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001216.png"></li>
+</ol>
+</li>
+<li>需求：将data数据中的userId渲染在页面上<ol>
+<li>利用计算属性获取当前活跃的组件的参数userId<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001233.png"></li>
+<li>$route表示当前哪个路由组件活跃，就获取哪个路由组件</li>
+</ol>
+</li>
+</ol>
+<h3 id="打包文件的解析"><a href="#打包文件的解析" class="headerlink" title="打包文件的解析"></a>打包文件的解析</h3><ol>
+<li>在项目开发完毕后，进行npm run build，会在dist文件夹中进行分包</li>
+<li>在js文件夹中会被分为三个包<ol>
+<li>app开头的js文件：当前应用程序开发的所有代码（业务代码）</li>
+<li>manifest开头的js文件：为打包的代码做底层支撑</li>
+<li>vendor开头的js文件：vendor（第三方）提供的内容</li>
+</ol>
+</li>
+</ol>
+<h3 id="路由懒加载的使用"><a href="#路由懒加载的使用" class="headerlink" title="路由懒加载的使用"></a>路由懒加载的使用</h3><ol>
+<li>懒加载：用到再加载</li>
+<li>认识路由的懒加载<ol>
+<li>首先，我们知道路由中通常会定义很多不同的页面</li>
+<li>一般情况下，是打包放在一 个js文件中</li>
+<li>但是，页面这么多放在一个js文件中，必然会造成这个页面非常的大</li>
+<li>如果我们一次性从服务器请求下来这个页面，可能需要花费一 定的时间，甚至用户的电脑上还出现了短暂空白的情况</li>
+<li>因此就需要用到懒加载，只有路由被访问时，才加载对应组件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001256.png"></li>
+</ol>
+</li>
+</ol>
+<h3 id="路由嵌套"><a href="#路由嵌套" class="headerlink" title="路由嵌套"></a>路由嵌套</h3><ol>
+<li>实现嵌套路由有两个步骤：<ol>
+<li>创建对应的子组件，并且在路由映射中配置对应的子路由</li>
+<li>在组件内部使用<code>&lt;router-view&gt;</code>标签</li>
+</ol>
+</li>
+<li>实现步骤（实现代码见VScode）<ol>
+<li>先新建两个路由子组件</li>
+<li>在父组件中引入两个子组件</li>
+<li>在组件内部使用<code>&lt;router-view&gt;</code>标签，标明显示位置</li>
+<li>在index.js文件中使用懒加载引入两个路由组件，配置路由映射，在父组件内部使用children: [{子组件1}, {子组件2}]配置映射</li>
+</ol>
+</li>
+</ol>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><ol>
+<li>参数传递<ol>
+<li>第一步：创建新的组件，如profile.vue</li>
+<li>第二步：配置路由映射</li>
+<li>第三步：添加跳转的<code>&lt;router-link&gt;</code></li>
+</ol>
+</li>
+<li>传递参数主要有两种类型：params和query<ol>
+<li>params类型（前面的动态路由即采用的这种方式）<ul>
+<li>配置路由格式：/router/:id</li>
+<li>传递的方式：在path后面跟上对应的值</li>
+<li>传递后形成的路径：如/router/123, /router/abc</li>
+</ul>
+</li>
+<li>query方式（大量数据选择）<ul>
+<li>配置路由格式：/router，也就是普通配置</li>
+<li>传递的方式：对象中使用query（查询）的key作为传递方式</li>
+<li>传递后形成的路径：如/router?id=123, /router?id= abc</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="全局导航守卫"><a href="#全局导航守卫" class="headerlink" title="全局导航守卫"></a>全局导航守卫</h3><ol>
+<li>什么是导航守卫<ol>
+<li>vue-router提供的导航守卫主要用来监听监听路由的进入和离开的</li>
+<li>vue-router提供了beforeEach（前置钩子）和afterEach（后置钩子）的钩子函数，它们会在路由即将改变前和改变后触发</li>
+</ol>
+</li>
+<li>导航守卫使用，如改变每一个网页的标题<ol>
+<li>利用beforeEach来完成对标题的修改</li>
+<li>在钩子当中定义一些标题，可以利用meta来定义</li>
+<li>利用导航守卫，修改标题</li>
+<li>beforeEach导航钩子的三个参数解析<ul>
+<li>to：即将要进入的目标的路由对象</li>
+<li>from：当前导航即将要离开的路由对象</li>
+<li>next：调用该方法后，才能进入下一个钩子(相当于放行) — next()：放行、next(‘/login’)：强制跳转</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="keep-alive遇见vue-router"><a href="#keep-alive遇见vue-router" class="headerlink" title="keep-alive遇见vue-router"></a>keep-alive遇见vue-router</h3><ol>
+<li>keep-alive是一个Vue内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染；简单来说就是当离开某一个组件时，避免该组件频繁的销毁和创建<ol>
+<li>有两个非常重要的属性<ul>
+<li>include：字符串或正则表达式，只有匹配的组件会被缓存</li>
+<li>exclude：字符串或正则表达式，任何匹配的组件都不会被缓存<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001324.png"></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>router-view也是一个组件，如果直接被包在keep-alive里面，所有路径匹配到的视图组件都会被缓存<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001340.png"></li>
+<li>created()和destroyed()函数：只有是router-view组件被keep-alive包围时，这两个函数才能使用<ol>
+<li>created()：当组件活跃时执行</li>
+<li>destroyed()：当组件销毁时执行<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001424.png"></li>
+</ol>
+</li>
+</ol>
+<h3 id="文件路径引用问题"><a href="#文件路径引用问题" class="headerlink" title="文件路径引用问题"></a>文件路径引用问题</h3><ol>
+<li>当开发一个项目时，会经常需要引入文件，当文件夹嵌套过多时，引入文件的路径就会非常的繁琐，而且很容易弄错；并且当文件移动到其他位置时，之前引入该文件的路径也需要全部修改，非常麻烦</li>
+<li>解决方法：给文件起别名<ol>
+<li>用到webpack的一个配置文件：webpack.base.cong.js<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211012001443.png"></li>
+<li>注意：在html标签内引入的路径使用文件的别名时，需要在路径的最前面加”~”</li>
+</ol>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创学习笔记分享，您的支持将成为我源源不断的学习动力~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="二十七 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="二十七 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>二十七
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/10/12/Vue/Vue-router%E8%B7%AF%E7%94%B1/" title="Vue-router路由">http://example.com/2021/10/12/Vue/Vue-router路由/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/11/Vue/Vue-CLI%EF%BC%88Vue%E8%84%9A%E6%89%8B%E6%9E%B6%EF%BC%89/" rel="prev" title="Vue CLI（Vue脚手架）">
+      <i class="fa fa-chevron-left"></i> Vue CLI（Vue脚手架）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/14/ES6/ES6-%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" rel="next" title="ES6-对象的扩展">
+      ES6-对象的扩展 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NDQ4Ni8zMDk1Nw=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">1.</span> <span class="nav-text">什么是路由</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93%E5%92%8C%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1"><span class="nav-number">1.1.</span> <span class="nav-text">前端渲染后端渲染和前端路由后端路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1%E9%98%B6%E6%AE%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">后端路由阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1%E9%98%B6%E6%AE%B5"><span class="nav-number">1.1.2.</span> <span class="nav-text">前端路由阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-router"><span class="nav-number">2.</span> <span class="nav-text">Vue-router</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">路由的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86Vue-router"><span class="nav-number">2.1.1.</span> <span class="nav-text">认识Vue-router</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">路由的安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Vue-router"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装Vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8vue-router"><span class="nav-number">2.2.2.</span> <span class="nav-text">使用vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84%E5%92%8C%E4%BF%AE%E6%94%B9%E4%B8%BAhistory%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.3.</span> <span class="nav-text">路由的默认路径和修改为history模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router-link%E8%A1%A5%E5%85%85"><span class="nav-number">2.2.4.</span> <span class="nav-text">router-link补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E4%BB%A3%E7%A0%81%E7%9A%84%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC%E8%B7%AF%E7%94%B1"><span class="nav-number">2.2.5.</span> <span class="nav-text">通过代码的方式跳转路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-number">2.2.6.</span> <span class="nav-text">动态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E7%9A%84%E8%A7%A3%E6%9E%90"><span class="nav-number">2.2.7.</span> <span class="nav-text">打包文件的解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.8.</span> <span class="nav-text">路由懒加载的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%B5%8C%E5%A5%97"><span class="nav-number">2.2.9.</span> <span class="nav-text">路由嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">2.2.10.</span> <span class="nav-text">参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB"><span class="nav-number">2.2.11.</span> <span class="nav-text">全局导航守卫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keep-alive%E9%81%87%E8%A7%81vue-router"><span class="nav-number">2.2.12.</span> <span class="nav-text">keep-alive遇见vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E5%BC%95%E7%94%A8%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.13.</span> <span class="nav-text">文件路径引用问题</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">记录自学中的每一个脚步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

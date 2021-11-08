@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习笔记：CSS之三大特性、盒子模型、圆角边框与阴影个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS的三大特性、盒子模型、圆角边框与阴影">
+<meta property="og:url" content="http://example.com/2021/09/20/CSS/CSS%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%E3%80%81%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E3%80%81%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%E4%B8%8E%E9%98%B4%E5%BD%B1/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="学习笔记：CSS之三大特性、盒子模型、圆角边框与阴影个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-19T17:14:33.261Z">
+<meta property="article:modified_time" content="2021-09-21T02:26:18.464Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/09/20/CSS/CSS%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%E3%80%81%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E3%80%81%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%E4%B8%8E%E9%98%B4%E5%BD%B1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CSS的三大特性、盒子模型、圆角边框与阴影 | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/20/CSS/CSS%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%E3%80%81%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E3%80%81%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%E4%B8%8E%E9%98%B4%E5%BD%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="记录自学中的每一个脚步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS的三大特性、盒子模型、圆角边框与阴影
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-20 01:14:33" itemprop="dateCreated datePublished" datetime="2021-09-20T01:14:33+08:00">2021-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-21 10:26:18" itemprop="dateModified" datetime="2021-09-21T10:26:18+08:00">2021-09-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习笔记：CSS之三大特性、盒子模型、圆角边框与阴影<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正  </p>
+<span id="more"></span>
+
+<h1 id="CSS的三大特性"><a href="#CSS的三大特性" class="headerlink" title="CSS的三大特性"></a>CSS的三大特性</h1><ol>
+<li>CSS的三大特性：层叠性，继承性，优先级</li>
+</ol>
+<h2 id="层叠性（覆盖性）"><a href="#层叠性（覆盖性）" class="headerlink" title="层叠性（覆盖性）"></a>层叠性（覆盖性）</h2><ol>
+<li>相同的选择器给设置相同的样式，此时一个样式就会覆盖（层叠）另一个冲突的样式。层叠性主要解决样式冲突的问题</li>
+<li>层叠性原则：<ol>
+<li>样式冲突，遵循的原则是就近原则，那个样式距离结构近，就执行哪个样式</li>
+<li>样式不冲突，不会层叠</li>
+</ol>
+</li>
+</ol>
+<h2 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h2><ol>
+<li>CSS中的继承：子标签会继承父标签的某些样式，如文本颜色和字号</li>
+<li>恰当的使用继承可以简化代码，降低CSS样式的复杂性</li>
+<li>行高的继承性<ol>
+<li>代码<pre><code>body &#123;
+  font：12px/1.5 Microsoft YaHei;
+&#125;
+</code></pre>
+</li>
+<li>行高可以跟单位也可以不跟单位</li>
+<li>如果子元素没有设置行高，则会继承父元素的行高为1.5，此时子元素的行高是：当前子元素的文字大小*1.5</li>
+<li>body行高1.5这样写法最大的优势就是里面子元素可以根据自己的文字大小自动调整行高</li>
+</ol>
+</li>
+</ol>
+<h2 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h2><ol>
+<li>优先级等级<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th align="left">选择器权重</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>继承或*</td>
+<td align="left">0,0,0,0</td>
+</tr>
+<tr>
+<td>元素选择器</td>
+<td align="left">0,0,0,1</td>
+</tr>
+<tr>
+<td>类选择器</td>
+<td align="left">伪类选择器    0,0,1,0</td>
+</tr>
+<tr>
+<td>ID选择器</td>
+<td align="left">0,1,0,0</td>
+</tr>
+<tr>
+<td>行内样式</td>
+<td align="left">style=””    1,0,0,0</td>
+</tr>
+<tr>
+<td>!important</td>
+<td align="left">重要的    无穷大</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="权重"><a href="#权重" class="headerlink" title="权重"></a>权重</h2><ol>
+<li>权重有4组数字组成，可以叠加但是不会有进位。</li>
+<li>可以理解为类选择器永远大于元素选择器，id选择器永远大于类选择器，以此类推..</li>
+<li>等级判断从左到右，如果某一位数值相同，则判断下一位数值</li>
+<li>继承而来的权重为0，如果该元素没有直接选中，无论父元素权重多高，子元素权重都为0</li>
+</ol>
+<h3 id="权重的叠加"><a href="#权重的叠加" class="headerlink" title="权重的叠加"></a>权重的叠加</h3><ol>
+<li>权重叠加：如果是复合选择器，则会有权重叠加，需要计算权重</li>
+<li>计算<table>
+<thead>
+<tr>
+<th>复合选择器</th>
+<th align="left">权重</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>div ul li</td>
+<td align="left">0,0,0,3</td>
+</tr>
+<tr>
+<td>.nav ul li</td>
+<td align="left">0,0,1,2</td>
+</tr>
+<tr>
+<td>a:hover</td>
+<td align="left">0,0,1,1</td>
+</tr>
+<tr>
+<td>.nav a</td>
+<td align="left">0,0,1,1</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><h2 id="盒子模型概述"><a href="#盒子模型概述" class="headerlink" title="盒子模型概述"></a>盒子模型概述</h2><ol>
+<li>用于封装周围的HTML元素，它包括：边框，外边距，内边距，和实际内容</li>
+</ol>
+<h2 id="外边框"><a href="#外边框" class="headerlink" title="外边框"></a>外边框</h2><ol>
+<li>在进行布局前需要把数据封装到一块一块的区域内，这个区域的专业术语叫做盒子</li>
+<li>边框会影响盒子的实际大小，实际开发中盒子需要减去边框的宽度</li>
+</ol>
+<h3 id="边框的粗细"><a href="#边框的粗细" class="headerlink" title="边框的粗细"></a>边框的粗细</h3><ol>
+<li>语法：border-width</li>
+</ol>
+<h3 id="边框的样式"><a href="#边框的样式" class="headerlink" title="边框的样式"></a>边框的样式</h3><ol>
+<li>语法：border-style</li>
+<li>样式<ol>
+<li>solid 实线边框</li>
+<li>dashed 虚线边框</li>
+<li>dotted 点线边框</li>
+<li>double 双线框<ul>
+<li>两条边线框宽度的和加起来等于定义的border-width值</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="边框的颜色"><a href="#边框的颜色" class="headerlink" title="边框的颜色"></a>边框的颜色</h3><ol>
+<li>语法：border-color</li>
+</ol>
+<h3 id="边框的复合写法"><a href="#边框的复合写法" class="headerlink" title="边框的复合写法"></a>边框的复合写法</h3><ul>
+<li>border:2px solid blue;</li>
+</ul>
+<ol start="2">
+<li>各边框分别设置<ol>
+<li>上：border-top</li>
+<li>下：border-bottom</li>
+<li>左：border-left</li>
+<li>右：border-right</li>
+</ol>
+</li>
+</ol>
+<h3 id="表格细线边框"><a href="#表格细线边框" class="headerlink" title="表格细线边框"></a>表格细线边框</h3><ol>
+<li>border属性控制浏览器绘制表格的方式，他控制相邻单元格的边框。<ol>
+<li>语法：border-collapse: collapse; </li>
+<li>表示相邻边框合并在一起</li>
+</ol>
+</li>
+</ol>
+<h2 id="内边距"><a href="#内边距" class="headerlink" title="内边距"></a>内边距</h2><ol>
+<li>如果盒子本身没有指定width/height属性，则此时padding不会撑开盒子大小</li>
+</ol>
+<h3 id="内边距padding"><a href="#内边距padding" class="headerlink" title="内边距padding"></a>内边距padding</h3><ol>
+<li>内边距会影响盒子的实际大小，实际开发中盒子需要减去内边距的宽度</li>
+<li>padding：上下左右四边距统一设置<ul>
+<li>padding: 20px;</li>
+</ul>
+</li>
+<li>各边距分别设置<ol>
+<li>上：padding-top</li>
+<li>下：padding-bottom </li>
+<li>左：padding-left</li>
+<li>右：padding-right</li>
+</ol>
+</li>
+</ol>
+<h3 id="padding的复合属性"><a href="#padding的复合属性" class="headerlink" title="padding的复合属性"></a>padding的复合属性</h3><ol>
+<li>padding属性（简写属性）可以右一到四个值<table>
+<thead>
+<tr>
+<th>值的个数</th>
+<th align="left">表达意思</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>padding:5px</td>
+<td align="left">1个值，代表上下左右都有5px像素内边距</td>
+</tr>
+<tr>
+<td>padding:5px 10px</td>
+<td align="left">2个值，代表上下内边距是5像素左右内边距是10像素</td>
+</tr>
+<tr>
+<td>padding:5px 10px 20px</td>
+<td align="left">代表上内边距5像素左右内边距10像素下内边距20像素</td>
+</tr>
+<tr>
+<td>padding:5px 10px 20px 30px</td>
+<td align="left">上是5像素右10像素下20像素左是30像素 顺时针</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="外边距"><a href="#外边距" class="headerlink" title="外边距"></a>外边距</h2><ol>
+<li>margin属性用于设置外边距，即控制盒子和盒子之间的距离</li>
+</ol>
+<h3 id="外边距margin"><a href="#外边距margin" class="headerlink" title="外边距margin"></a>外边距margin</h3><ol>
+<li>margin：上下左右四边距统一设置<ul>
+<li>margin: 20px;</li>
+</ul>
+</li>
+<li>各边距分别设置<ol>
+<li>上：margin-top</li>
+<li>下：margin-bottom </li>
+<li>左：margin-left</li>
+<li>右：margin-right</li>
+</ol>
+</li>
+</ol>
+<h3 id="margin复合属性"><a href="#margin复合属性" class="headerlink" title="margin复合属性"></a>margin复合属性</h3><ol>
+<li>margin属性（简写属性）可以右一到四个值</li>
+<li>具体和padding相同</li>
+</ol>
+<h3 id="外边距典型应用——块级盒子水平居中"><a href="#外边距典型应用——块级盒子水平居中" class="headerlink" title="外边距典型应用——块级盒子水平居中"></a>外边距典型应用——块级盒子水平居中</h3><ol>
+<li>外边距可以让块级盒子水平居中，必须满足两个条件：<ol>
+<li>盒子必须指定宽度（width）</li>
+<li>盒子的左右外边距都设置auto</li>
+</ol>
+</li>
+<li> 语法：margin: 0 auto;</li>
+<li>注意以上方法是让块级元素水平居中，行内元素或者行内块元素水平居中给其父元素添加text-align: center即可</li>
+</ol>
+<h3 id="嵌套块元素垂直外边距的塌陷"><a href="#嵌套块元素垂直外边距的塌陷" class="headerlink" title="嵌套块元素垂直外边距的塌陷"></a>嵌套块元素垂直外边距的塌陷</h3><ol>
+<li>对于两个嵌套关系（父子关系）的块元素，父元素有上边距同时子元素也有上外边距，此时父元素会塌陷较大那个的外边距值</li>
+<li>解决方案<ol>
+<li>为父元素定义上边框（会导致改变盒子大小）</li>
+<li>为父元素定义上内边距（会导致改变盒子大小）</li>
+<li>为父元素添加overflow: hidden（推荐）</li>
+</ol>
+</li>
+</ol>
+<h2 id="清除内外边距"><a href="#清除内外边距" class="headerlink" title="清除内外边距"></a>清除内外边距</h2><ol>
+<li>网页元素很多都有默认的内外边距，而且不同浏览器默认的也不一致，因此我们在布局前，首先要清除下网页元素的内外边距</li>
+<li>语法：<pre><code> * &#123;
+   padding: 0;
+   margin: 0;
+ &#125;
+</code></pre>
+<ul>
+<li>以后编写CSS样式时的第一句代码</li>
+</ul>
+</li>
+<li>注意：行内元素为了照顾兼容性，尽量只设置左右内外边距，不要设置上下内外边距</li>
+</ol>
+<h1 id="圆角边框和阴影"><a href="#圆角边框和阴影" class="headerlink" title="圆角边框和阴影"></a>圆角边框和阴影</h1><h2 id="圆角边框（重点）"><a href="#圆角边框（重点）" class="headerlink" title="圆角边框（重点）"></a>圆角边框（重点）</h2><ol>
+<li>语法：border-radius: length;<ol>
+<li>参数值可以为数值也可以为百分比</li>
+</ol>
+</li>
+<li>radius半径（圆的半径）原理：圆或椭圆与边框的交集形成圆角的效果</li>
+<li>如果是正方形，想要设置为一个圆，把数值修改为高度或者宽度的一半即可，或者写为50%</li>
+<li> 如果是一个矩形，设置高度的一半就可以设置一个圆角矩形</li>
+<li>该属性是一个简写属性<ol>
+<li>可以跟四个值：分别代表左上角，右上角，右下角，左下角</li>
+<li>可以跟两个值：第一个值代表左上角，右下角；第二个值代表右上角，左下角</li>
+</ol>
+</li>
+<li>若分开写<ol>
+<li>左上角：border-top-left-radius</li>
+<li>右上角：border-top-right-radius</li>
+<li>右下角：border-bottom-right-radius</li>
+<li>左下角：border-bottom-left-radius</li>
+</ol>
+</li>
+</ol>
+<h2 id="盒子阴影"><a href="#盒子阴影" class="headerlink" title="盒子阴影"></a>盒子阴影</h2><ol>
+<li>盒子阴影的属性添加：box-shadow</li>
+<li>语法：box-shadow: h-shadow v-shadow blur spread color inset;</li>
+<li>属性<table>
+<thead>
+<tr>
+<th>值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h-shadow</td>
+<td align="left">必需 水平阴影的位置，允许负值</td>
+</tr>
+<tr>
+<td>v-shadow</td>
+<td align="left">必需 垂直阴影的位置，允许负值</td>
+</tr>
+<tr>
+<td>blur</td>
+<td align="left">可选 模糊距离（阴影实虚）</td>
+</tr>
+<tr>
+<td>spread</td>
+<td align="left">可选 阴影的尺寸（阴影大小）</td>
+</tr>
+<tr>
+<td>color</td>
+<td align="left">可选 阴影的颜色，参阅CSS颜色值</td>
+</tr>
+<tr>
+<td>inset</td>
+<td align="left">可选 将外部阴影（outset）改为内部阴影</td>
+</tr>
+</tbody></table>
+<ol>
+<li>注意：<ul>
+<li>默认的是外部阴影（outset），但是不可以写这个单词，否则导致整个阴影无效</li>
+<li>盒子阴影不占用空间，不会影响其他盒子排列</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="盒子半透明"><a href="#盒子半透明" class="headerlink" title="盒子半透明"></a>盒子半透明</h2><ol>
+<li>让盒子半透明的属性添加：opacity: (0 ~ 1);</li>
+<li>例：opacity: 0.3;</li>
+</ol>
+<h2 id="文字阴影"><a href="#文字阴影" class="headerlink" title="文字阴影"></a>文字阴影</h2><ol>
+<li>文字阴影的属性添加：text-shadow</li>
+<li>语法：text-shadow: h-shadow v-shadow blur color;</li>
+<li>属性<table>
+<thead>
+<tr>
+<th>值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h-shadow</td>
+<td align="left">必需 水平阴影的位置，允许负值</td>
+</tr>
+<tr>
+<td>v-shadow</td>
+<td align="left">必需 垂直阴影的位置，允许负值</td>
+</tr>
+<tr>
+<td>blur</td>
+<td align="left">可选 模糊距离（阴影实虚）</td>
+</tr>
+<tr>
+<td>color</td>
+<td align="left">可选 阴影颜色，参阅CSS颜色值</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创学习笔记分享，您的支持将成为我源源不断的学习动力~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="二十七 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="二十七 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>二十七
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/09/20/CSS/CSS%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%E3%80%81%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E3%80%81%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%E4%B8%8E%E9%98%B4%E5%BD%B1/" title="CSS的三大特性、盒子模型、圆角边框与阴影">http://example.com/2021/09/20/CSS/CSS的三大特性、盒子模型、圆角边框与阴影/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/20/CSS/CSS%E7%9A%84%E5%85%83%E7%B4%A0%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%83%8C%E6%99%AF/" rel="prev" title="CSS的元素显示模式与背景">
+      <i class="fa fa-chevron-left"></i> CSS的元素显示模式与背景
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/09/20/CSS/CSS%E7%9A%84%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83%E5%92%8C%E4%BC%A0%E7%BB%9F%E7%BD%91%E9%A1%B5%E5%B8%83%E5%B1%80%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" rel="next" title="CSS的书写规范和传统网页布局的三种方式">
+      CSS的书写规范和传统网页布局的三种方式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NDQ4Ni8zMDk1Nw=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">CSS的三大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E5%8F%A0%E6%80%A7%EF%BC%88%E8%A6%86%E7%9B%96%E6%80%A7%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">层叠性（覆盖性）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">继承性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">1.3.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%87%8D"><span class="nav-number">1.4.</span> <span class="nav-text">权重</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E7%9A%84%E5%8F%A0%E5%8A%A0"><span class="nav-number">1.4.1.</span> <span class="nav-text">权重的叠加</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">盒子模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">盒子模型概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E8%BE%B9%E6%A1%86"><span class="nav-number">2.2.</span> <span class="nav-text">外边框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%A1%86%E7%9A%84%E7%B2%97%E7%BB%86"><span class="nav-number">2.2.1.</span> <span class="nav-text">边框的粗细</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%A1%86%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">边框的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%A1%86%E7%9A%84%E9%A2%9C%E8%89%B2"><span class="nav-number">2.2.3.</span> <span class="nav-text">边框的颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%A1%86%E7%9A%84%E5%A4%8D%E5%90%88%E5%86%99%E6%B3%95"><span class="nav-number">2.2.4.</span> <span class="nav-text">边框的复合写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E7%BB%86%E7%BA%BF%E8%BE%B9%E6%A1%86"><span class="nav-number">2.2.5.</span> <span class="nav-text">表格细线边框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%BE%B9%E8%B7%9D"><span class="nav-number">2.3.</span> <span class="nav-text">内边距</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%BE%B9%E8%B7%9Dpadding"><span class="nav-number">2.3.1.</span> <span class="nav-text">内边距padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#padding%E7%9A%84%E5%A4%8D%E5%90%88%E5%B1%9E%E6%80%A7"><span class="nav-number">2.3.2.</span> <span class="nav-text">padding的复合属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E8%BE%B9%E8%B7%9D"><span class="nav-number">2.4.</span> <span class="nav-text">外边距</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E8%BE%B9%E8%B7%9Dmargin"><span class="nav-number">2.4.1.</span> <span class="nav-text">外边距margin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin%E5%A4%8D%E5%90%88%E5%B1%9E%E6%80%A7"><span class="nav-number">2.4.2.</span> <span class="nav-text">margin复合属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E8%BE%B9%E8%B7%9D%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E5%9D%97%E7%BA%A7%E7%9B%92%E5%AD%90%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="nav-number">2.4.3.</span> <span class="nav-text">外边距典型应用——块级盒子水平居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%9D%97%E5%85%83%E7%B4%A0%E5%9E%82%E7%9B%B4%E5%A4%96%E8%BE%B9%E8%B7%9D%E7%9A%84%E5%A1%8C%E9%99%B7"><span class="nav-number">2.4.4.</span> <span class="nav-text">嵌套块元素垂直外边距的塌陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E5%86%85%E5%A4%96%E8%BE%B9%E8%B7%9D"><span class="nav-number">2.5.</span> <span class="nav-text">清除内外边距</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%E5%92%8C%E9%98%B4%E5%BD%B1"><span class="nav-number">3.</span> <span class="nav-text">圆角边框和阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%86%E8%A7%92%E8%BE%B9%E6%A1%86%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">圆角边框（重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%92%E5%AD%90%E9%98%B4%E5%BD%B1"><span class="nav-number">3.2.</span> <span class="nav-text">盒子阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%92%E5%AD%90%E5%8D%8A%E9%80%8F%E6%98%8E"><span class="nav-number">3.3.</span> <span class="nav-text">盒子半透明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E9%98%B4%E5%BD%B1"><span class="nav-number">3.4.</span> <span class="nav-text">文字阴影</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">记录自学中的每一个脚步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
