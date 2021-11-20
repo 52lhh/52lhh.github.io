@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习笔记：Vuex个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex">
+<meta property="og:url" content="http://example.com/2021/11/20/Vue/Vuex/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="学习笔记：Vuex个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120123925.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124349.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124420.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124829.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124951.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125041.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125154.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125210.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125232.png">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125543.png">
+<meta property="article:published_time" content="2021-11-20T04:35:46.884Z">
+<meta property="article:modified_time" content="2021-11-20T04:57:36.778Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120123925.png">
+
+<link rel="canonical" href="http://example.com/2021/11/20/Vue/Vuex/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vuex | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/20/Vue/Vuex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="记录自学中的每一个脚步">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vuex
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-20 12:35:46 / 修改时间：12:57:36" itemprop="dateCreated datePublished" datetime="2021-11-20T12:35:46+08:00">2021-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习笔记：Vuex<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正</p>
+<span id="more"></span>
+
+<h1 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h1><ol>
+<li>官方解释：Vuex是一个专为Vue.js应用程序开发的状态管理模式<ol>
+<li>他采用集中式存储管理应用的所有组件的状态，并一相应的规则保证状态以一种可预测的方式发生变化</li>
+</ol>
+</li>
+<li>状态管理是什么？<ol>
+<li>可以简单的将其看成把需要多个组件共享的变量全部存储在一个对象里面</li>
+<li>然后，将这个对象放在顶层的Vue实例中，让其他组件可以使用</li>
+</ol>
+</li>
+<li><strong>Vuex就是为了提供这样一个在多个组件间共享状态的插件</strong></li>
+</ol>
+<h2 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h2><h3 id="单界面的状态管理"><a href="#单界面的状态管理" class="headerlink" title="单界面的状态管理"></a>单界面的状态管理</h3><ol>
+<li><p>单页面状态：<strong>State -&gt; View -&gt; Actions -&gt; State</strong></p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120123925.png" style="zoom:80%;" /></li>
+<li><p>单页面转台管理：</p>
+<ol>
+<li>State：状态</li>
+<li>View：视图层，针对State的变化，显示不同的信息</li>
+<li>Action：这里的Action主要是用户的各种操作：点击、输入等等，会导致State状态的改变</li>
+</ol>
+</li>
+</ol>
+<h3 id="多界面状态管理切换"><a href="#多界面状态管理切换" class="headerlink" title="多界面状态管理切换"></a>多界面状态管理切换</h3><ol>
+<li><p>Vue已经做好了单界面的状态管理，对于多状态的界面管理</p>
+<ol>
+<li>多个视图都依赖同一个状态</li>
+<li>不同界面的Action都想修改同一个状态</li>
+</ol>
+</li>
+<li><p><strong>Vuex —全局单例模式（大管家）</strong></p>
+<ol>
+<li><strong>vuex基本思想</strong>：将共享的状态抽取出来，交给大管家，统一进行管理，之后每个视图，都按照规定好的进行访问和修改等操作</li>
+</ol>
+</li>
+<li><p><strong>使用Vuex</strong></p>
+<ol>
+<li><p>安装vuex：<strong>npm install vuex –save</strong></p>
+</li>
+<li><p>提取出一个公共的store对象，用于保存在多个组件中共享的状态</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124349.png" style="zoom:80%;" /></li>
+<li><p>将store对象放置在new Vue对象中，这样可以保证在所有的组件中都可以使用到</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124420.png" style="zoom:80%;" /></li>
+<li><p>在其他组件中使用store对象中保存的状态即可</p>
+<ul>
+<li>通过<strong>this.$store.state</strong>属性的方式来<strong>访问</strong>状态</li>
+<li>通过<strong>this.$store.commit(“decrement”)<strong>中方法来</strong>修改</strong>状态</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>注意：</p>
+<ol>
+<li><p><strong>修改State状态时，要通过mutations的方式改变，不能直接通过store.state.count改变</strong></p>
+</li>
+<li><p>*原因：Vuex可以通过devtools明确的追踪state状态的变化**，所以不要直接改变store.state.count的值</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124829.png" style="zoom:80%;" /></li>
+</ol>
+</li>
+</ol>
+<h2 id="Vuex核心概念"><a href="#Vuex核心概念" class="headerlink" title="Vuex核心概念"></a>Vuex核心概念</h2><h3 id="state单一状态树"><a href="#state单一状态树" class="headerlink" title="state单一状态树"></a>state单一状态树</h3><ol>
+<li>也叫做单一数据源</li>
+<li>单一状态树就是指：在开发中，推荐将所有的state状态信息保存在一个store对象中</li>
+</ol>
+<h3 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h3><ol>
+<li><p>类似于单个组件中的computed计算属性</p>
+</li>
+<li><p>当需要从store中获取一些state变异后的状态，就可以使用Getter</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124951.png" style="zoom:80%;" /></li>
+<li><p>grtters作为参数和传递参数</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125041.png" style="zoom:80%;" />
+
+<ol>
+<li>getter默认是不能传递参数的，如果希望传递参数，那么只能让getters本身返回另一个函数</li>
+</ol>
+</li>
+</ol>
+<h3 id="Mutations"><a href="#Mutations" class="headerlink" title="Mutations"></a>Mutations</h3><ol>
+<li><p><strong>Vuex的store中state状态的更新唯一方式就是通过：提交Mutations</strong></p>
+</li>
+<li><p>mutations的携带参数传递</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125154.png" style="zoom:80%;" />
+
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125210.png" style="zoom:80%;" />
+
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125232.png" style="zoom:80%;" /></li>
+<li><p><strong>mutation****同步函数</strong>：通常情况下，Vuex要去我们Mutation中的方法必须是同步方法</p>
+<ol>
+<li>主要的原因是当我们使用devtools时，可以devtools可以帮助我们捕捉mutation的状态</li>
+<li>但是如果是异步操作，那么devtools将不能很好的追逐这个操作什么时候会被完成</li>
+<li>所以在mutation中不要定义异步操作，将异步操作放入Action中</li>
+</ol>
+</li>
+</ol>
+<h3 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h3><ol>
+<li>Actions类似于Mutation，但是是用来代替Mutation进行<strong>异步操作</strong>的</li>
+<li>在Actions中定义的函数，<strong>默认属性为context（上下文）</strong></li>
+</ol>
+<h3 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h3><ol>
+<li><p>modles是模块的意思，为什么需要在Vuex中使用模</p>
+<ol>
+<li>Vue使用单一状态树，那么也就意味着很多状态都会交给Vuex来管理</li>
+<li>当应用变得非常复杂时，store对象就有可能变得相当臃肿</li>
+<li>为了解决这个问题，Vuex允许我们将store分割成模块（module），而每个模块都拥有自己的state、mutations、actions、getters等</li>
+</ol>
+</li>
+<li><p><strong>modles模块中state、mutations、actions、getters的使用</strong></p>
+<ol>
+<li><p><strong>state</strong>：使用与store中的state相同，但在访问模块中的state时与store中的state有所不同</p>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125543.png" style="zoom:80%;" /></li>
+<li><p><strong>mutations</strong>：使用与store中的mutations相同，但注意在mutations中的函数名与store中的mutations不能相同</p>
+</li>
+<li><p><strong>getters</strong>：使用与store中的getters相同</p>
+</li>
+<li><p><strong>actions</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="数据响应式原理"><a href="#数据响应式原理" class="headerlink" title="数据响应式原理"></a>数据响应式原理</h3><ol>
+<li>原理：在store的state中定义的属性都会被加入到响应式系统中，而响应式系统会监听属性的变化，当属性发生变化时，会通知所有界面中用到该属性的地方，让界面进行刷新</li>
+<li>要想让state的数据为响应式，就必须遵守Vuex对应的规则<ol>
+<li>提前在store中初始化好所需的属性</li>
+<li><strong>当给state中的对象添加新属性时</strong>，使用下面的方式</li>
+</ol>
+</li>
+<li><ol>
+<li><ul>
+<li><strong>方式一：使用Vue.set(obj, ‘newProp’, 123)</strong></li>
+<li>方式二：用新对象给就旧对象赋值</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li></li>
+</ol>
+<ol>
+<li></li>
+<li><p>1. </p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创学习笔记分享，您的支持将成为我源源不断的学习动力~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="二十七 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="二十七 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>二十七
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/11/20/Vue/Vuex/" title="Vuex">http://example.com/2021/11/20/Vue/Vuex/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/19/Vue/axios/" rel="prev" title="axios">
+      <i class="fa fa-chevron-left"></i> axios
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/20/Vue/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" rel="next" title="项目开发">
+      项目开发 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NDQ4Ni8zMDk1Nw=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuex"><span class="nav-number">1.</span> <span class="nav-text">Vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%95%8C%E9%9D%A2%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">单界面的状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%95%8C%E9%9D%A2%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%88%87%E6%8D%A2"><span class="nav-number">1.1.2.</span> <span class="nav-text">多界面状态管理切换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">Vuex核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state%E5%8D%95%E4%B8%80%E7%8A%B6%E6%80%81%E6%A0%91"><span class="nav-number">1.2.1.</span> <span class="nav-text">state单一状态树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getters"><span class="nav-number">1.2.2.</span> <span class="nav-text">getters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mutations"><span class="nav-number">1.2.3.</span> <span class="nav-text">Mutations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Actions"><span class="nav-number">1.2.4.</span> <span class="nav-text">Actions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modules"><span class="nav-number">1.2.5.</span> <span class="nav-text">Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.6.</span> <span class="nav-text">数据响应式原理</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">记录自学中的每一个脚步</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
