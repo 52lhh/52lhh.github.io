@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022447.png">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022519.png">
 <meta property="article:published_time" content="2021-09-26T17:35:01.875Z">
-<meta property="article:modified_time" content="2021-09-29T02:40:24.535Z">
+<meta property="article:modified_time" content="2021-12-03T02:50:41.180Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -203,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-29 10:40:24" itemprop="dateModified" datetime="2021-09-29T10:40:24+08:00">2021-09-29</time>
+                <time title="修改时间：2021-12-03 10:50:41" itemprop="dateModified" datetime="2021-12-03T10:50:41+08:00">2021-12-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,13 +276,11 @@
 <li>对于HTML来说，dom使得html形成一棵dom树，包含文档、元素、节点</li>
 </ol>
 <h2 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h2><ol>
-<li>DOM树<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013853.png"><ol>
-<li>文档：一个页面就是一个文档，DOM中使用document表示</li>
-<li>元素：页面中的所有标签都是元素，DOM中使用element表示</li>
-<li>节点：网页中的所有内容都是节点（标签，属性，文本，注释等），DOM中用node表示</li>
-<li>DOM把以上内容都看做是对象</li>
-</ol>
-</li>
+<li>DOM树<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013853.png" style="zoom:80%;" />
+1. 文档：一个页面就是一个文档，DOM中使用document表示
+2. 元素：页面中的所有标签都是元素，DOM中使用element表示
+3. 节点：网页中的所有内容都是节点（标签，属性，文本，注释等），DOM中用node表示
+4. DOM把以上内容都看做是对象</li>
 </ol>
 <h3 id="JS书写位置"><a href="#JS书写位置" class="headerlink" title="JS书写位置"></a>JS书写位置</h3><ol>
 <li><script></script>标签要写在<body></body>标签内的最后面，因为页面加载是从上往下的，只有先存在需要查找的标签，才可以进行获取</li>
@@ -304,7 +302,7 @@
 <li>返回值是获取过来元素对象的集合，以伪数组的形式存储</li>
 <li>若页面中只有一个div，返回的仍然是伪数组形式</li>
 <li>若页面中没有这个元素，返回的是空的伪数组的形式</li>
-<li>想要依次打印里面的元素对象，可以采用遍历的方式<pre><code>&lt;body&gt;
+<li>想要依次打印里面的元素对象，可以采用遍历的方式<pre><code class="javascript">&lt;body&gt;
 &lt;div&gt;憨崽1&lt;/div&gt;
 &lt;div&gt;憨崽2&lt;/div&gt;
 &lt;div&gt;憨崽3&lt;/div&gt;
@@ -326,7 +324,7 @@
 </li>
 <li>获取父元素内部所有指定标签名的子元素<ol>
 <li>注意：父元素必须是单个对象（必须指明是哪一个元素对象），获取时不包括父元素自己</li>
-<li>常用语法：<code>Element.getElementsByTagName(&#39;标签名&#39;);</code><pre><code>&lt;body&gt;
+<li>常用语法：<code>Element.getElementsByTagName(&#39;标签名&#39;);</code><pre><code class="javascript">&lt;body&gt;
   &lt;ol&gt;
     &lt;li&gt;小憨崽1&lt;/li&gt;
     &lt;li&gt;小憨崽2&lt;/li&gt;
@@ -357,7 +355,7 @@
 </ol>
 </li>
 <li>querySelector()：返回指定选择器的第一个元素对象，切记：里面的选择器需要加符号（.box-代表类；#nav-代表id）<ol>
-<li>语法<pre><code>document.querySelector(&#39;.box&#39;);
+<li>语法<pre><code class="javascript">document.querySelector(&#39;.box&#39;);
 document.querySelector(&#39;#nav&#39;)
 document.querySelector(&#39;li&#39;);
 </code></pre>
@@ -365,11 +363,11 @@ document.querySelector(&#39;li&#39;);
 </ol>
 </li>
 <li>querySelectorAll()：返回指定选择器的所有元素对象集合，切记：里面的选择器需要加符号（.box-代表类；#nav-代表id）<ol>
-<li>语法<pre><code>document.querySelectorAll(&#39;.box&#39;);
+<li>语法<pre><code class="javascript">document.querySelectorAll(&#39;.box&#39;);
 document.querySelectorAll(&#39;#nav&#39;);
 document.querySelectorAll(&#39;li&#39;);
 </code></pre>
-<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927015112.png"></li>
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927015112.png" style="zoom:80%;" /></li>
 </ol>
 </li>
 </ol>
@@ -403,7 +401,7 @@ document.querySelectorAll(&#39;li&#39;);
 <h3 id="执行事件的步骤"><a href="#执行事件的步骤" class="headerlink" title="执行事件的步骤"></a>执行事件的步骤</h3><ol>
 <li>获取事件源</li>
 <li>注册事件（绑定事件）</li>
-<li>添加事件处理程序（采取函数赋值形式）<br> <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927015412.png"></li>
+<li>添加事件处理程序（采取函数赋值形式） <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927015412.png" style="zoom:80%;" /></li>
 </ol>
 <h3 id="常见鼠标事件"><a href="#常见鼠标事件" class="headerlink" title="常见鼠标事件"></a>常见鼠标事件</h3><table>
 <thead>
@@ -474,7 +472,7 @@ document.querySelectorAll(&#39;li&#39;);
 <h3 id="修改元素内容"><a href="#修改元素内容" class="headerlink" title="修改元素内容"></a>修改元素内容</h3><ol>
 <li>element.innerText：从起始位置到终止位置的内容，但它不识别html标签，同时去掉空格和换行</li>
 <li>element.innerHTML（常用）：从起始位置到终止位置的全部内容，识别html标签，同时保留空格和换行<ol>
-<li>语法<pre><code>// 获取事件源
+<li>语法<pre><code class="javascript">// 获取事件源
 var img = document.querySelector(&#39;div&#39;);
 img.innerHTML = &#39;要修改的内容&#39;;
 </code></pre>
@@ -484,7 +482,7 @@ img.innerHTML = &#39;要修改的内容&#39;;
 </ol>
 <h3 id="修改元素属性"><a href="#修改元素属性" class="headerlink" title="修改元素属性"></a>修改元素属性</h3><ol>
 <li>修改src，href，id，alt，title等属性的操作<ol>
-<li>语法<pre><code>// 获取事件源
+<li>语法<pre><code class="javascript">// 获取事件源
 var img = document.querySelector(&#39;img&#39;);
 img.src = &#39;要修改的内容&#39;;
 </code></pre>
@@ -494,7 +492,7 @@ img.src = &#39;要修改的内容&#39;;
 </ol>
 <h3 id="修改表单属性"><a href="#修改表单属性" class="headerlink" title="修改表单属性"></a>修改表单属性</h3><ol>
 <li>修改表单元素中src，href，id，alt，title等属性的操作<ol>
-<li>语法<pre><code>&lt;script&gt;
+<li>语法<pre><code class="javascript">&lt;script&gt;
   // 获取事件源
   var btn = document.querySelector(&#39;button&#39;);
   var input = document.querySelector(&#39;input&#39;);
@@ -513,7 +511,7 @@ img.src = &#39;要修改的内容&#39;;
 <h3 id="样式属性操作"><a href="#样式属性操作" class="headerlink" title="样式属性操作"></a>样式属性操作</h3><ol>
 <li>可以通过JS修改元素的大小，颜色，位置等样式</li>
 <li>行内样式操作 - element.style<ol>
-<li>语法：<code>element.style.样式属性 = &#39;属性&#39;;</code><pre><code>&lt;div&gt;&lt;/div&gt;
+<li>语法：<code>element.style.样式属性 = &#39;属性&#39;;</code><pre><code class="javascript">&lt;div&gt;&lt;/div&gt;
 &lt;script&gt;
     // 获取事件源
     var div = document.querySelector(&#39;div&#39;);
@@ -533,11 +531,10 @@ img.src = &#39;要修改的内容&#39;;
 </ol>
 </li>
 <li>类名样式操作 - element.className<ol>
-<li>语法：<code>element.className = &#39;类名&#39;;</code><br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927020532.png"><ul>
-<li>适合与样式较多或者功能复杂的情况</li>
-<li>className会直接更改元素的类名，会覆盖原先的类名，因此进行类名赋值时需要把类名写全<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927020621.png"></li>
-</ul>
-</li>
+<li>语法：<code>element.className = &#39;类名&#39;;</code><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927020532.png" style="zoom:80%;" />
+- 适合与样式较多或者功能复杂的情况
+- className会直接更改元素的类名，会覆盖原先的类名，因此进行类名赋值时需要把类名写全
+<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927020621.png" style="zoom:80%;" /></li>
 </ol>
 </li>
 </ol>
@@ -549,7 +546,7 @@ img.src = &#39;要修改的内容&#39;;
 </ol>
 </li>
 <li>注意：顺序不能颠倒</li>
-<li>排他思想应用，例：tab栏切换案例<br> <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927020800.png"></li>
+<li>排他思想应用，例：tab栏切换案例 <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927020800.png" style="zoom:80%;" /></li>
 </ol>
 <h3 id="自定义属性操作"><a href="#自定义属性操作" class="headerlink" title="自定义属性操作"></a>自定义属性操作</h3><ol>
 <li>获取属性值的方法<ol>
@@ -635,8 +632,7 @@ img.src = &#39;要修改的内容&#39;;
 </li>
 </ol>
 <h3 id="节点操作之子节点"><a href="#节点操作之子节点" class="headerlink" title="节点操作之子节点"></a>节点操作之子节点</h3><ol>
-<li><p>子节点 childNodes（标准）</p>
-<ol>
+<li>子节点 childNodes（标准）<ol>
 <li>childNodes返回包含指定节点的子节点的集合，该集合为即时更新的集合</li>
 <li>会获取所有的子节点，包含元素节点，文本节点等<ul>
 <li>若只想要获得里面的元素节点，则需要专门处理，因此不推荐使用childNodes</li>
@@ -644,9 +640,8 @@ img.src = &#39;要修改的内容&#39;;
 </li>
 </ol>
 </li>
-<li><p>子节点 chlidren（非标准）</p>
-<ol>
-<li>获取所有的子元素节点，不包含文本节点等，实际开发经常使用<pre><code>&lt;body&gt;
+<li>子节点 chlidren（非标准）<ol>
+<li>获取所有的子元素节点，不包含文本节点等，实际开发经常使用<pre><code class="javascript">&lt;body&gt;
 &lt;ul&gt;
   &lt;li&gt;1&lt;/li&gt;
   &lt;li&gt;2&lt;/li&gt;
@@ -665,22 +660,18 @@ img.src = &#39;要修改的内容&#39;;
 </li>
 </ol>
 </li>
-<li><p>获取第一个和最后一个子节点</p>
-<ol>
-<li><p>方法一 — firstChild / lastChild：第一个子节点，不管是文本节点还是元素节点</p>
-<ul>
+<li>获取第一个和最后一个子节点<ol>
+<li>方法一 — firstChild / lastChild：第一个子节点，不管是文本节点还是元素节点<ul>
 <li>有兼容性问题，IE9以上版本支持</li>
 </ul>
 </li>
-<li><p>方法二 — firstElementChild / lastElementChild：返回第一个子元素节点</p>
-<ul>
+<li>方法二 — firstElementChild / lastElementChild：返回第一个子元素节点<ul>
 <li>有兼容性问题，IE9以上版本支持</li>
 </ul>
 </li>
-<li><p>方法三（常用）— 实际开发写法，既没有兼容性问题，又返回任意子元素</p>
-<ul>
+<li>方法三（常用）— 实际开发写法，既没有兼容性问题，又返回任意子元素<ul>
 <li><p>先获取父元素，然后利用children获取所有子元素节点，此时父元素为一个伪数组，遍历用索引号获取子元素节点，代码如下</p>
-<pre><code>&lt;body&gt;
+<pre><code class="javascript">&lt;body&gt;
 &lt;ul&gt;
   &lt;li&gt;节点li1&lt;/li&gt;
   &lt;li&gt;节点li2&lt;/li&gt;
@@ -744,7 +735,7 @@ img.src = &#39;要修改的内容&#39;;
 </ul>
 </li>
 <li>node.insertBefore(child, 指定元素)：将一个节点添加到指定父节点的指定子节点前面<ul>
-<li>node为父级，child为子级<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927021815.png"></li>
+<li>node为父级，child为子级<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927021815.png" style="zoom:80%;" /></li>
 </ul>
 </li>
 </ol>
@@ -785,22 +776,17 @@ img.src = &#39;要修改的内容&#39;;
 <h3 id="删除元素节点"><a href="#删除元素节点" class="headerlink" title="删除元素节点"></a>删除元素节点</h3><ol>
 <li>删除节点：node.removeChild(child)<ol>
 <li>node为父级，child为子级</li>
-<li>node.removeChild(child)方法从一个DOM中删除一个子节点，返回删除的节点<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022050.png"></li>
+<li>node.removeChild(child)方法从一个DOM中删除一个子节点，返回删除的节点<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022050.png" style="zoom:80%;" /></li>
 </ol>
 </li>
 <li>阻止链接跳转：给a标签行内样式href的属性值改为javascript:;</li>
 </ol>
 <h3 id="复制节点（克隆节点）"><a href="#复制节点（克隆节点）" class="headerlink" title="复制节点（克隆节点）"></a>复制节点（克隆节点）</h3><ol>
-<li><p>复制节点：node.cloneNode(空、false / true)</p>
-<ol>
-<li><p>方法返回调用该方法的节点的一个副本</p>
-</li>
-<li><p>注意</p>
-<ul>
-<li><p>括号参数为空或者为false，则是浅拷贝，即只克隆复制节点本身，不克隆里面的子节点</p>
-</li>
-<li><p>括号参数为true，则是深拷贝，复制标签以及复制里面的内容</p>
-<pre><code>&lt;body&gt;
+<li>复制节点：node.cloneNode(空、false / true)<ol>
+<li>方法返回调用该方法的节点的一个副本</li>
+<li>注意<ul>
+<li>括号参数为空或者为false，则是浅拷贝，即只克隆复制节点本身，不克隆里面的子节点</li>
+<li>括号参数为true，则是深拷贝，复制标签以及复制里面的内容<pre><code class="javascript">&lt;body&gt;
 &lt;ul&gt;
   &lt;li&gt;1111&lt;/li&gt;
   &lt;li&gt;2&lt;/li&gt;
@@ -834,13 +820,13 @@ img.src = &#39;要修改的内容&#39;;
 <li>document.createElement()</li>
 </ol>
 <h3 id="creatElement效率测试"><a href="#creatElement效率测试" class="headerlink" title="creatElement效率测试"></a>creatElement效率测试</h3><ol>
-<li>执行时间大概在6毫秒左右<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022413.png"></li>
+<li>执行时间大概在6毫秒左右<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022413.png" style="zoom:80%;" /></li>
 </ol>
 <h3 id="innerHTML拼接字符串方法效率测试"><a href="#innerHTML拼接字符串方法效率测试" class="headerlink" title="innerHTML拼接字符串方法效率测试"></a>innerHTML拼接字符串方法效率测试</h3><ol>
-<li>执行时间大概在900毫秒左右<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022447.png"></li>
+<li>执行时间大概在900毫秒左右<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022447.png" style="zoom:80%;" /></li>
 </ol>
 <h3 id="innerHTML数组方法效率测试（效率最高）"><a href="#innerHTML数组方法效率测试（效率最高）" class="headerlink" title="innerHTML数组方法效率测试（效率最高）"></a>innerHTML数组方法效率测试（效率最高）</h3><ol>
-<li>执行时间大概在2毫秒左右<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022519.png"></li>
+<li>执行时间大概在2毫秒左右<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927022519.png" style="zoom:80%;" /></li>
 </ol>
 <h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>document.write是直接将内容写入页面的内容流，但是文档流执行完毕，则它会导致页面全部重绘</li>
@@ -989,20 +975,20 @@ img.src = &#39;要修改的内容&#39;;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

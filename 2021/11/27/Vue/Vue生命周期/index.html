@@ -20,22 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="学习笔记：ES6-的类和对象个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+  <meta name="description" content="学习笔记：Vue生命周期个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6-的类和对象">
-<meta property="og:url" content="http://example.com/2021/10/07/ES6/ES6-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:title" content="Vue生命周期">
+<meta property="og:url" content="http://example.com/2021/11/27/Vue/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
 <meta property="og:site_name" content="Twenty-seven">
-<meta property="og:description" content="学习笔记：ES6-的类和对象个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:description" content="学习笔记：Vue生命周期个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211008000651.png">
-<meta property="article:published_time" content="2021-10-07T15:49:05.103Z">
-<meta property="article:modified_time" content="2021-10-14T14:42:31.694Z">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211127152812.png">
+<meta property="article:published_time" content="2021-11-27T07:25:54.697Z">
+<meta property="article:modified_time" content="2021-11-27T07:35:39.306Z">
 <meta property="article:author" content="二十七">
-<meta property="article:tag" content="ES6">
+<meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211008000651.png">
+<meta name="twitter:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211127152812.png">
 
-<link rel="canonical" href="http://example.com/2021/10/07/ES6/ES6-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
+<link rel="canonical" href="http://example.com/2021/11/27/Vue/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>ES6-的类和对象 | Twenty-seven</title>
+  <title>Vue生命周期 | Twenty-seven</title>
   
 
 
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/07/ES6/ES6-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/27/Vue/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -176,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ES6-的类和对象
+          Vue生命周期
         </h1>
 
         <div class="post-meta">
@@ -185,23 +185,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-10-07 23:49:05" itemprop="dateCreated datePublished" datetime="2021-10-07T23:49:05+08:00">2021-10-07</time>
+              <time title="创建时间：2021-11-27 15:25:54 / 修改时间：15:35:39" itemprop="dateCreated datePublished" datetime="2021-11-27T15:25:54+08:00">2021-11-27</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-14 22:42:31" itemprop="dateModified" datetime="2021-10-14T22:42:31+08:00">2021-10-14</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
                 </span>
             </span>
 
@@ -223,180 +217,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>学习笔记：ES6-的类和对象<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正  </p>
+        <p>学习笔记：Vue生命周期<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正</p>
 <span id="more"></span>
 
-<h1 id="ES6中的类和对象"><a href="#ES6中的类和对象" class="headerlink" title="ES6中的类和对象"></a>ES6中的类和对象</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><ol>
-<li>现实生活中：万物皆对象，对象是一个具体的事物，如一本书，一个人</li>
-<li>在javaScript中，对象是一组无序的相关属性和方法的集合，所有的事物都是对象，如字符串、数值、数组、函数等</li>
-<li>对象是有属性和方法组成的<ol>
-<li>属性：事物的特征，在对象中用属性来表示</li>
-<li>方法：事物的行为，在对象中用方法来表示</li>
-</ol>
-</li>
-</ol>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ol>
-<li>类抽象了对象的公共部分，它泛指某一大类(class)</li>
-<li>对象特指某一个，通过类实例化一个具体的对象</li>
-<li>面向对象的思维特点：<ol>
-<li>抽取(抽象)对象共用的属性和行为组织(封装)成一个类(模板)</li>
-<li>对类进行实例化，获取类的对象</li>
-</ol>
-</li>
-</ol>
-<h2 id="类constructor构造函数"><a href="#类constructor构造函数" class="headerlink" title="类constructor构造函数"></a>类constructor构造函数</h2><ol>
-<li>constructor()方法是类的构造函数（默认方法），用于传递参数返回实例对象，通过new命令生成对象实例时，自动调用该方法。如果类里面没有定义构造函数，类内部会自动给我们创建一个constructor()</li>
-</ol>
-<h3 id="利用类创建对象"><a href="#利用类创建对象" class="headerlink" title="利用类创建对象"></a>利用类创建对象</h3><ol>
-<li>通过class关键字创建类，类名我们还是习惯性定义首字母大写</li>
-<li>类里面有个constructor函数，可以接受传递过来的参数，同时返回实例对象</li>
-<li>constructor函数只要new生成实例时，就会自动调用这个函数，如果我们不写这个函数，类也会自动生成这个函数生成实例new不能省略</li>
-<li>最后注意语法规范，创建类，类名后面不要加小括号，生成实例类名后面加小括号，构造函数不需要加function</li>
-</ol>
-<h3 id="类添加方法"><a href="#类添加方法" class="headerlink" title="类添加方法"></a>类添加方法</h3><ol>
-<li><p>类里面的所有的函数都不需要写function</p>
-<pre><code>&lt;script&gt;
-  // 创建类
-  class Star &#123;
-    constructor(uname, age) &#123;
-      this.uname = uname;
-      this.age = age;
-    &#125;
+<h1 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h1><h2 id="Vue生命周期-1"><a href="#Vue生命周期-1" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><h3 id="生命周期图示"><a href="#生命周期图示" class="headerlink" title="生命周期图示"></a>生命周期图示</h3><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211127152812.png" style="zoom:80%;" />
 
-    sing(song) &#123;
-      console.log(this.uname + song);
-    &#125;
-  &#125;
-
-  // 创建对象
-  var ldh = new Star(&quot;刘德华&quot;, 45);
-  var zxy = new Star(&quot;张学友&quot;, 50);
-  ldh.sing(&quot;冰雨&quot;);
-  zxy.sing(&quot;李香兰&quot;);
-  console.log(ldh);
-  console.log(ldh.uname);
-&lt;/script&gt;
-</code></pre>
-</li>
+<h3 id="生命周期钩子"><a href="#生命周期钩子" class="headerlink" title="生命周期钩子"></a>生命周期钩子</h3><ol>
+<li>生命周期钩子 = 生命周期函数 = 生命周期事件</li>
 </ol>
-<h3 id="在类中调用函数"><a href="#在类中调用函数" class="headerlink" title="在类中调用函数"></a>在类中调用函数</h3><ol>
-<li>在类中调用函数，调用函数时，若不需要函数在页面加载后马上调用，则利用this.函数名进行调用，在后面不要加上括号，否则函数会在页面加载后立即执行<br> <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211008000651.png"></li>
+<h4 id="生命周期钩子（函数）的分类"><a href="#生命周期钩子（函数）的分类" class="headerlink" title="生命周期钩子（函数）的分类"></a>生命周期钩子（函数）的分类</h4><ol>
+<li>创建期间的生命周期钩子（函数）</li>
+<li>运行期间的生命周期钩子（函数）</li>
+<li>销毁期间的生命周期钩子（函数）</li>
 </ol>
-<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><ol>
-<li>程序中的继承：子类可以继承父类的一些属性和方法</li>
+<h4 id="创建期间的生命周期钩子"><a href="#创建期间的生命周期钩子" class="headerlink" title="创建期间的生命周期钩子"></a>创建期间的生命周期钩子</h4><ol>
+<li>beforeCreate：在实例初始化之后，进行数据监听和事件/监听器的配置之前同步调用</li>
+<li><strong>created</strong>：在实例创建完成后被立即同步调用，<strong>此时数据、计算属性、方法、事件/监听器的回调函数都以及配置完毕</strong>，但是挂载阶段还未开始；<strong>若要调用methods，或者操作data数据，最早只能在created钩子中进行</strong></li>
+<li>beforeMount：此函数执行时模板已经在内存中，但是还未挂载到页面中</li>
 </ol>
-<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><ol>
-<li><p>super关键字用于访问和调用对象父类上的函数。可以调用父类的构造函数，也可以调用父类的普通函数</p>
-</li>
-<li><p>super必须在子类this之前调用（必须先调用父类的构造方法，再使用子类的构造方法）</p>
-<pre><code>&lt;script&gt;
-  class Father &#123;
-    constructor(x, y) &#123;
-      this.x = x;
-      this.y = y;
-    &#125;
-
-    sum() &#123;
-      // 这里的参数必须是父类传过来的才能进行相加
-      console.log(this.x + this.y);
-    &#125;
-  &#125;
-
-  class Son extends Father &#123; // 继承父类
-    constructor(x, y) &#123;
-      // super必须在子类this之前调用
-      super(x, y); // 调用了父类中的构造函数和普通函数
-      // this.x = x;
-      // this.y = y;  // 这里的x和y指向子类
-    &#125;
-
-    subtract() &#123;
-      console.log(this.x - this.y);
-    &#125;
-  &#125;
-
-  var son = new Son(11, 22);
-  son.sum(); // 33
-  son.subtract(); // -11
-&lt;/script&gt;
-</code></pre>
-</li>
-<li><p>继承中，如果实例化子类输出一个方法，先看子类有没有这个方法，如果有就先执行子类的；如果子类里面没有，就去查找父类有没有这个方法，如果有，就执行父类的这个方法（就近原则）</p>
-</li>
-</ol>
-<h2 id="使用类的三个注意点"><a href="#使用类的三个注意点" class="headerlink" title="使用类的三个注意点"></a>使用类的三个注意点</h2><ol>
-<li><p>在ES6中类没有变量提升，所以必须先定义类，才能通过类实例化对象</p>
-</li>
-<li><p>类里面的共有的属性和方法一定要加this使用</p>
-</li>
-<li><p>类里面的this指向问题，见下图红框内容</p>
+<h4 id="运行期间的生命周期钩子"><a href="#运行期间的生命周期钩子" class="headerlink" title="运行期间的生命周期钩子"></a>运行期间的生命周期钩子</h4><ol>
+<li><p><strong>mounted：若如果要通过某些插件操作页面上的DOM节点，最早要在mounted中进行</strong></p>
 <ol>
-<li><p>constructor里面的this指向的是创建的实例对象，方法里面的this指向这个方法的调用者</p>
+<li><p>注意：mounted不会保证所有的子组件也都被挂载完成。如果你希望等到整个视图都渲染完毕再执行某些操作，<strong>可以在mounted内部使用vm.$nextTick</strong></p>
+<pre><code class="javascript">mounted: function() &#123; 
+    this.$nextTick(function() &#123; 
+        // 仅在整个视图都被渲染之后才会运行的代码 
+    &#125;) 
+&#125;
+</code></pre>
 </li>
-<li><p>小技巧：当一个类的方法中需要使用指向实例对象的this，但是由于方法里面的this指向这个方法的调用者，因此可以定义一个全局变量that，将constructor里面指向实例对象的this赋值给that，这样方法就可以通过that使用指向实例对象的this，见下图白框内容</p>
-<pre><code>&lt;body&gt;
-  &lt;button&gt;按钮&lt;/button&gt;
-  &lt;script&gt;
-    var that;
-    class Star &#123;
-      constructor(uname, age) &#123;
-        // this指向的是创建的实例对象，将实例对象赋值给that
-        // 这样that指向的也是创建的实例对象
-        that = this;
-        // constructor里面的this指向的是创建的实例对象
-        this.uname = uname;
-        this.age = age;
-        this.btn = document.querySelector(&quot;button&quot;);
-        // 这里调用sing函数，在sing后面没有加括号
-        // 因为这个函数是在btn被点击后才调用，因此不加括号
-        // 若在sing后面加上括号，则表示页面一经加载，则函数立即调用
-        this.btn.onclick = this.sing;
-      &#125;
-      sing() &#123;
-        // 输出&lt;button&gt;按钮&lt;/button&gt;
-        // 方法里面的this指向这个方法的调用者，因为sing函数是被btn调用的，this指向btn
-        console.log(this);
-
-        // 输出undefined，因为btn没有uname属性
-        console.log(this.uname);
-
-        // that里面存储的是constructor里面的this
-        // 因此输出&quot;刘德华&quot;
-        console.log(that.uname);
-      &#125;
-      song() &#123;
-        console.log(this); // 输出ldh的实例对象 Star&#123;&#125;，因为song方法是实例对象ldh调用
-      &#125;
-    &#125;
-
-    var ldh = new Star(&quot;刘德华&quot;, 47);
-    ldh.song();
-  &lt;/script&gt;
-&lt;/body&gt;
+</ol>
+</li>
+<li><p>beforeUpdate：在数据发生改变后，DOM被更新之前被调用</p>
+</li>
+<li><p>update：在数据更改导致的虚拟 DOM 重新渲染和更新完毕之后被调用</p>
+<ol>
+<li><p>注意：update不会保证所有的子组件也都被挂载完成。如果你希望等到整个视图都渲染完毕再执行某些操作，<strong>可以在update内部使用vm.$nextTick</strong></p>
+<pre><code class="javascript">update: function() &#123; 
+    this.$nextTick(function() &#123; 
+        // 仅在整个视图都被渲染之后才会运行的代码 
+    &#125;) 
+&#125;
 </code></pre>
 </li>
 </ol>
 </li>
 </ol>
-<h1 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h1><ol>
-<li>在ES6之前通过构造函数+原型实现面向对象编程</li>
-<li>在ES6之后通过类实现面向对象编程</li>
-</ol>
-<h2 id="类的本质"><a href="#类的本质" class="headerlink" title="类的本质"></a>类的本质</h2><ol>
-<li>类的本质还是一个函数，类就是构造函数的另外一种写法<ol>
-<li>类具有prototype原型对象</li>
-<li>类的prototype原型对象指向类本身constructor</li>
-<li>类可以通过原型对象中添加方法</li>
-<li>类的实例对象的原型__proto__指向类的原型对象</li>
-</ol>
+<h4 id="销毁期间的生命周期钩子"><a href="#销毁期间的生命周期钩子" class="headerlink" title="销毁期间的生命周期钩子"></a>销毁期间的生命周期钩子</h4><ol>
+<li><p>beforeDestory：实例销毁之前调用，这一步实例仍然完全可用</p>
 </li>
-<li>类的所有方法都定义在类的prototype属性上</li>
-<li>类创建的实例对象，里面也有__proto__指向类的prototype原型对象</li>
-<li>所以ES6的类它的绝大部分功能，ES5都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法</li>
-<li>ES6的类就是语法糖<ol>
-<li>语法糖：语法糖就是一种便捷写法；简单理解，有两种方法可以实现同样的功能，但是一种写法更加清晰、方便，那么这个方法就是语法糖</li>
-</ol>
+<li><p>destroyed：实例销毁后调用，此时组件中所有的数据，方法，指令，过滤器都不可再用</p>
 </li>
+<li></li>
+<li></li>
 </ol>
 
     </div>
@@ -433,7 +306,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2021/10/07/ES6/ES6-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" title="ES6-的类和对象">http://example.com/2021/10/07/ES6/ES6-类和对象/</a>
+    <a href="http://example.com/2021/11/27/Vue/Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="Vue生命周期">http://example.com/2021/11/27/Vue/Vue生命周期/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -444,7 +317,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/ES6/" rel="tag"># ES6</a>
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
           </div>
 
         
@@ -453,12 +326,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/10/07/ES5/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="正则表达式">
-      <i class="fa fa-chevron-left"></i> 正则表达式
+    <a href="/2021/11/22/Vue%E9%A1%B9%E7%9B%AE/%E4%B8%A5%E9%80%89%E7%94%B5%E5%95%86-%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="prev" title="严选电商-移动端">
+      <i class="fa fa-chevron-left"></i> 严选电商-移动端
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/10/08/ES6/ES6-%E6%96%B0%E5%A2%9E%E5%85%B3%E9%94%AE%E5%AD%97/" rel="next" title="ES6-新增关键字">
-      ES6-新增关键字 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/11/30/SVN/SVN/" rel="next" title="SVN">
+      SVN <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -523,7 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">ES6中的类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BBconstructor%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">类constructor构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.3.1.</span> <span class="nav-text">利用类创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">类添加方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%B1%BB%E4%B8%AD%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">在类中调用函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-number">1.4.</span> <span class="nav-text">类的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">super关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B1%BB%E7%9A%84%E4%B8%89%E4%B8%AA%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">使用类的三个注意点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB-1"><span class="nav-number">2.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">2.1.</span> <span class="nav-text">类的本质</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.</span> <span class="nav-text">Vue生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-1"><span class="nav-number">1.1.</span> <span class="nav-text">Vue生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA"><span class="nav-number">1.1.1.</span> <span class="nav-text">生命周期图示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="nav-number">1.1.2.</span> <span class="nav-text">生命周期钩子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%EF%BC%88%E5%87%BD%E6%95%B0%EF%BC%89%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">生命周期钩子（函数）的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%9C%9F%E9%97%B4%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">创建期间的生命周期钩子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%9C%9F%E9%97%B4%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">运行期间的生命周期钩子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%80%E6%AF%81%E6%9C%9F%E9%97%B4%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">销毁期间的生命周期钩子</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -539,20 +412,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

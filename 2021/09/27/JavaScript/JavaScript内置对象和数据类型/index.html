@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013400.png">
 <meta property="article:published_time" content="2021-09-26T16:45:37.193Z">
-<meta property="article:modified_time" content="2021-09-29T02:37:49.197Z">
+<meta property="article:modified_time" content="2021-12-27T09:28:45.683Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-29 10:37:49" itemprop="dateModified" datetime="2021-09-29T10:37:49+08:00">2021-09-29</time>
+                <time title="修改时间：2021-12-27 17:28:45" itemprop="dateModified" datetime="2021-12-27T17:28:45+08:00">2021-12-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,8 +305,7 @@ var date = new Date(&#39;2019/5/1&#39;);
 </li>
 </ol>
 <h3 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h3><ol>
-<li><p>获取日期指定的部分，手动得到需要的格式</p>
-<table>
+<li>获取日期指定的部分，手动得到需要的格式<table>
 <thead>
 <tr>
 <th>方法名</th>
@@ -343,8 +342,7 @@ var date = new Date(&#39;2019/5/1&#39;);
 </tr>
 </tbody></table>
 </li>
-<li><p>案例：格式化日期年月日星期</p>
-<pre><code>&lt;script&gt;
+<li>案例：格式化日期年月日星期<pre><code>&lt;script&gt;
   // 创建日期对象
   var date = new Date();
 
@@ -360,34 +358,27 @@ var date = new Date(&#39;2019/5/1&#39;);
 </li>
 </ol>
 <h3 id="获取总的毫秒数"><a href="#获取总的毫秒数" class="headerlink" title="获取总的毫秒数"></a>获取总的毫秒数</h3><ol>
-<li><p>Date对象是基于1970年1月1日（世界标准时间）起的毫秒数（时间戳）</p>
-</li>
-<li><p>通过valueOf()和getTime()两个函数都可以得到</p>
-<pre><code>var date = new Date();
+<li>Date对象是基于1970年1月1日（世界标准时间）起的毫秒数（时间戳）</li>
+<li>通过valueOf()和getTime()两个函数都可以得到<pre><code>var date = new Date();
 console.log(date.valueOf()); // 就是现在时间距离1970年1月1日总的毫秒数
 console.log(date.getTime()); // 就是现在时间距离1970年1月1日总的毫秒数
 </code></pre>
 </li>
-<li><p>简单写法（最常用）</p>
-<pre><code> var date = +new Date(); // +new Date() 返回的就是总的毫秒数
+<li>简单写法（最常用）<pre><code> var date = +new Date(); // +new Date() 返回的就是总的毫秒数
 </code></pre>
 </li>
-<li><p>H5新增获取总毫秒数</p>
-<pre><code> console.log(Date.new());
+<li>H5新增获取总毫秒数<pre><code> console.log(Date.new());
 </code></pre>
 </li>
-<li><p>将总毫秒数转换为天、时、分、秒（时间戳转换为时分秒）</p>
-<ol>
-<li><p>转换公式如下：</p>
-<ul>
+<li>将总毫秒数转换为天、时、分、秒（时间戳转换为时分秒）<ol>
+<li>转换公式如下：<ul>
 <li>计算天数：parseInt(总秒数/60/60/24);</li>
 <li>计算小时：parseInt(总秒数/60/60%24);</li>
 <li>计算分钟：parseInt(总秒数/60%60);</li>
 <li>计算秒数：parseInt(总秒数%60);</li>
 </ul>
 </li>
-<li><p>案例：倒计时</p>
-<pre><code>&lt;script&gt;
+<li>案例：倒计时<pre><code>&lt;script&gt;
   function countTime(time) &#123;
     // 到当前时间的总毫秒数
     var nowTime = +new Date();
@@ -520,19 +511,20 @@ arr.push(4, &#39;pink&#39;);
 </li>
 </ol>
 <h3 id="数组其他方法"><a href="#数组其他方法" class="headerlink" title="数组其他方法"></a>数组其他方法</h3><ol>
-<li>concat()：连接两个或者多个数组，不影响原数组<ol>
+<li>**concat()**：连接两个或者多个数组，不影响原数组<ol>
 <li>语法：<code>arr1.concat(arr2);</code><ul>
 <li>返回值为新的数组</li>
 </ul>
 </li>
 </ol>
 </li>
-<li>slice(begin, end)：数组截取，截取从数组第begin个索引到第end个索引的元素，不包含索引为end的元素<ol>
+<li>**slice(begin, end)**：数组截取，截取从数组第begin个索引到第end个索引的元素，不包含索引为end的元素<ol>
 <li>语法：<code>arr.slice(2, 4);</code><ul>
 <li>返回值为被截取项目的新数组</li>
 <li>截取元素中不包含索引为end的元素</li>
 </ul>
 </li>
+<li><strong>若只有一个参数begin，则表示截取从begin开始往后的所有元素</strong></li>
 </ol>
 </li>
 <li>splice(begin, count)：数组删除，删除从数组第begin个索引开始的count个数<ol>
@@ -582,28 +574,23 @@ str.length;
 </li>
 </ol>
 <h3 id="根据位置返回字符（重点）"><a href="#根据位置返回字符（重点）" class="headerlink" title="根据位置返回字符（重点）"></a>根据位置返回字符（重点）</h3><ol>
-<li><p>charAt(index)：返回指定位置的字符（index为字符串的索引号）</p>
-<ol>
+<li>charAt(index)：返回指定位置的字符（index为字符串的索引号）<ol>
 <li>语法：<code>str.charAt(2);</code></li>
 </ol>
 </li>
-<li><p>charCodeAT(index)：获取指定位置处字符的ASCII码（index为索引号）</p>
-<ol>
+<li>charCodeAT(index)：获取指定位置处字符的ASCII码（index为索引号）<ol>
 <li>语法：<code>str.charCodeAt(3); </code><ul>
 <li>目的是可以判断用户按下了哪个键</li>
 </ul>
 </li>
 </ol>
 </li>
-<li><p>str[index]：返回指定位置的字符（HTML5，IE8+支持）</p>
-<ol>
+<li>str[index]：返回指定位置的字符（HTML5，IE8+支持）<ol>
 <li>语法：<code>str[1];</code></li>
 </ol>
 </li>
-<li><p>案例：统计一个字符串中每个字符出现的次数，求出出现最多的字符及其出现次数</p>
-<ul>
-<li><p>以下算法很常用</p>
-<pre><code>&lt;script&gt;
+<li>案例：统计一个字符串中每个字符出现的次数，求出出现最多的字符及其出现次数<ul>
+<li>以下算法很常用<pre><code>&lt;script&gt;
   var str = &#39;abcoefoxyozzopp&#39;;
   var statistical = &#123;&#125;;
   for (var i = 0; i &lt; str.length; i++) &#123;
@@ -669,15 +656,12 @@ str.concat(&#39;red&#39;);
 </li>
 </ol>
 <h3 id="替换字符串"><a href="#替换字符串" class="headerlink" title="替换字符串"></a>替换字符串</h3><ol>
-<li><p>replace(‘被替换的字符’, ‘替换为的字符’)：替换字符串中指定的字符</p>
-<ol>
-<li><p>语法：<code>str.replace(&#39;a&#39;, &#39;b&#39;);</code></p>
-<ul>
+<li>replace(‘被替换的字符’, ‘替换为的字符’)：替换字符串中指定的字符<ol>
+<li>语法：<code>str.replace(&#39;a&#39;, &#39;b&#39;);</code><ul>
 <li>返回值为被替换后的字符串</li>
 </ul>
 </li>
-<li><p>案例：替换敏感词</p>
-<pre><code>&lt;script&gt;
+<li>案例：替换敏感词<pre><code>&lt;script&gt;
   var str = &#39;内置对象就是指JS语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是最基本而必要的功能(属性和方法)&#39;;
 
   while (str.indexOf(&#39;些&#39;) !== -1) &#123;
@@ -732,10 +716,8 @@ console.log(typeof timer);
 <li>复杂数据类型存放到堆里面：首先在栈里面存放地址（十六进制表示），然后这个地址指向堆里面的数据       </li>
 </ol>
 <h3 id="复杂数据类型传参"><a href="#复杂数据类型传参" class="headerlink" title="复杂数据类型传参"></a>复杂数据类型传参</h3><ol>
-<li><p>函数的形参也可以看做是一个变量，当我们把引用类型变量传给形参时，实是把变量在栈空间里保存的堆地址复制给了形参，形参和实参其实保存的是同一个堆地址，所以操作的是同一个对象</p>
-</li>
-<li><p>案例</p>
-<pre><code>&lt;script&gt;
+<li>函数的形参也可以看做是一个变量，当我们把引用类型变量传给形参时，实是把变量在栈空间里保存的堆地址复制给了形参，形参和实参其实保存的是同一个堆地址，所以操作的是同一个对象</li>
+<li>案例<pre><code>&lt;script&gt;
   function Person(name) &#123;
     // 将栈内存中地址为0xaabbcc指向堆内存中对象p的name属性值改为&#39;刘德华&#39;
     this.name = name;
@@ -759,8 +741,7 @@ console.log(typeof timer);
   console.log(p.name); // 第四：输出张学友
 &lt;/script&gt;
 </code></pre>
-<p> <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013400.png"></p>
-</li>
+ <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013400.png"></li>
 </ol>
 
     </div>
@@ -903,20 +884,20 @@ console.log(typeof timer);
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

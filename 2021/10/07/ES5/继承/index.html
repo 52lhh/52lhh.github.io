@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211007005323.png">
 <meta property="article:published_time" content="2021-10-06T16:48:55.226Z">
-<meta property="article:modified_time" content="2021-10-06T17:00:32.184Z">
+<meta property="article:modified_time" content="2021-12-29T06:28:14.654Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="ES5">
 <meta name="twitter:card" content="summary">
@@ -185,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-07 00:48:55 / 修改时间：01:00:32" itemprop="dateCreated datePublished" datetime="2021-10-07T00:48:55+08:00">2021-10-07</time>
+              <time title="创建时间：2021-10-07 00:48:55" itemprop="dateCreated datePublished" datetime="2021-10-07T00:48:55+08:00">2021-10-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-29 14:28:14" itemprop="dateModified" datetime="2021-12-29T14:28:14+08:00">2021-12-29</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -223,90 +229,6 @@
 <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><ol>
 <li>ES6之前并没有给我们提供extends继承。我们可以通过构造函数+原型对象模拟实现继承，被称为组合继承</li>
 </ol>
-<h2 id="改变this指向的三种方法"><a href="#改变this指向的三种方法" class="headerlink" title="改变this指向的三种方法"></a>改变this指向的三种方法</h2><h3 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h3><ol>
-<li><p>调用这个函数，并且修改函数运行时的this指向</p>
-</li>
-<li><p>call()的两个作用</p>
-<ol>
-<li><p>call()：可以调用函数</p>
-</li>
-<li><p>可以改变这个函数的this指向</p>
-<pre><code>&lt;script&gt;
-  function fn(x, y) &#123;
-    console.log(&#39;hello world!&#39;);
-    console.log(this);
-  &#125;
-  // 调用函数
-  fn.call();
-
-  var man = &#123;
-    name: &#39;男人&#39;
-  &#125;
-  // 改变函数的指向
-  fn(); // 指向Window
-  // 第一个参数改变函数指向，后面的参数作为形参
-  fn.call(man, 1, 2) // 指向对象man
-&lt;/script&gt;
-</code></pre>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h3><ol>
-<li>apply()的两个作用<ol>
-<li>apply()：可以调用函数</li>
-<li>可以改变这个函数的this指向</li>
-</ol>
-</li>
-<li>与call()的不同在于，apply()后面传递的参数必须是数组形式</li>
-<li>因此apply()的主要应用于数组</li>
-</ol>
-<h3 id="bind-（重点）"><a href="#bind-（重点）" class="headerlink" title="bind()（重点）"></a>bind()（重点）</h3><ol>
-<li>该方法经常使用</li>
-<li>bind()可以改变这个函数的this指向</li>
-<li>bind()不会调用原来的函数</li>
-<li>返回的是原函数改变this之后产生的新函数</li>
-<li>当有些函数不需要立即调用，但是又需要改变这个函数内部的this指向时使用bind()</li>
-<li>例：点击按钮后禁用3秒、tab栏切换案例运用（代码实现见vscode）<pre><code>&lt;body&gt;
-  &lt;button&gt;按钮&lt;/button&gt;
-  &lt;button&gt;按钮&lt;/button&gt;
-  &lt;button&gt;按钮&lt;/button&gt;
-  &lt;script&gt;
-    var btns = document.querySelectorAll(&#39;button&#39;);
-    console.log(btns);
-    for (var i = 0; i &lt; btns.length; i++) &#123;
-      btns[i].addEventListener(&#39;click&#39;, function () &#123;
-        // 当disabled属性值为true时，让按钮处于不可点击状态
-        this.disabled = true;
-        setTimeout(function () &#123;
-          // 当disabled属性值为false时，让按钮处于不可点击状态
-          // 这个this原本随着定时器指向Window，因为bind()方法改变了定时器的指向，所以此时this指向当前被点击的按钮
-          this.disabled = false;
-          // 让定时器调用bind()方法，因为bind()方法处于定时器外部，因此bind(this)中的this指向当前被点击的按钮
-          // 定时器原来是指向Window，现在利用bind()方法指向了当前被点击的按钮，且不调用，随着定时器的执行而调用
-        &#125;.bind(this), 1000)
-    &#125;)
-    &#125;
-  &lt;/script&gt;
-&lt;/body&gt;
-</code></pre>
-</li>
-</ol>
-<h3 id="call-、apply-、bind-总结"><a href="#call-、apply-、bind-总结" class="headerlink" title="call()、apply()、bind()总结"></a>call()、apply()、bind()总结</h3><ol>
-<li>相同点：都可以改变函数内部的this指向</li>
-<li>区别点：<ol>
-<li>call和apply会调用函数，并且改变函数内部this指向</li>
-<li>call和apply传递的参数不一样，call传递参数aru1，aru2..形式；apply必须是数组形式[arg]</li>
-<li>bind不会调用函数，可以改变函数内部this指向</li>
-</ol>
-</li>
-<li>主要应用场景<ol>
-<li>call经常做继承</li>
-<li>apply经常跟数组有关系，比如借助于数学对象实现数组最大值最小值</li>
-<li>bind不调用函数，但是还想改变this指向，比如改变定时器内部的this指向</li>
-</ol>
-</li>
-</ol>
 <h2 id="借用父构造函数继承属性和方法"><a href="#借用父构造函数继承属性和方法" class="headerlink" title="借用父构造函数继承属性和方法"></a>借用父构造函数继承属性和方法</h2><h3 id="借用父构造函数继承属性"><a href="#借用父构造函数继承属性" class="headerlink" title="借用父构造函数继承属性"></a>借用父构造函数继承属性</h3><ol>
 <li>核心原理：通过call()把父类型的this指向子类型的this，这样就可以实现子类型继承父类型的属性<pre><code>&lt;script&gt;
   function Father(uname, age) &#123;
@@ -325,14 +247,12 @@
 </li>
 </ol>
 <h3 id="借用父构造函数继承方法"><a href="#借用父构造函数继承方法" class="headerlink" title="借用父构造函数继承方法"></a>借用父构造函数继承方法</h3><ol>
-<li><p>因为构造函数的方法会放在原型对象中，因此父构造函数的方法放在父原型对象内部，若子构造函数的实例对象要想继承使用父原型对象内部的方法，则进行如下过程</p>
-<ol>
+<li>因为构造函数的方法会放在原型对象中，因此父构造函数的方法放在父原型对象内部，若子构造函数的实例对象要想继承使用父原型对象内部的方法，则进行如下过程<ol>
 <li>将父构造函数实例化，让子原型对象指向父实例化对象，因为父实例化对象的原型（<code>__proto__</code>）为父原型对象，因此父实例化对象可以使用父原型对象中的方法，从而让指向父实例对象的子原型对象继承到父原型对象中的方法</li>
 <li>注意：让子原型对象指向父实例对象后，会让父实例对象覆盖子原型对象，此时需要利用constructor指回子构造函数</li>
 </ol>
 </li>
-<li><p>注意：千万不可直接将父原型对象直接赋值给子原型对象，这样会让子原型对象直接指向父原型对象，导致一旦给子原型对象添加方法，会让父原型对象同时添加这个方法</p>
-<pre><code>&lt;body&gt;
+<li>注意：千万不可直接将父原型对象直接赋值给子原型对象，这样会让子原型对象直接指向父原型对象，导致一旦给子原型对象添加方法，会让父原型对象同时添加这个方法<pre><code>&lt;body&gt;
   &lt;script&gt;
     function Father(uname, age) &#123;
       this.uname = uname;
@@ -366,8 +286,7 @@
   &lt;/script&gt;
 &lt;/body&gt;
 </code></pre>
-<p> <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211007005323.png"></p>
-</li>
+ <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211007005323.png"></li>
 </ol>
 
     </div>
@@ -494,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">1.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">改变this指向的三种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call"><span class="nav-number">1.1.1.</span> <span class="nav-text">call()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply"><span class="nav-number">1.1.2.</span> <span class="nav-text">apply()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">bind()（重点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-%E3%80%81apply-%E3%80%81bind-%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.4.</span> <span class="nav-text">call()、apply()、bind()总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E7%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">借用父构造函数继承属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E7%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">借用父构造函数继承属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E7%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">借用父构造函数继承方法</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">1.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E7%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">借用父构造函数继承属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E7%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">借用父构造函数继承属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E7%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">借用父构造函数继承方法</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -510,20 +429,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

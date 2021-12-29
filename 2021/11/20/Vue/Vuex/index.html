@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125232.png">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125543.png">
 <meta property="article:published_time" content="2021-11-20T04:35:46.884Z">
-<meta property="article:modified_time" content="2021-11-20T04:57:36.778Z">
+<meta property="article:modified_time" content="2021-12-27T09:33:25.706Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-11-20 12:35:46 / 修改时间：12:57:36" itemprop="dateCreated datePublished" datetime="2021-11-20T12:35:46+08:00">2021-11-20</time>
+              <time title="创建时间：2021-11-20 12:35:46" itemprop="dateCreated datePublished" datetime="2021-11-20T12:35:46+08:00">2021-11-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-27 17:33:25" itemprop="dateModified" datetime="2021-12-27T17:33:25+08:00">2021-12-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -235,8 +241,8 @@
 </ol>
 </li>
 <li>状态管理是什么？<ol>
-<li>可以简单的将其看成把需要多个组件共享的变量全部存储在一个对象里面</li>
-<li>然后，将这个对象放在顶层的Vue实例中，让其他组件可以使用</li>
+<li><strong>可以简单的将其看成把需要多个组件共享的变量全部存储在一个对象里面</strong></li>
+<li><strong>然后，将这个对象放在顶层的Vue实例中，让其他组件可以使用</strong></li>
 </ol>
 </li>
 <li><strong>Vuex就是为了提供这样一个在多个组件间共享状态的插件</strong></li>
@@ -275,7 +281,7 @@
 <li><p>在其他组件中使用store对象中保存的状态即可</p>
 <ul>
 <li>通过<strong>this.$store.state</strong>属性的方式来<strong>访问</strong>状态</li>
-<li>通过<strong>this.$store.commit(“decrement”)<strong>中方法来</strong>修改</strong>状态</li>
+<li>通过<strong>this.$store.commit(“decrement”)<strong>的方法来</strong>修改</strong>状态</li>
 </ul>
 </li>
 </ol>
@@ -284,7 +290,7 @@
 <ol>
 <li><p><strong>修改State状态时，要通过mutations的方式改变，不能直接通过store.state.count改变</strong></p>
 </li>
-<li><p>*原因：Vuex可以通过devtools明确的追踪state状态的变化**，所以不要直接改变store.state.count的值</p>
+<li><p><strong>原因：Vuex可以通过devtools明确的追踪state状态的变化</strong>，所以不要直接改变store.state.count的值</p>
 <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120124829.png" style="zoom:80%;" /></li>
 </ol>
 </li>
@@ -315,7 +321,7 @@
 <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125210.png" style="zoom:80%;" />
 
 <img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211120125232.png" style="zoom:80%;" /></li>
-<li><p><strong>mutation****同步函数</strong>：通常情况下，Vuex要去我们Mutation中的方法必须是同步方法</p>
+<li><p><strong>mutation同步函数</strong>：通常情况下，Vuex要去我们Mutation中的方法必须是同步方法</p>
 <ol>
 <li>主要的原因是当我们使用devtools时，可以devtools可以帮助我们捕捉mutation的状态</li>
 <li>但是如果是异步操作，那么devtools将不能很好的追逐这个操作什么时候会被完成</li>
@@ -328,7 +334,7 @@
 <li>在Actions中定义的函数，<strong>默认属性为context（上下文）</strong></li>
 </ol>
 <h3 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h3><ol>
-<li><p>modles是模块的意思，为什么需要在Vuex中使用模</p>
+<li><p>modles是模块的意思，为什么需要在Vuex中使用模块</p>
 <ol>
 <li>Vue使用单一状态树，那么也就意味着很多状态都会交给Vuex来管理</li>
 <li>当应用变得非常复杂时，store对象就有可能变得相当臃肿</li>
@@ -352,24 +358,12 @@
 <li>原理：在store的state中定义的属性都会被加入到响应式系统中，而响应式系统会监听属性的变化，当属性发生变化时，会通知所有界面中用到该属性的地方，让界面进行刷新</li>
 <li>要想让state的数据为响应式，就必须遵守Vuex对应的规则<ol>
 <li>提前在store中初始化好所需的属性</li>
-<li><strong>当给state中的对象添加新属性时</strong>，使用下面的方式</li>
-</ol>
-</li>
-<li><ol>
-<li><ul>
+<li><strong>当给state中的对象添加新属性时</strong>，使用下面的方式<ul>
 <li><strong>方式一：使用Vue.set(obj, ‘newProp’, 123)</strong></li>
 <li>方式二：用新对象给就旧对象赋值</li>
 </ul>
 </li>
 </ol>
-</li>
-</ol>
-<ol>
-<li></li>
-</ol>
-<ol>
-<li></li>
-<li><p>1. </p>
 </li>
 </ol>
 
@@ -513,20 +507,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
