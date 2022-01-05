@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013400.png">
 <meta property="article:published_time" content="2021-09-26T16:45:37.193Z">
-<meta property="article:modified_time" content="2021-12-27T09:28:45.683Z">
+<meta property="article:modified_time" content="2022-01-05T02:40:39.886Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -168,7 +168,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="二十七">
-      <meta itemprop="description" content="在学习中记录">
+      <meta itemprop="description" content="在学习中复盘">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-27 17:28:45" itemprop="dateModified" datetime="2021-12-27T17:28:45+08:00">2021-12-27</time>
+                <time title="修改时间：2022-01-05 10:40:39" itemprop="dateModified" datetime="2022-01-05T10:40:39+08:00">2022-01-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -505,21 +505,23 @@ arr.push(4, &#39;pink&#39;);
 </li>
 </ol>
 </li>
-<li>join(‘分隔符’)：将数组中的元素转换为字符串，可以改变连接的符号<ol>
+<li>**join(‘分隔符’)**：将数组中的元素转换为字符串，可以改变连接的符号<ol>
 <li>语法：<code>arr.join(&#39;-&#39;);</code></li>
 </ol>
 </li>
 </ol>
 <h3 id="数组其他方法"><a href="#数组其他方法" class="headerlink" title="数组其他方法"></a>数组其他方法</h3><ol>
-<li>**concat()**：连接两个或者多个数组，不影响原数组<ol>
-<li>语法：<code>arr1.concat(arr2);</code><ul>
+<li><p>**concat()**：连接两个或者多个数组，不影响原数组</p>
+<ol>
+<li>语法：arr1.concat(arr2);<ul>
 <li>返回值为新的数组</li>
 </ul>
 </li>
 </ol>
 </li>
-<li>**slice(begin, end)**：数组截取，截取从数组第begin个索引到第end个索引的元素，不包含索引为end的元素<ol>
-<li>语法：<code>arr.slice(2, 4);</code><ul>
+<li><p>**slice(begin, end)**：数组截取，截取从数组第begin个索引到第end个索引的元素，不包含索引为end的元素</p>
+<ol>
+<li>语法：arr.slice(2, 4);<ul>
 <li>返回值为被截取项目的新数组</li>
 <li>截取元素中不包含索引为end的元素</li>
 </ul>
@@ -527,21 +529,37 @@ arr.push(4, &#39;pink&#39;);
 <li><strong>若只有一个参数begin，则表示截取从begin开始往后的所有元素</strong></li>
 </ol>
 </li>
-<li>splice(begin, count)：数组删除，删除从数组第begin个索引开始的count个数<ol>
-<li>语法：<code>arr.splice(1, 3);</code><ul>
-<li>返回值为被删除项目的新数组</li>
-<li>会影响原数组的元素，删除元素后，原数组被删除的元素也会消失</li>
+<li><p><strong>splice()：删除元素 / 插入元素 / 替换元素</strong></p>
+<ol>
+<li><p>语法：arr.splice(begin,  count, value);</p>
+<ul>
+<li>删除元素：第一个参数为从第几个索引开始，第二个参数为删除多少个</li>
+<li>替换元素：第一个参数为从第几个索引开始，第二个参数为要替换几个元素，后面的参数为替换前面的元素</li>
+<li> 插入元素：第一个参数为从第几个索引开始，第二个参数为0，后面的参数为要插入的元素</li>
 </ul>
 </li>
+<li><p>返回值为被删除项目的新数组，会影响原数组的元素</p>
+<pre><code class="javascript">// 数组中添加新元素
+var fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+fruits.splice(2,0,&quot;Lemon&quot;,&quot;Kiwi&quot;); // Banana,Orange,Lemon,Kiwi,Apple,Mango
+
+// 移除数组的第三个元素，并在数组第三个位置添加新元素
+var fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+fruits.splice(2,1,&quot;Lemon&quot;,&quot;Kiwi&quot;); // Banana,Orange,Lemon,Kiwi,Mango
+
+// 从第三个位置开始删除数组后的两个元素
+var fruits = [&quot;Banana&quot;, &quot;Orange&quot;, &quot;Apple&quot;, &quot;Mango&quot;];
+fruits.splice(2,2); // Banana,Orange
+</code></pre>
+<h2 id="字符串对象"><a href="#字符串对象" class="headerlink" title="字符串对象"></a>字符串对象</h2></li>
 </ol>
 </li>
-</ol>
-<h2 id="字符串对象"><a href="#字符串对象" class="headerlink" title="字符串对象"></a>字符串对象</h2><ol>
-<li>字符串所有的方法，都不会修改字符串本身（字符串是不可变的），操作完成会返回一个新的字符串</li>
+<li><p>字符串所有的方法，都不会修改字符串本身（字符串是不可变的），操作完成会返回一个新的字符串</p>
+</li>
 </ol>
 <h3 id="基本包装类型"><a href="#基本包装类型" class="headerlink" title="基本包装类型"></a>基本包装类型</h3><ol>
 <li>基本包装类型：把简单数据类型，包装成为了复杂数据类型</li>
-<li>对象和复杂数据类型才具有属性和方法<pre><code>var str = &#39;andy&#39;;
+<li>对象和复杂数据类型才具有属性和方法<pre><code class="javascript">var str = &#39;andy&#39;;
 str.length;
 </code></pre>
 <ol>
@@ -622,22 +640,25 @@ str.length;
 </ul>
 </li>
 </ol>
-<h3 id="字符串操作方法（重点）"><a href="#字符串操作方法（重点）" class="headerlink" title="字符串操作方法（重点）"></a>字符串操作方法（重点）</h3><ol>
-<li>concat(str1, str2, str3..)：用于连接两个或多个字符串，拼接字符串，等效与+，但+更常用<ol>
+<h3 id="字符串操作方法（重点）"><a href="#字符串操作方法（重点）" class="headerlink" title="字符串操作方法（重点）"></a><strong>字符串操作方法（重点）</strong></h3><ol>
+<li><p>concat(str1, str2, str3..)：用于连接两个或多个字符串，拼接字符串，等效与+，但+更常用</p>
+<ol>
 <li>语法<pre><code>str.concat(str1, str2, str3..)
 str.concat(&#39;red&#39;);
 </code></pre>
 </li>
 </ol>
 </li>
-<li>substr(start, length)：从start位置开始（索引号），length为取的个数<ol>
+<li><p>substr(start, length)：从start位置开始（索引号），length为取的个数</p>
+<ol>
 <li>语法：<code>str.substr(1, 3);</code><ul>
 <li>返回值为被截取的字符</li>
 </ul>
 </li>
 </ol>
 </li>
-<li>slice(begin, end)：字符串截取，截取从字符串第begin个索引到第end个索引的字符，不包含索引为end的字符<ol>
+<li><p>slice(begin, end)：字符串截取，截取从字符串第begin个索引到第end个索引的字符，不包含索引为end的字符</p>
+<ol>
 <li>语法：<code>str.slice(2, 4);</code><ul>
 <li>返回值为被截取的字符</li>
 <li>截取元素中不包含索引为end的字符</li>
@@ -645,12 +666,31 @@ str.concat(&#39;red&#39;);
 </li>
 </ol>
 </li>
-<li>substring(begin, end)：字符串截取，截取从字符串第begin个索引到第end个索引的字符，不包含索引为end的字符<ol>
+<li><p>substring(begin, end)：字符串截取，截取从字符串第begin个索引到第end个索引的字符，不包含索引为end的字符</p>
+<ol>
 <li>语法：<code>str.substring(2, 4);</code><ul>
 <li>返回值为被截取的字符</li>
 <li>截取元素中不包含索引为end的字符</li>
 <li>基本和slice相同，但是不接受负值</li>
 </ul>
+</li>
+</ol>
+</li>
+<li><p>split(str, num)：通过<strong>指定分隔符对字符串进行切片</strong>，如果参数num有指定值，则分隔num+1个子字符串</p>
+<ol>
+<li><p>str：分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等</p>
+</li>
+<li><p>num：分割次数。默认为 -1, 即分隔所有</p>
+</li>
+<li><p>注意：返回值为一个<strong>数组</strong></p>
+<pre><code class="javascript">str = &quot;Line1-abcdef \nLine2-abc \nLine4-abcd&quot;;
+print str.split( );       # 以空格为分隔符，包含 \n
+print str.split(&#39; &#39;, 1 ); # 以空格为分隔符，分隔成两个
+
+// 以上输出如下
+// [&#39;Line1-abcdef&#39;, &#39;Line2-abc&#39;, &#39;Line4-abcd&#39;]
+// [&#39;Line1-abcdef&#39;, &#39;\nLine2-abc \nLine4-abcd&#39;]
+</code></pre>
 </li>
 </ol>
 </li>
@@ -675,7 +715,7 @@ str.concat(&#39;red&#39;);
 </li>
 </ol>
 <h3 id="字符串转换为数组"><a href="#字符串转换为数组" class="headerlink" title="字符串转换为数组"></a>字符串转换为数组</h3><ol>
-<li>split(‘分隔符’)：将字符串中的字符转换为数组元素，分隔符为需要转换为数组的字符串所带的符号<ol>
+<li>**split(‘分隔符’)**：将字符串中的字符转换为数组元素，分隔符为需要转换为数组的字符串所带的符号<ol>
 <li>语法<pre><code>var str = &#39;red-green-blue&#39;;
 str.split(&#39;-&#39;);
 </code></pre>
@@ -877,7 +917,7 @@ console.log(typeof timer);
     <img class="site-author-image" itemprop="image" alt="二十七"
       src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">二十七</p>
-  <div class="site-description" itemprop="description">在学习中记录</div>
+  <div class="site-description" itemprop="description">在学习中复盘</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -929,7 +969,7 @@ console.log(typeof timer);
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

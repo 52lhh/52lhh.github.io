@@ -28,7 +28,7 @@
 <meta property="og:description" content="学习笔记：ES5中的新增方法个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-06T17:00:06.766Z">
-<meta property="article:modified_time" content="2021-10-06T17:23:24.970Z">
+<meta property="article:modified_time" content="2022-01-05T06:12:43.228Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="ES5">
 <meta name="twitter:card" content="summary">
@@ -166,7 +166,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="二十七">
-      <meta itemprop="description" content="在学习中记录">
+      <meta itemprop="description" content="在学习中复盘">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -183,10 +183,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-07 01:00:06 / 修改时间：01:23:24" itemprop="dateCreated datePublished" datetime="2021-10-07T01:00:06+08:00">2021-10-07</time>
+              <time title="创建时间：2021-10-07 01:00:06" itemprop="dateCreated datePublished" datetime="2021-10-07T01:00:06+08:00">2021-10-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-05 14:12:43" itemprop="dateModified" datetime="2022-01-05T14:12:43+08:00">2022-01-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -228,7 +234,7 @@
 <ol>
 <li>currentValue：数组当前项的值</li>
 <li>index：数组当前项的索引</li>
-<li>arr：数组对象本身<pre><code>var arr = [1, 2, 3];
+<li>arr：数组对象本身<pre><code class="javascript">var arr = [1, 2, 3];
   arr.forEach(function (value, index, arr) &#123;
     console.log(value); // 输出数组元素
     console.log(index); // 输出数组元素索引
@@ -240,7 +246,8 @@
 </li>
 </ol>
 <h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><ol>
-<li>语法<ul>
+<li><p>语法</p>
+<ul>
 <li>array.filter(function(currentValue, index, arr))</li>
 </ul>
 <ol>
@@ -249,8 +256,10 @@
 <li>arr：数组对象本身</li>
 </ol>
 </li>
-<li>filter()方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素，主要用于筛选数组</li>
-<li>返回一个新数组<pre><code>var arr = [12, 5, 71, 19, 24];
+<li><p>filter()方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素，主要用于筛选数组</p>
+</li>
+<li><p>返回一个新数组</p>
+<pre><code class="javascript">var arr = [12, 5, 71, 19, 24];
   // 方法的返回值是一个新数组
   var newArr = arr.filter(function (value, index) &#123;
     // 筛选出数组中的偶数，将值赋值给新的数组
@@ -261,23 +270,135 @@
 </li>
 </ol>
 <h3 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h3><ol>
-<li>语法<ul>
-<li>array.some(function(currentValue, index, arr))</li>
-</ul>
+<li><p>some方法用于检测数组中是否存在满足指定条件的元素</p>
+</li>
+<li><p><strong>与every()的区别：一真即真</strong>， 只要其中一个为true就会返回true</p>
+</li>
+<li><p>语法：array.some(function(currentValue, index, arr))</p>
 <ol>
 <li>currentValue：数组当前项的值</li>
 <li>index：数组当前项的索引</li>
 <li>arr：数组对象本身</li>
 </ol>
 </li>
-<li>some方法用于检测数组中是否存在满足指定条件的元素</li>
-<li>返回值为布尔值，如果查找到这个元素则返回true终止循环，否则返回false继续循环</li>
-<li>若找到第一个满足条件的元素，则终止循环，不再进行查找，迭代效率更高<pre><code>var arr = [1, 2, 8, 41, 3];
-  // 方法返回值为布尔值
-  var flag = arr.some(function (value, index, array) &#123;
+<li><p>返回值为布尔值，如果查找到这个元素则返回true终止循环，否则返回false继续循环</p>
+</li>
+<li><p>若找到第一个满足条件的元素，则终止循环，不再进行查找，迭代效率更高</p>
+<pre><code class="javascript">var arr = [1, 2, 8, 41, 3];
+// 方法返回值为布尔值
+var flag = arr.some(function (value, index, array) &#123;
     return value &gt; 5;
-  &#125;)
-  console.log(flag); // true
+&#125;)
+console.log(flag); // true
+</code></pre>
+</li>
+</ol>
+<h3 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h3><ol>
+<li><p>every() 方法用于检测数组所有元素是否都符合指定条件</p>
+</li>
+<li><p><strong>与some()的区别：一假即假</strong>，必须所有都返回true才会返回true，哪怕有一个false，就会返回false</p>
+</li>
+<li><p>语法：array.every(function(currentValue, index, arr))</p>
+<ol>
+<li>currentValue：必须，当前元素的值</li>
+<li>index：可选，当前元素的索引值</li>
+<li>arr： 可选，当前元素属于的数组对象</li>
+</ol>
+</li>
+<li><p>如果数组中检测到有一个元素不满足，则整个表达式返回false ，且剩余的元素不会再进行检测</p>
+</li>
+<li><p>如果所有元素都满足条件，则返回true</p>
+<pre><code class="javascript">var arr = [4, 6, 8, 41, 37];
+// 方法返回值为布尔值
+var flag = arr.some(function (value, index, array) &#123;
+    return value &gt; 3;
+&#125;)
+console.log(flag); // true
+</code></pre>
+</li>
+</ol>
+<h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><ol>
+<li><p>map()：通过指定函数处理数组的每个元素，并返回处理后的数组</p>
+</li>
+<li><p>语法：array.map(function(currentValue, index, arr))</p>
+<ol>
+<li>currentValue：当前被遍历的元素的值</li>
+<li>index：可选，当前元素的索引值</li>
+<li>arr：可选，当前元素属于的数组对象</li>
+</ol>
+</li>
+<li><p>注意：</p>
+<ol>
+<li>map() 不会对空数组进行检测</li>
+<li>map() 不会改变原始数组</li>
+</ol>
+</li>
+<li><p>例：</p>
+<pre><code class="javascript">var arr = [1, 2, 3, 4];
+// 方法返回值为布尔值
+var result = arr.map(item =&gt; &#123;
+    // ``为模板字符串
+    retrun `&lt;li class=&quot;name&quot;&gt;$&#123;item&#125;&lt;/li&gt;`
+&#125;)
+console.log(arr);
+// [&lt;li class=&quot;name&quot;&gt;1&lt;/li&gt;, &lt;li class=&quot;name&quot;&gt;2&lt;/li&gt;. &lt;li class=&quot;name&quot;&gt;3&lt;/li&gt;, &lt;li class=&quot;name&quot;&gt;4&lt;/li&gt;]
+</code></pre>
+</li>
+</ol>
+<h3 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h3><ol>
+<li><p>findJ()：用于找出第一个符合条件的数组成员，<strong>返回值为该数组成员，若没有找到返回undefined</strong></p>
+</li>
+<li><p>语法：array.find(function(currentValue, index, arr))</p>
+<ol>
+<li>currentValue：当前被遍历的元素的值</li>
+<li>index：可选，当前元素的索引值</li>
+<li>arr：可选，当前元素属于的数组对象</li>
+</ol>
+</li>
+<li><p><strong>注意：</strong> </p>
+<ol>
+<li>find() 对于空数组，函数是不会执行的</li>
+<li>find() 并没有改变数组的原始值</li>
+</ol>
+<pre><code class="javascript">&lt;script&gt;
+    let array = [
+        &#123;
+            id: 1,
+            name: &#39;张三&#39;
+        &#125;, 
+        &#123;
+            id: 2,
+            name: &#39;李四&#39;
+        &#125;
+    ]
+// 寻找id值为2的数组成员
+    var ary = array.find(item =&gt; item.id == 2);
+    console.log(ary); // &#123;id: 2, name: &quot;李四&quot;&#125;
+&lt;/script&gt;
+</code></pre>
+</li>
+</ol>
+<h3 id="findIndex"><a href="#findIndex" class="headerlink" title="findIndex()"></a>findIndex()</h3><ol>
+<li><p>findIndex()：用于找出第一个符合条件的数组成员的位置，<strong>找到返回数组元素索引，若没有找到返回-1</strong></p>
+</li>
+<li><p>语法：array.findIndex(function(currentValue, index, arr))</p>
+<ol>
+<li>currentValue：当前被遍历的元素的值</li>
+<li>index：可选，当前元素的索引值</li>
+<li>arr：可选，当前元素属于的数组对象</li>
+</ol>
+</li>
+<li><p><strong>注意：</strong> </p>
+<ol>
+<li>find() 对于空数组，函数是不会执行的</li>
+<li>find() 并没有改变数组的原始值</li>
+</ol>
+<pre><code class="javascript">&lt;script&gt;
+  let arr = [4, 5, 77, 13, 49, 6];
+  // 查询数组中第一个大于10的元素位置索引
+  var result = arr.findIndex(value =&gt; value &gt; 10)
+  console.log(result); // 2
+&lt;/script&gt;
 </code></pre>
 </li>
 </ol>
@@ -436,7 +557,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES5%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">ES5中的新增方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-%E2%80%94-%E8%BF%AD%E4%BB%A3%EF%BC%88%E9%81%8D%E5%8E%86%EF%BC%89%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">数组方法 — 迭代（遍历）方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#forEach"><span class="nav-number">1.1.1.</span> <span class="nav-text">forEach()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">1.1.2.</span> <span class="nav-text">filter()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#some"><span class="nav-number">1.1.3.</span> <span class="nav-text">some()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">字符串方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trim"><span class="nav-number">2.0.1.</span> <span class="nav-text">trim()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">对象方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-defineProperty"><span class="nav-number">2.1.1.</span> <span class="nav-text">Object.defineProperty()</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES5%E4%B8%AD%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">ES5中的新增方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95-%E2%80%94-%E8%BF%AD%E4%BB%A3%EF%BC%88%E9%81%8D%E5%8E%86%EF%BC%89%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">数组方法 — 迭代（遍历）方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#forEach"><span class="nav-number">1.1.1.</span> <span class="nav-text">forEach()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">1.1.2.</span> <span class="nav-text">filter()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#some"><span class="nav-number">1.1.3.</span> <span class="nav-text">some()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#every"><span class="nav-number">1.1.4.</span> <span class="nav-text">every()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">1.1.5.</span> <span class="nav-text">map()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.1.6.</span> <span class="nav-text">find()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findIndex"><span class="nav-number">1.1.7.</span> <span class="nav-text">findIndex()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">字符串方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trim"><span class="nav-number">2.0.1.</span> <span class="nav-text">trim()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">对象方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-defineProperty"><span class="nav-number">2.1.1.</span> <span class="nav-text">Object.defineProperty()</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -445,7 +566,7 @@
     <img class="site-author-image" itemprop="image" alt="二十七"
       src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">二十七</p>
-  <div class="site-description" itemprop="description">在学习中记录</div>
+  <div class="site-description" itemprop="description">在学习中复盘</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -497,7 +618,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
