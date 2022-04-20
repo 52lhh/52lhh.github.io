@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929112103.png">
 <meta property="article:published_time" content="2021-09-29T03:06:36.782Z">
-<meta property="article:modified_time" content="2021-09-29T03:31:34.547Z">
+<meta property="article:modified_time" content="2022-01-18T07:47:08.815Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -185,10 +185,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-29 11:06:36 / 修改时间：11:31:34" itemprop="dateCreated datePublished" datetime="2021-09-29T11:06:36+08:00">2021-09-29</time>
+              <time title="创建时间：2021-09-29 11:06:36" itemprop="dateCreated datePublished" datetime="2021-09-29T11:06:36+08:00">2021-09-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-18 15:47:08" itemprop="dateModified" datetime="2022-01-18T15:47:08+08:00">2022-01-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -288,16 +294,11 @@
 </li>
 </ol>
 <h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><h3 id="setTimeout-定时器"><a href="#setTimeout-定时器" class="headerlink" title="setTimeout() 定时器"></a>setTimeout() 定时器</h3><ol>
-<li><p>window.setTimeout(调用函数，延迟的毫秒数);</p>
-<ol>
-<li><p>window在调用时可以省略</p>
-</li>
-<li><p>延迟时间的单位是毫秒，但是可以省略，若省略默认为0</p>
-</li>
-<li><p>调用函数可以直接写函数，或者写函数名或者采用’函数名()’三种形式，第三种不推荐</p>
-</li>
-<li><p>定时器可能会有很多，所以经常给定时器赋值一个标识符（名字）</p>
-<pre><code>&lt;script&gt;
+<li>window.setTimeout(调用函数，延迟的毫秒数);<ol>
+<li>window在调用时可以省略</li>
+<li>延迟时间的单位是毫秒，但是可以省略，若省略默认为0</li>
+<li>调用函数可以直接写函数，或者写函数名或者采用’函数名()’三种形式，第三种不推荐</li>
+<li>定时器可能会有很多，所以经常给定时器赋值一个标识符（名字）<pre><code class="javascript">&lt;script&gt;
     // 方式一，直接写函数
     setTimeout(function () &#123;
         console.log(&#39;嘣嘣嘣~&#39;);
@@ -316,12 +317,9 @@
 </li>
 </ol>
 </li>
-<li><p>停止定时器window.clearTimeout(timeoutID);</p>
-<ol>
-<li><p>window可以省略</p>
-</li>
-<li><p>里面的参数就是定时器的标识符</p>
-<pre><code>&lt;body&gt;
+<li>停止定时器window.clearTimeout(timeoutID);<ol>
+<li>window可以省略</li>
+<li>里面的参数就是定时器的标识符<pre><code class="javascript">&lt;body&gt;
     &lt;button&gt;取消广告自动关闭&lt;/button&gt;
     &lt;img src=&quot;images/ad.jpg&quot; alt=&quot;&quot; class=&quot;ad&quot;&gt;
     &lt;script&gt;
@@ -331,7 +329,7 @@
             ad.style.display = &#39;none&#39;;
         &#125;, 3000);
 
-        // 清楚定时器
+        // 清除定时器
         var btn = document.querySelector(&#39;button&#39;);
         btn.addEventListener(&#39;click&#39;, function () &#123;
             clearTimeout(timer);
@@ -344,8 +342,7 @@
 </li>
 </ol>
 <h3 id="setInterval-定时器"><a href="#setInterval-定时器" class="headerlink" title="setInterval() 定时器"></a>setInterval() 定时器</h3><ol>
-<li><p>setInterval(调用函数，重复调用时间间隔);</p>
-<ol>
+<li>setInterval(调用函数，重复调用时间间隔);<ol>
 <li>该定时器属性和setTimeout()一样，如下：<ul>
 <li>window在调用时可以省略</li>
 <li>延迟时间的单位是毫秒，但是可以省略，若省略默认为0</li>
@@ -356,12 +353,9 @@
 <li>不同点在于：每隔设置的延时时间，就去调用这个回调函数，会调用很多次，重复调用这个函数；而setTimeout()只会调用一次就结束这个定时器</li>
 </ol>
 </li>
-<li><p>停止定时器window.clearInterval(timeoutID);</p>
-<ol>
-<li><p>window可以省略</p>
-</li>
-<li><p>案例</p>
-<pre><code>&lt;body&gt;
+<li>停止定时器window.clearInterval(timeoutID);<ol>
+<li>window可以省略</li>
+<li>案例<pre><code class="javascript">&lt;body&gt;
 &lt;button class=&quot;start&quot;&gt;开始计时器&lt;/button&gt;
 &lt;button class=&quot;stop&quot;&gt;停止计时器&lt;/button&gt;
 &lt;script&gt;
@@ -497,7 +491,7 @@
 </ol>
 <h1 id="navigator对象（了解）"><a href="#navigator对象（了解）" class="headerlink" title="navigator对象（了解）"></a>navigator对象（了解）</h1><ol>
 <li>navigator对象包含有关浏览器的信息，它有很多属性，我们最常用的是userAgent，该属性可以返回由客户机发送服务器的user-agent头部的值</li>
-<li>下面代码可以判断永和用哪个终端打开的页面，实现跳转<pre><code>if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) &#123;
+<li>下面代码可以判断永和用哪个终端打开的页面，实现跳转<pre><code class="javascript">if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) &#123;
  window.location.href = &quot;../H5/index1.html&quot;; //手机
 &#125; else &#123;
   window.location.href = &quot;../H5/index2.html&quot;; //电脑
@@ -669,7 +663,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

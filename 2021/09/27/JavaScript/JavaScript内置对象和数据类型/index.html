@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210927013400.png">
 <meta property="article:published_time" content="2021-09-26T16:45:37.193Z">
-<meta property="article:modified_time" content="2022-01-05T02:40:39.886Z">
+<meta property="article:modified_time" content="2022-04-12T10:53:05.126Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-05 10:40:39" itemprop="dateModified" datetime="2022-01-05T10:40:39+08:00">2022-01-05</time>
+                <time title="修改时间：2022-04-12 18:53:05" itemprop="dateModified" datetime="2022-04-12T18:53:05+08:00">2022-04-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -297,7 +297,7 @@
 <li>没有参数：返回当前系统的当前时间<pre><code>var date = new Date();
 </code></pre>
 </li>
-<li>有参数：返回参数的时间；日期格式字符串为’2019-5-1’，可以写成new Date(‘2019-5-1’)或new Date(‘2019/5/1’)<pre><code>var date = new Date(&#39;2019-5-1&#39;);
+<li>有参数：返回参数的时间；日期格式字符串为’2019-5-1’，可以写成new Date(‘2019-5-1’)或new Date(‘2019/5/1’)<pre><code class="javascript">var date = new Date(&#39;2019-5-1&#39;);
 var date = new Date(&#39;2019/5/1&#39;);
 </code></pre>
 </li>
@@ -342,7 +342,7 @@ var date = new Date(&#39;2019/5/1&#39;);
 </tr>
 </tbody></table>
 </li>
-<li>案例：格式化日期年月日星期<pre><code>&lt;script&gt;
+<li>案例：格式化日期年月日星期<pre><code class="javascript">&lt;script&gt;
   // 创建日期对象
   var date = new Date();
 
@@ -378,7 +378,7 @@ console.log(date.getTime()); // 就是现在时间距离1970年1月1日总的毫
 <li>计算秒数：parseInt(总秒数%60);</li>
 </ul>
 </li>
-<li>案例：倒计时<pre><code>&lt;script&gt;
+<li>案例：倒计时<pre><code class="javascript">&lt;script&gt;
   function countTime(time) &#123;
     // 到当前时间的总毫秒数
     var nowTime = +new Date();
@@ -410,20 +410,20 @@ console.log(date.getTime()); // 就是现在时间距离1970年1月1日总的毫
 </li>
 </ol>
 <h2 id="数组对象"><a href="#数组对象" class="headerlink" title="数组对象"></a>数组对象</h2><h3 id="检测是否为数组"><a href="#检测是否为数组" class="headerlink" title="检测是否为数组"></a>检测是否为数组</h3><ol>
-<li>方式一：instanceof — 运算符，用来检测是否为数组<pre><code>var arr = [];
+<li>方式一：instanceof — 运算符，用来检测是否为数组<pre><code class="javascript">var arr = [];
 var obj = &#123;&#125;;
 console.log(arr instanceof Array); // true
 console.log(obj instanceof Array); // false
 </code></pre>
 </li>
-<li>方式二：Array.isArray(参数); — H5新增的方法，ie9以上版本支持<pre><code>console.log(Array.isArray(arr)); // true
+<li>方式二：Array.isArray(参数); — H5新增的方法，ie9以上版本支持<pre><code class="javascript">console.log(Array.isArray(arr)); // true
 console.log(Array.isArray(obj)); // false
 </code></pre>
 </li>
 </ol>
 <h3 id="添加数组元素"><a href="#添加数组元素" class="headerlink" title="添加数组元素"></a>添加数组元素</h3><ol>
 <li>push(参数1..)：在数组的末尾添加一个或多个元素<ol>
-<li>语法<pre><code>var arr = [1, 2, 3];
+<li>语法<pre><code class="javascript">var arr = [1, 2, 3];
 arr.push(4, &#39;pink&#39;);
 </code></pre>
 <ul>
@@ -470,7 +470,7 @@ arr.push(4, &#39;pink&#39;);
 </ol>
 </li>
 <li>sort()：对数组中的元素进行排序（内部无参数）<ol>
-<li>语法：<pre><code>arr.sort(function(a, b)&#123;
+<li>语法：<pre><code class="javascript">arr.sort(function(a, b)&#123;
   return a -b; //升序排序
   return b - a; //降序排序
 &#125;);
@@ -608,7 +608,7 @@ str.length;
 </ol>
 </li>
 <li>案例：统计一个字符串中每个字符出现的次数，求出出现最多的字符及其出现次数<ul>
-<li>以下算法很常用<pre><code>&lt;script&gt;
+<li>以下算法很常用<pre><code class="javascript">&lt;script&gt;
   var str = &#39;abcoefoxyozzopp&#39;;
   var statistical = &#123;&#125;;
   for (var i = 0; i &lt; str.length; i++) &#123;
@@ -643,7 +643,7 @@ str.length;
 <h3 id="字符串操作方法（重点）"><a href="#字符串操作方法（重点）" class="headerlink" title="字符串操作方法（重点）"></a><strong>字符串操作方法（重点）</strong></h3><ol>
 <li><p>concat(str1, str2, str3..)：用于连接两个或多个字符串，拼接字符串，等效与+，但+更常用</p>
 <ol>
-<li>语法<pre><code>str.concat(str1, str2, str3..)
+<li>语法<pre><code class="javascript">str.concat(str1, str2, str3..)
 str.concat(&#39;red&#39;);
 </code></pre>
 </li>
@@ -701,7 +701,7 @@ print str.split(&#39; &#39;, 1 ); # 以空格为分隔符，分隔成两个
 <li>返回值为被替换后的字符串</li>
 </ul>
 </li>
-<li>案例：替换敏感词<pre><code>&lt;script&gt;
+<li>案例：替换敏感词<pre><code class="javascript">&lt;script&gt;
   var str = &#39;内置对象就是指JS语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是最基本而必要的功能(属性和方法)&#39;;
 
   while (str.indexOf(&#39;些&#39;) !== -1) &#123;
@@ -716,7 +716,7 @@ print str.split(&#39; &#39;, 1 ); # 以空格为分隔符，分隔成两个
 </ol>
 <h3 id="字符串转换为数组"><a href="#字符串转换为数组" class="headerlink" title="字符串转换为数组"></a>字符串转换为数组</h3><ol>
 <li>**split(‘分隔符’)**：将字符串中的字符转换为数组元素，分隔符为需要转换为数组的字符串所带的符号<ol>
-<li>语法<pre><code>var str = &#39;red-green-blue&#39;;
+<li>语法<pre><code class="javascript">var str = &#39;red-green-blue&#39;;
 str.split(&#39;-&#39;);
 </code></pre>
 <ul>
@@ -735,7 +735,7 @@ str.split(&#39;-&#39;);
 </ol>
 <h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ol>
 <li>简单数据类型null，返回的是一个空对象 — object</li>
-<li>若存在一个变量我们打算存储为对象，却暂时没有想好放什么，这时就可以给null<pre><code>var timer = null;
+<li>若存在一个变量我们打算存储为对象，却暂时没有想好放什么，这时就可以给null<pre><code class="javascript">var timer = null;
 console.log(typeof timer);
 </code></pre>
 </li>
@@ -757,7 +757,7 @@ console.log(typeof timer);
 </ol>
 <h3 id="复杂数据类型传参"><a href="#复杂数据类型传参" class="headerlink" title="复杂数据类型传参"></a>复杂数据类型传参</h3><ol>
 <li>函数的形参也可以看做是一个变量，当我们把引用类型变量传给形参时，实是把变量在栈空间里保存的堆地址复制给了形参，形参和实参其实保存的是同一个堆地址，所以操作的是同一个对象</li>
-<li>案例<pre><code>&lt;script&gt;
+<li>案例<pre><code class="javascript">&lt;script&gt;
   function Person(name) &#123;
     // 将栈内存中地址为0xaabbcc指向堆内存中对象p的name属性值改为&#39;刘德华&#39;
     this.name = name;
@@ -924,7 +924,7 @@ console.log(typeof timer);
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211009003208.png">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211009003228.png">
 <meta property="article:published_time" content="2021-10-08T16:16:29.194Z">
-<meta property="article:modified_time" content="2021-12-31T08:37:45.033Z">
+<meta property="article:modified_time" content="2022-01-19T09:32:23.688Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="Ajax">
 <meta name="twitter:card" content="summary">
@@ -198,7 +198,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-31 16:37:45" itemprop="dateModified" datetime="2021-12-31T16:37:45+08:00">2021-12-31</time>
+                <time title="修改时间：2022-01-19 17:32:23" itemprop="dateModified" datetime="2022-01-19T17:32:23+08:00">2022-01-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -363,20 +363,20 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 </ol>
 </li>
 </ol>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><ol>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a><strong>HTTP协议</strong></h2><ol>
 <li>HTTP（hypertext transport protocol）协议，超文本传输协议</li>
 <li>HTTP协议详细规定了浏览器和万维网服务器之间互相通信的规则</li>
-<li>主要约定了两块内容：请求报文和响应报文</li>
-<li>浏览器中获取html页面css和js请求后台页面；发送的是请求报文，服务器返回的是响应报文，使用请求报文和响应报文这种方式进行数据交互称之为http协议</li>
+<li>主要约定了两块内容：<strong>请求报文和响应报文</strong></li>
+<li>浏览器中获取html页面css和js请求后台页面；<strong>发送的是请求报文，服务器返回的是响应报文，使用请求报文和响应报文这种方式进行数据交互称之为http协议</strong></li>
 <li>通过利用AJAX，您的JavaScript会通过JavaScript的XMLHttpRequest对象，直接与服务器来通信<ol>
-<li>XMLHttpRequest：对象提供了在网页加载后与服务器进行通信的方法</li>
+<li><strong>XMLHttpRequest：对象提供了在网页加载后与服务器进行通信的方法</strong></li>
 </ol>
 </li>
 </ol>
 <h3 id="请求报文（面试重点）"><a href="#请求报文（面试重点）" class="headerlink" title="请求报文（面试重点）"></a>请求报文（面试重点）</h3><ol>
-<li>什么是请求报文：包括请求行，请求头，请求主体；主要有发送请求的方法，浏览器的信息，发送的数据</li>
+<li>什么是请求报文：包括<strong>请求行，请求头，请求主体</strong>；主要有发送请求的方法，浏览器的信息，发送的数据</li>
 <li>格式与参数（重点）<ol>
-<li>请求行：包括三部分（请求方式、url路径、http协议版本）<ul>
+<li><strong>请求行：包括三部分（请求方式、url路径、http协议版本）</strong><ul>
 <li>请求方式：日常使用GET和POST使用居多</li>
 <li>url路径：如/s?ie=utf-8</li>
 <li>http协议版本：如HTTP/1.1</li>
@@ -388,7 +388,7 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 <li>User-Agent: chrome 83</li>
 </ul>
 </li>
-<li>请求主体：发送给服务器的数据内容；可有可无，若请求行的请求类型为GET，则请求体为空；若为POST，则可以不为空<ul>
+<li>请求主体：<strong>发送给服务器的数据内容</strong>；可有可无，<strong>若请求行的请求类型为GET，则请求体为空；若为POST，则可以不为空</strong><ul>
 <li>如：username=admin&amp;password=admin</li>
 </ul>
 </li>
@@ -396,9 +396,9 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 </li>
 </ol>
 <h3 id="响应报文（面试重点）"><a href="#响应报文（面试重点）" class="headerlink" title="响应报文（面试重点）"></a>响应报文（面试重点）</h3><ol>
-<li>什么是响应报文：包括状态行，响应头，响应主体；主要包括服务的信息，浏览器中直接可以看到的内容</li>
+<li>什么是响应报文：包括<strong>状态行，响应头，响应主体</strong>；主要包括服务的信息，浏览器中直接可以看到的内容</li>
 <li>格式与参数（重点）<ol>
-<li>状态行：服务的信息，包括三部分（HTTP协议版本、响应状态码、响应状态字符串（如ok））<ul>
+<li><strong>状态行</strong>：服务的信息，包括三部分（<strong>HTTP协议版本、响应状态码、响应状态字符串（如ok）</strong>）<ul>
 <li>http协议版本：如HTTP/1.1</li>
 <li>响应状态码<table>
 <thead>
@@ -441,16 +441,14 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 <li>User-Agent: chrome 83</li>
 </ul>
 </li>
-<li>响应主体：主要的返回结果，用户看到的内容；如html内容放在响应报文的响应体中做传输，浏览器接收到响应结果后，把响应结果提取出来，对内容做解析，在页面进行渲染和呈现</li>
+<li><strong>响应主体：主要的返回结果</strong>，用户看到的内容；如html内容放在响应报文的响应体中做传输，浏览器接收到响应结果后，把响应结果提取出来，对内容做解析，在页面进行渲染和呈现<h2 id="Ajax发送请求"><a href="#Ajax发送请求" class="headerlink" title="Ajax发送请求"></a>Ajax发送请求</h2><h3 id="XMLHTTPRequest对象基本使用"><a href="#XMLHTTPRequest对象基本使用" class="headerlink" title="XMLHTTPRequest对象基本使用"></a>XMLHTTPRequest对象基本使用</h3></li>
 </ol>
 </li>
-</ol>
-<h2 id="Ajax发送请求"><a href="#Ajax发送请求" class="headerlink" title="Ajax发送请求"></a>Ajax发送请求</h2><h3 id="XMLHTTPRequest对象基本使用"><a href="#XMLHTTPRequest对象基本使用" class="headerlink" title="XMLHTTPRequest对象基本使用"></a>XMLHTTPRequest对象基本使用</h3><ol>
-<li>创建异步对象（XMLHTTPRequset对象）<ol>
+<li><strong>创建异步对象</strong>（XMLHTTPRequset对象）<ol>
 <li>例：var xhr = new XMLHTTPRequset();</li>
 </ol>
 </li>
-<li>请求行<ol>
+<li><strong>请求行</strong><ol>
 <li>XMLHTTPRequest对象的open()方法：定义请求<ul>
 <li>第一个参数定义发送请求所使用的方法（GET还是POST）</li>
 <li>第二个参数规定服务器端脚本的URL</li>
@@ -460,7 +458,7 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 <li>xhr.open(‘get’, ‘hello.php’);</li>
 </ol>
 </li>
-<li>请求头<ol>
+<li><strong>请求头</strong><ol>
 <li>XMLHTTPRequest对象的setRequestHeader()方法：设置请求头<ul>
 <li>第一个参数为键名</li>
 <li>第二个参数为值</li>
@@ -471,7 +469,7 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 <li>这里可以注册回调函数</li>
 </ol>
 </li>
-<li>请求主体<ol>
+<li><strong>请求主体</strong><ol>
 <li>XMLHTTPRequest对象的send()方法：发送请求</li>
 </ol>
 </li>
@@ -547,7 +545,7 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
 <h3 id="Jsonp原理（面试必问）"><a href="#Jsonp原理（面试必问）" class="headerlink" title="Jsonp原理（面试必问）"></a>Jsonp原理（面试必问）</h3><ol>
 <li>json是一种数据格式，而jsonp是用来解决跨域获取数据的一种解决方案</li>
 <li>jsonp原理：<ol>
-<li>jsonp就是利用了src属性支持跨域获取资源</li>
+<li>jsonp就是利用了<strong>src属性支持跨域获取资源</strong></li>
 <li>script标签后面中src属性写上需要请求页面的网址，并且发送一个方法的方法名到服务器</li>
 <li>服务器接收到方法名之后，拼接一个方法的调用，在方法的参数中传入需要给浏览器的数据</li>
 <li>返回给浏览器，浏览器把数据当做js进行解析，解决跨域问题<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20211009003228.png" style="zoom:80%;" /></li>
@@ -695,7 +693,7 @@ xhr.send(&#39;name=rose&amp;skill=painting&#39;);
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
