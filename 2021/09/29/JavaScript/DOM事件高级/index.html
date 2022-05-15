@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104709.png">
 <meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104750.png">
 <meta property="article:published_time" content="2021-09-29T02:33:05.650Z">
-<meta property="article:modified_time" content="2021-09-29T03:31:44.846Z">
+<meta property="article:modified_time" content="2022-05-12T06:13:12.187Z">
 <meta property="article:author" content="二十七">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -188,10 +188,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-09-29 10:33:05 / 修改时间：11:31:44" itemprop="dateCreated datePublished" datetime="2021-09-29T10:33:05+08:00">2021-09-29</time>
+              <time title="创建时间：2021-09-29 10:33:05" itemprop="dateCreated datePublished" datetime="2021-09-29T10:33:05+08:00">2021-09-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-12 14:13:12" itemprop="dateModified" datetime="2022-05-12T14:13:12+08:00">2022-05-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -243,7 +249,7 @@
 </ol>
 <h2 id="addEventListener事件监听方式"><a href="#addEventListener事件监听方式" class="headerlink" title="addEventListener事件监听方式"></a>addEventListener事件监听方式</h2><h3 id="事件侦听注册事件addEventListener"><a href="#事件侦听注册事件addEventListener" class="headerlink" title="事件侦听注册事件addEventListener"></a>事件侦听注册事件addEventListener</h3><ol>
 <li>里面的事件类型是字符串必定加引号而且不带on</li>
-<li>同一个元素同一个事件可以添加多个侦听器（事件处理程序）<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104153.png"></li>
+<li>同一个元素同一个事件可以添加多个侦听器（事件处理程序）<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104153.png" style="zoom:80%;" /></li>
 </ol>
 <h2 id="删除事件"><a href="#删除事件" class="headerlink" title="删除事件"></a>删除事件</h2><h3 id="传统方式删除事件"><a href="#传统方式删除事件" class="headerlink" title="传统方式删除事件"></a>传统方式删除事件</h3><ol>
 <li>btn.onclick = null;</li>
@@ -264,14 +270,14 @@
 </li>
 <li>事件捕获：由DOM最顶层节点开始，然后逐级向下传播到到最具体的元素接收的过程</li>
 <li>事件冒泡：事件开始时由最具体的元素接收，然后逐级向上传播到到DOM最顶层节点的过程</li>
-<li>比如给div注册了一个点击事件<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104504.png"></li>
+<li>比如给div注册了一个点击事件<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104504.png" style="zoom:80%;" /></li>
 <li>我们向水里面扔一块石头，首先它会有一个下降的过程，这个过程就可以理解为从最顶层向事件发生的最具体元素(目标点)的捕获过程；之后会产生泡泡，会在最低点(最具体元素)之后漂浮到水面上，这个过程相当于事件冒泡</li>
 </ol>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
 <li>JS代码只能执行捕获或者冒泡其中的一个阶段</li>
 <li>onclick和attachEvent只能得到冒泡阶段</li>
-<li>addEventListener第三个参数是true，则处于捕获阶段：document –&gt;html –&gt; body –&gt; father –&gt; son<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104709.png"></li>
-<li>addEventListener第三个参数是false或者省略，则处于冒泡阶段：son -&gt; father -&gt; body -&gt; html -&gt; document<br><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104750.png"></li>
+<li>addEventListener第三个参数是true，则处于捕获阶段：document –&gt;html –&gt; body –&gt; father –&gt; son<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104709.png" style="zoom:80%;" /></li>
+<li>addEventListener第三个参数是false或者省略，则处于冒泡阶段：son -&gt; father -&gt; body -&gt; html -&gt; document<img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/20210929104750.png" style="zoom:80%;" /></li>
 </ol>
 <h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1><h2 id="事件对象概述"><a href="#事件对象概述" class="headerlink" title="事件对象概述"></a>事件对象概述</h2><ol>
 <li>官方解释：event对象代表事件的状态，比如键盘按键的状态、鼠标的位置、鼠标按钮的状态</li>
@@ -340,10 +346,8 @@
 </li>
 </ol>
 <h3 id="阻止冒泡（面试考点）"><a href="#阻止冒泡（面试考点）" class="headerlink" title="阻止冒泡（面试考点）"></a>阻止冒泡（面试考点）</h3><ol>
-<li><p>dom标准写法：e.stopPropagation() — propagation(传播)</p>
-</li>
-<li><p>非标准写法：e.cancelBubble = true; — cancel(取消)，bubble(泡泡)</p>
-<pre><code>&lt;div class=&quot;father&quot;&gt;
+<li>dom标准写法：e.stopPropagation() — propagation(传播)</li>
+<li>非标准写法：e.cancelBubble = true; — cancel(取消)，bubble(泡泡)<pre><code>&lt;div class=&quot;father&quot;&gt;
     &lt;div class=&quot;son&quot;&gt;son儿子&lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
@@ -377,8 +381,7 @@
 <li>不是每个子节点单独设置事件监听器，而是将事件监听器设置在其父节点上，然后利用冒泡原理影响设置每个子节点</li>
 </ol>
 <h3 id="事件委托的作用"><a href="#事件委托的作用" class="headerlink" title="事件委托的作用"></a>事件委托的作用</h3><ol>
-<li><p>只操作了DOM一次，提高了程序的性能</p>
-<pre><code>&lt;body&gt;
+<li>只操作了DOM一次，提高了程序的性能<pre><code>&lt;body&gt;
   &lt;ul&gt;
       &lt;li&gt;事件委托&lt;/li&gt;
       &lt;li&gt;事件委托&lt;/li&gt;
@@ -453,15 +456,12 @@
 </li>
 </ol>
 <h3 id="常用鼠标事件补充"><a href="#常用鼠标事件补充" class="headerlink" title="常用鼠标事件补充"></a>常用鼠标事件补充</h3><ol>
-<li><p>禁止鼠标右键菜单：contextmenu</p>
-<ol>
+<li>禁止鼠标右键菜单：contextmenu<ol>
 <li>主要控制应该何时显示上下文菜单，主要用于程序员取消默认的上下文菜单</li>
 </ol>
 </li>
-<li><p>禁止鼠标选中：selectstart</p>
-<ol>
-<li><p>主要控制文字是否能够被赋值</p>
-<pre><code>&lt;body&gt;
+<li>禁止鼠标选中：selectstart<ol>
+<li>主要控制文字是否能够被赋值<pre><code>&lt;body&gt;
 我是一段不愿意被分享的文字
 &lt;script&gt;
     // 禁止鼠标右键菜单
@@ -483,8 +483,7 @@
 </li>
 </ol>
 <h3 id="鼠标事件对象"><a href="#鼠标事件对象" class="headerlink" title="鼠标事件对象"></a>鼠标事件对象</h3><ol>
-<li><p>鼠标事件对象：MouseEvent</p>
-<table>
+<li>鼠标事件对象：MouseEvent<table>
 <thead>
 <tr>
 <th>鼠标事件对象</th>
@@ -517,8 +516,7 @@
 </tr>
 </tbody></table>
 </li>
-<li><p>案例：跟随鼠标的小天使</p>
-<pre><code>&lt;body&gt;
+<li>案例：跟随鼠标的小天使<pre><code>&lt;body&gt;
     &lt;img src=&quot;images/angel.gif&quot; alt=&quot;&quot;&gt;
 
     &lt;script&gt;
