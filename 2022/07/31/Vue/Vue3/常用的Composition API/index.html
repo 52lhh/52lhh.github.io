@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习笔记：常用的Composition（组合式） API个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的Composition（组合式） API">
+<meta property="og:url" content="http://example.com/2022/07/31/Vue/Vue3/%E5%B8%B8%E7%94%A8%E7%9A%84Composition%20API/index.html">
+<meta property="og:site_name" content="Twenty-seven">
+<meta property="og:description" content="学习笔记：常用的Composition（组合式） API个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/image-20220814000357327.png">
+<meta property="article:published_time" content="2022-07-31T11:35:39.341Z">
+<meta property="article:modified_time" content="2022-08-14T13:34:34.289Z">
+<meta property="article:author" content="二十七">
+<meta property="article:tag" content="Vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/image-20220814000357327.png">
+
+<link rel="canonical" href="http://example.com/2022/07/31/Vue/Vue3/%E5%B8%B8%E7%94%A8%E7%9A%84Composition%20API/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>常用的Composition（组合式） API | Twenty-seven</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Twenty-seven</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/31/Vue/Vue3/%E5%B8%B8%E7%94%A8%E7%9A%84Composition%20API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="二十七">
+      <meta itemprop="description" content="在学习中复盘">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Twenty-seven">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用的Composition（组合式） API
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-31 19:35:39" itemprop="dateCreated datePublished" datetime="2022-07-31T19:35:39+08:00">2022-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-14 21:34:34" itemprop="dateModified" datetime="2022-08-14T21:34:34+08:00">2022-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue3/" itemprop="url" rel="index"><span itemprop="name">Vue3</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习笔记：常用的Composition（组合式） API<br>个人笔记可能会存在一些错误，您在阅读中如若发现，欢迎您的指正</p>
+<span id="more"></span>
+
+<h1 id="常用的Composition-（组合式）API"><a href="#常用的Composition-（组合式）API" class="headerlink" title="常用的Composition （组合式）API"></a>常用的Composition （组合式）API</h1><h2 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h2><ol>
+<li><p>vue3中的一个新的配置项，值为一个函数</p>
+</li>
+<li><p><strong>组件中运用到的所有数据、方法等等，都要配置在setup中</strong></p>
+</li>
+<li><p>setup函数的返回值有两种：</p>
+<ol>
+<li><strong>返回对象（常用）</strong>：在模板中可以直接使用setup返回对象中的属性、方法等</li>
+<li>渲染函数（极少使用）：自定义渲染内容</li>
+</ol>
+<pre><code class="javascript">// 模板中可以直接使用setup返回对象中的属性、方法等
+&lt;template&gt;
+    &lt;div&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;
+    &lt;div&gt;&#123;&#123;age&#125;&#125;&lt;/div&gt;
+    &lt;div @click=&quot;setInfo&quot;&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;
+&lt;/template&gt;
+
+import &#123; ref &#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup() &#123;
+        // ref()函数是用于配置响应式数据，后面详细说明
+        const name = ref(&#39;张三&#39;)
+        const age = ref(18)
+        
+        function setInfo () &#123;
+            // xxx.value：为了响应式改变数据，后面详细说明
+            name.value = &#39;李四&#39;
+            age.value = 20
+        &#125;
+        
+        // 返回对象中的属性、方法
+        return &#123;
+            name,
+            age,
+            setInfo
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>注意点：</p>
+<ol>
+<li>不要与vue2中的配置（methods、data、cpmputed）等混用</li>
+<li>setup不能是一个async函数，否则return返回值为一个promise，导致模板中无法读取return中的属性</li>
+</ol>
+</li>
+</ol>
+<h2 id="ref函数"><a href="#ref函数" class="headerlink" title="ref函数"></a>ref函数</h2><ol>
+<li><p>作用：定义一个响应式的数据</p>
+</li>
+<li><p>语法：</p>
+<pre><code class="javascript">const 属性名 = ref(属性值)
+</code></pre>
+</li>
+<li><p>ref()函数会创建一个包含响应式数据的引用对象（reference对象）</p>
+</li>
+<li><p>在js中操作数据方式：<strong>属性名.value</strong></p>
+</li>
+<li><p>在html模板中操作数据：<code>&lt;div&gt;&#123;&#123; 属性名 &#125;&#125;&lt;/div&gt;</code></p>
+</li>
+<li><p>在ref()函数中接收的数据类型可以是基本类型，也可以是对象类型</p>
+<pre><code class="javascript">// 引入ref
+import &#123; ref &#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        // 接收基本类型
+        const name = ref(&#39;张三&#39;)
+        // 接收对象类型
+        const person = ref(&#123;
+            name: &#39;李四&#39;,
+            age: 18
+        &#125;)
+        
+        return &#123;
+            name,
+            person
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h3 id="ref-定义响应式数据的响应式原理"><a href="#ref-定义响应式数据的响应式原理" class="headerlink" title="ref()定义响应式数据的响应式原理"></a>ref()定义响应式数据的响应式原理</h3><ol>
+<li>基本类型：响应式依然依靠Object.defineProperty()中的set()方法与get()方法实现</li>
+<li>对象类型：在vue3内部求助使用了一个新函数 — reactive()函数<ol>
+<li>reactive()函数其实就是对proxy操作进行了封装</li>
+<li><strong>所以对象类型实现响应式原理依靠的是proxy</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="reactive函数"><a href="#reactive函数" class="headerlink" title="reactive函数"></a>reactive函数</h2><ol>
+<li><p>作用：用于定义一个<strong>对象类型</strong>的响应式数据（只能定义对象类型，基本类型使用ref函数定义）</p>
+</li>
+<li><p>虽然reactive无法定义基本类型的数据，但在实际开发中，<strong>通常将基本类型的数据封装在对象之中，使用reactive将对象变为代理对象</strong></p>
+</li>
+<li><p>语法：</p>
+<pre><code class="javascript">// 语法
+const 代理对象 = reactive(源对象)
+
+import &#123; reactive &#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        // 接收对象
+        const person = reactive(&#123;
+            // 将基本类型的数据封装在对象之中
+            name: &#39;张三&#39;,
+            age: 18,
+            info: &#123;
+                job: &#39;前端开发工程师&#39;,
+                money: &#39;10k&#39;,
+                position: &#123;
+                    longitude: 113.5353,
+                    latitude: 23.3452
+                &#125;
+            &#125;
+        &#125;)
+        // 接收数组
+        const arr = reactive([&#39;333&#39;, &#39;444&#39;, &#39;555&#39;, &#39;666&#39;])
+        
+        return &#123;
+            person,
+            arr
+        &#125;
+    &#125;
+    
+    // 使用数据：对象.属性名，如下：
+    // person.name
+    
+    // 使用数据如下：
+    // arr[0]
+&#125;
+</code></pre>
+</li>
+<li><p>使用数据的方式：<strong>对象.属性名</strong>，不需要加.value</p>
+</li>
+<li><p>reactive()可以接收对象或数组，返回一个<strong>代理对象</strong>（Proxy的实例对象，简称Proxy对象），定义的响应式数据是深层次的</p>
+</li>
+<li><p>内部基于es6的<strong>Proxy</strong>实现，通过<strong>代理对象操作源对象</strong>的内部数据进行操作</p>
+</li>
+</ol>
+<h2 id="vue3的响应式原理（重点）"><a href="#vue3的响应式原理（重点）" class="headerlink" title="vue3的响应式原理（重点）"></a>vue3的响应式原理（重点）</h2><ol>
+<li><p><strong>通过Proxy代理</strong>：拦截对象中任意属性的变化（属性的读写、增加、删除）</p>
+<pre><code class="javascript">const p = new Proxy(target, handler)
+</code></pre>
+<ol>
+<li>target：源数据</li>
+<li>handler：一个对象，声明了代理源数据的指定行为，支持的拦截操作如get、set、deleteProperty</li>
+</ol>
+</li>
+<li><p><strong>通过Reflect反射</strong>：一个内置对象，对被代理对象（源对象）的属性进行操作；可以通过内置的get、set、deleteProperty方法操作源对象</p>
+</li>
+<li><p>响应式原理实现简易代码如下：</p>
+<pre><code class="javascript">setup () &#123;
+    // 源对象
+    let person = &#123;
+        name: &#39;张三&#39;,
+        age: 20,
+        sex: &#39;男&#39;
+    &#125;
+
+    new Proxy(person, &#123;
+        // 当源对象person被读取时调用
+        // getter有两个参数，target代表源对象person，propName为源对象中被读取属性的属性名
+        get(target, propName) &#123;
+            // 通过Reflect反射对源对象进行操作
+            return Reflect.get(target, propName)
+        &#125;,
+        
+        // 当源对象被修改或增加属性时调用
+        // setter有两个参数，target代表源对象person，propName为源对象中被修改或增加属性的属性名，value为被修改或增加属性的属性值
+        set(target, propName, value) &#123;
+            // 通过Reflect反射对源对象进行操作
+            Reflect.set(target, propName, value)
+        &#125;,
+        
+        // 当源对象中属性被删除时调用
+         // deleteProperty有两个参数，target代表源对象person，propName为源对象中被删除属性的属性名
+        deleteProperty(target, propName) &#123;
+            return Reflect.deleteProperty(target, propName)
+        &#125;
+    &#125;)
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="总结ref与reactive区别"><a href="#总结ref与reactive区别" class="headerlink" title="总结ref与reactive区别"></a>总结ref与reactive区别</h2><ol>
+<li>定义数据角度：<ul>
+<li>ref：定义一个响应式的基本类型数据</li>
+<li>reactive：定义一个响应式的对象类型数据</li>
+<li>注意：ref也可以用于定义对象（数组）类型数据，在内部会自动通过reactive转化为代理对象</li>
+</ul>
+</li>
+<li>响应式原理角度<ul>
+<li>ref：响应式依然依靠Object.defineProperty()中的set()方法与get()方法实现</li>
+<li>reactive：响应式依靠Proxy代理源对象与Reflect反射操作源对象实现</li>
+</ul>
+</li>
+<li>使用角度<ul>
+<li>ref：操作数据需要加.value，在html模板中不需要加.value</li>
+<li>reactive：操作数据均不需要加.value</li>
+</ul>
+</li>
+</ol>
+<h2 id="setup使用注意点"><a href="#setup使用注意点" class="headerlink" title="setup使用注意点"></a>setup使用注意点</h2><ol>
+<li>setup的执行顺序在beforeCreate之间，<strong>在setup中this的值为undefined</strong></li>
+<li>setup函数有两个参数：<strong>props和context</strong></li>
+</ol>
+<h3 id="setup参数之props"><a href="#setup参数之props" class="headerlink" title="setup参数之props"></a>setup参数之props</h3><ol>
+<li><p>props：值为对象，包含了组件外部传递过来，且组件内已经声明接收了的属性</p>
+</li>
+<li><p>在setup内不存在this，因此需要通过props来获取外部组件传来的参数</p>
+<pre><code class="javascript">// 父组件
+&lt;template&gt;
+    &lt;div&gt;&lt;/div&gt;
+    // 在父组件中注册使用的子组件，往子组件中传递数据data
+    &lt;Son :message=&quot;person.name&quot;&gt;&lt;/Son&gt;
+&lt;/template&gt;
+import &#123;reactive&#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        const person = reactive(&#123;
+            name: [&#39;熊大&#39;, &#39;熊二&#39;]
+        &#125;)
+        return &#123;
+            person
+        &#125;
+    &#125;
+&#125;
+
+// 子组件
+&lt;template&gt;
+    &lt;div&gt;&#123;&#123;&#125;&#125;</div>
+   </template>
+   export default &#123;
+       name: 'Son',
+       // 对父组件传过来的值，用props进行声明再使用
+       props: ['message']
+       setup (props) &#123;
+           // 通过props参数来获取父组件传来的参数message
+           console.log(props.message)
+       &#125;
+   &#125;
+   ```
+
+### setup参数之context
+
+1. context是一个上下文对象，其中包括**attrs，emit，slots**三个属性
+
+   1. **attrs**：值为对象，包含：组件外部传递过来，但在组件内没有在props中声明的属性，相当于vue2中的this.$attrs
+
+      ```javascript
+      // 父组件
+      <template>
+          <div></div>
+      	// 在父组件中注册使用的子组件，往子组件中传递数据
+      	<Son :message="person.name" :age="person.age"></Son>
+      </template>
+      import &#123;reactive&#125; from 'vue'
+      export default &#123;
+          name: 'App',
+          setup () &#123;
+              const person = reactive(&#123;
+                  name: ['熊大', '熊二']
+                  age: 3
+              &#125;)
+              return &#123;
+                  person
+              &#125;
+          &#125;
+      &#125;
+      
+      // 子组件
+      <template>
+          <div>&#123;&#123;&#125;&#125;&lt;/div&gt;
+   &lt;/template&gt;
+   export default &#123;
+       name: &#39;Son&#39;,
+       // 对父组件传过来的值，用props进行声明再使用，没有对age进行声明
+       props: [&#39;message&#39;]
+       setup (props, context) &#123;
+           // context.attrs是一个对象，包含未被声明的age属性
+           console.log(context.attrs)
+       &#125;
+   &#125;
+</code></pre>
+<ol start="2">
+<li><p>**emit(重点)**：用于发射自定义事件，相当于vue2中的this.$emit()</p>
+<pre><code class="javascript">// 父组件
+&lt;template&gt;
+    &lt;div&gt;&lt;/div&gt;
+    // 在父组件中接收子组件发射的自定义事件
+    &lt;Son @sendInfo=&quot;getInfoData&quot;&gt;&lt;/Son&gt;
+&lt;/template&gt;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        function getInfoData (value) &#123;
+            console.log(value)
+        &#125;
+        return &#123;
+            getInfoData
+        &#125;
+    &#125;
+&#125;
+
+// 子组件
+&lt;template&gt;
+    &lt;div @click=&quot;send&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+import &#123;reactive&#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;Son&#39;,
+    // 通过emits属性声明该组件内发射了哪些自定义事件
+    emits: [&#39;sendInfo&#39;]
+    setup (props, context) &#123;
+        const person = reactive(&#123;
+            name: [&#39;熊大&#39;, &#39;熊二&#39;]
+        &#125;)
+        function send () &#123;
+            context.emit(&#39;sendInfo&#39;, person.name)
+        &#125;
+        return &#123;
+            person,
+            send
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>slots：值为对象，包含的属性为收到的插槽内容，相当于vue2中的this.$slots</p>
+<pre><code class="javascript">// 父组件
+&lt;template&gt;
+    &lt;div&gt;&lt;/div&gt;
+    // 使用插槽，在父组件中定义需要在子组件使用的插槽内容
+    &lt;Son&gt;
+        // 具名插槽，指定在子组件中name为qwe的插槽使用
+        &lt;template v-slot:qwe&gt;
+            &lt;div&gt;123456&lt;/div&gt;
+        &lt;/template&gt;
+    &lt;/Son&gt;
+&lt;/template&gt;
+
+// 子组件
+&lt;template&gt;
+    &lt;slot name=&quot;qwe&quot;&gt;&lt;/slot&gt;        
+&lt;/template&gt;
+export default &#123;
+    name: &#39;Son&#39;,
+    setup (props, context) &#123;
+        // 值为对象，包含的属性为收到的插槽内容qwe
+        console.log(context.slots)
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="computed计算属性"><a href="#computed计算属性" class="headerlink" title="computed计算属性"></a>computed计算属性</h2><ol>
+<li><p>与vue2中的功能和配置都一致，写法不同</p>
+<pre><code class="javascript">&lt;template&gt;
+    &lt;div&gt;&#123;&#123;person.name&#125;&#125;&lt;/div&gt;
+&lt;/template&gt;
+import &#123;reactive, computed&#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        const person = reactive(&#123;
+            firstName: &#39;张&#39;,
+            lastName: &#39;李&#39;
+        &#125;)
+        // 计算属性-简写
+        person.name = computed(() =&gt; &#123;
+            return person.firstName + lastName.firstName
+        &#125;)
+        // 计算属性-完整写法
+        person.name = computed(() =&gt; &#123;
+            get () &#123;
+                return person.firstName + lastName.firstName
+            &#125;,
+             set (value) &#123;
+                person.firstName = value.splice(0, 1)
+                person.lastName = value.splice(1, 1)
+            &#125;
+        &#125;)
+        return &#123;
+            person
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+<h2 id="watch监听函数"><a href="#watch监听函数" class="headerlink" title="watch监听函数"></a>watch监听函数</h2><ol>
+<li><p>在vue3中的watch监听函数的配置项（deep、immediate）与vue2中一致，该函数有三个参数</p>
+<ol>
+<li>第一个参数：被监听的属性</li>
+<li>第二个参数：监听的回调函数</li>
+<li>第三个参数：为一个对象，监听函数的配置项，在对象内进行配置项配置（deep、immediate）</li>
+</ol>
+</li>
+<li><p>语法如下：</p>
+<pre><code class="javascript">&lt;template&gt;
+    &lt;div&gt;&#123;&#123;address&#125;&#125;&lt;/div&gt;
+&lt;/template&gt;
+import &#123;ref, watch&#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        const address = ref(&#39;广东省&#39;)
+        
+        // 监听address，并配置immediate为true，进行立刻监听
+        watch(address, (newValue, oldValue) =&gt; &#123;
+            console.log(&#39;监听到address的改变&#39;, newValue, oldValue)
+        &#125;, &#123;immediate: true&#125;)
+        
+        return &#123;
+            address
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>在vue3中watch监听函数有以下几个注意点和坑：</p>
+<ol>
+<li><p>坑一：当监听的对象为reactive定义的响应式对象属性时，<strong>watch监听的回调函数中无法准确获取oldValue</strong>，目前无法解决（若watch监听使用ref定义响应式数据，也是同样的效果，因为使用ref定义对象类型的数据时，底层还是求助reactive实现的）</p>
+</li>
+<li><p>坑二：当监听的对象为reactive定义的响应式对象属性时，<strong>watch函数自动开启deep深度监听</strong>，此时手动配置deep: false无效</p>
+</li>
+<li><p>注意点：主要为以下几种情况</p>
+<pre><code class="javascript">&lt;template&gt;
+    &lt;div&gt;&#123;&#123;address&#125;&#125;&lt;/div&gt;
+    &lt;div&gt;&#123;&#123;person&#125;&#125;&lt;/div&gt;
+&lt;/template&gt;
+import &#123;reactive, ref, watch&#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        const address = ref(&#39;广东省&#39;)
+        const msg = &#39;暂居&#39;
+        const person = reactive(&#123;
+            age: 18,
+            name: &#39;张三&#39;,
+            job: &#123;
+                type: &#39;前端开发&#39;
+            &#125;
+        &#125;)
+        
+        // 情况一：监听ref定义的响应式基本数据类型address
+        watch(address, (newValue, oldValue) =&gt; &#123;
+            console.log(&#39;监听到address的改变&#39;, newValue, oldValue)
+        &#125;)
+        
+        // 情况二：监听多个ref定义的响应式基本数据类型address, msg
+        watch([address, msg], (oldValue, newValue) =&gt; &#123;
+            console.log(&#39;监听到address或msg的改变&#39;, newValue, oldValue)
+            // 输出为一个数组，数组元素为address, msg，如[&#39;广东省&#39;, &#39;暂居&#39;]
+        &#125;)
+        
+        // 情况三：监听reactive定义的响应式对象中的属性时
+        watch(() =&gt; person.age, (oldValue, newValue) =&gt; &#123;
+            console.log(&#39;监听到person.age的改变&#39;, newValue, oldValue)
+        &#125;)
+        
+        // 情况四：监听reactive定义的响应式对象中的多个属性时
+        watch([() =&gt; person.age, () =&gt; person.name], (oldValue, newValue) =&gt; &#123;
+            console.log(&#39;监听到person.age的改变&#39;, newValue, oldValue)
+            // 输出为一个数组，数组元素为address, msg，如[18, &#39;张三&#39;]
+        &#125;)
+        
+        // 情况五：监听reactive定义的响应式对象中的属性的值为对象时
+        // deep配置有效
+        watch(() =&gt; person.job, (oldValue, newValue) =&gt; &#123;
+             console.log(&#39;监听到person.age的改变&#39;, newValue, oldValue)
+        &#125;, &#123;deep: true&#125;)
+        
+        return &#123;
+            person,
+            address
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="watchEffect函数"><a href="#watchEffect函数" class="headerlink" title="watchEffect函数"></a>watchEffect函数</h2><ol>
+<li><p>watchEffect函数和watch一样都是用于监视属性的改变</p>
+</li>
+<li><p>watchEffect函数：不用指明监听哪个属性，而是在监视的回调函数中用到哪些属性，就监听哪些属性</p>
+</li>
+<li><p>代码如下：</p>
+<pre><code class="javascript">export default &#123;
+    name: &#39;App&#39;,
+    setup() &#123;
+        const num = ref(18)
+        const person reactive(&#123;
+            age: 18,
+            name: &#39;张三&#39;
+        &#125;)
+        
+        // watchEffect，这里监听的是num属性和person中的name属性
+        watchEffect(() =&gt; &#123;
+            const x = num.value    
+            const y = person.name
+            console.log(&#39;当num.value和person.name改变时，就会执行watchEffect监听函数的回调&#39;)
+        &#125;)
+        
+        return &#123;
+            num,
+            person
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>watchEffect有些类似于computed</p>
+<ul>
+<li>computed更注重于计算出来的值（回调函数的返回值），并通过返回值将值返回</li>
+<li>watchEffect更注重于过程（回调函数的本身）</li>
+</ul>
+</li>
+</ol>
+<h2 id="Vue3的生命周期"><a href="#Vue3的生命周期" class="headerlink" title="Vue3的生命周期"></a>Vue3的生命周期</h2><ol>
+<li><p>vue3的生命周期图示如下：</p>
+<p><img src="https://twentyseven.oss-cn-guangzhou.aliyuncs.com/image-20220814000357327.png" alt="image-20220814000357327"></p>
+</li>
+<li><p>在Vue3中依然可以使用Vue2中的生命周期钩子，但在Vue3中有两个生命周期钩子被改名</p>
+<ul>
+<li>Vue2中beforeDestory ==&gt; Vue3中<strong>beforeUnmount</strong></li>
+<li>Vue2中destroyed         ==&gt; Vue3中<strong>unmounted</strong></li>
+</ul>
+</li>
+<li><p>在开发中<strong>可以直接使用这些生命周期钩子</strong>，也可以使用setup提供的组合式API形式的生命周期钩子，<strong>两者都可以使用，看个人习惯而定</strong>，组合式API形式的生命周期钩子如下：</p>
+<ol>
+<li>beforeCreate      ==&gt; setup</li>
+<li>created                ==&gt; setup（在setup的组合式API中不提供beforeCreate和created的钩子）</li>
+<li>beforeMount      ==&gt; <strong>onBeforeMount</strong></li>
+<li>mounted             ==&gt; <strong>onMounted</strong></li>
+<li>beforeUpdate     ==&gt; <strong>onBeforeUpdate</strong></li>
+<li>updated               ==&gt; <strong>onUpdated</strong></li>
+<li>beforeUnmount ==&gt; <strong>onBeforeUnmount</strong></li>
+<li>unmounted         ==&gt; <strong>onUnmounted</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="toRef与toRefs"><a href="#toRef与toRefs" class="headerlink" title="toRef与toRefs"></a>toRef与toRefs</h2><ol>
+<li><p><strong>toRef</strong>作用：用于创建一个ref对象，其value值指向另一个对象中的某个属性</p>
+<ol>
+<li>语法：<code>const name = toRef(person, &#39;name&#39;)</code></li>
+</ol>
+</li>
+<li><p>应用场景：当将响应式对象中的某个属性单独提供给外部使用时</p>
+</li>
+<li><p><strong>toRefs</strong>作用：功能与toRef一致，但是可以批量创建多个指向另一个响应式对象中对应第一层属性的ref对象</p>
+<ol>
+<li>语法：<code>toRefs(person)</code></li>
+<li>注意：toRefs创建的ref对象只能指向另一个响应式对象第一层对象的属性</li>
+</ol>
+<pre><code class="javascript">&lt;template&gt;
+    &lt;div&gt;
+        &lt;div&gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+import &#123;reactive&#125; from &#39;vue&#39;
+export default &#123;
+    name: &#39;App&#39;,
+    setup () &#123;
+        const person = reactive(&#123;
+            name: &#39;张三&#39;,
+            age: 18,
+            job: &#123;
+                type: &#39;前端开发&#39;
+            &#125;
+        &#125;)
+        
+        return &#123;
+            // 如果在这里如下不使用toRef，相当于是name: &#39;张三&#39;；返回的name只是一个字符串“张三”，已经失去了响应式。
+            // name: person.name
+            
+            // 使用toRef，则创建了一个指向响应式对象person中name的ref对象，是具有响应式的
+            name: toRef(person, &#39;name&#39;)
+            type: toRef(person.job, &#39;type&#39;)
+            
+            // 使用toRefs，因为toRefs(person)创建的是一个对象，ref对象，因此使用扩展运算符
+            ...toRefs(person)
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>原创学习笔记分享，您的支持将成为我源源不断的学习动力~</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="二十七 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="二十七 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>二十七
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/07/31/Vue/Vue3/%E5%B8%B8%E7%94%A8%E7%9A%84Composition%20API/" title="常用的Composition（组合式） API">http://example.com/2022/07/31/Vue/Vue3/常用的Composition API/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue3/" rel="tag"># Vue3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/31/Vue/Vue3/%E5%88%9B%E5%BB%BAVue3%E5%B7%A5%E7%A8%8B/" rel="prev" title="创建Vue3工程">
+      <i class="fa fa-chevron-left"></i> 创建Vue3工程
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/14/Vue/Vue3/%E5%85%B6%E4%BB%96Compostion%20API/" rel="next" title="其他Composition（组合式） API">
+      其他Composition（组合式） API <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81NDQ4Ni8zMDk1Nw=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84Composition-%EF%BC%88%E7%BB%84%E5%90%88%E5%BC%8F%EF%BC%89API"><span class="nav-number">1.</span> <span class="nav-text">常用的Composition （组合式）API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">1.1.</span> <span class="nav-text">setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">ref函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ref-%E5%AE%9A%E4%B9%89%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">ref()定义响应式数据的响应式原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reactive%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">reactive函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue3%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">vue3的响应式原理（重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93ref%E4%B8%8Ereactive%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.</span> <span class="nav-text">总结ref与reactive区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">1.6.</span> <span class="nav-text">setup使用注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setup%E5%8F%82%E6%95%B0%E4%B9%8Bprops"><span class="nav-number">1.6.1.</span> <span class="nav-text">setup参数之props</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computed%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">computed计算属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watch%E7%9B%91%E5%90%AC%E5%87%BD%E6%95%B0"><span class="nav-number">1.8.</span> <span class="nav-text">watch监听函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#watchEffect%E5%87%BD%E6%95%B0"><span class="nav-number">1.9.</span> <span class="nav-text">watchEffect函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue3%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.10.</span> <span class="nav-text">Vue3的生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#toRef%E4%B8%8EtoRefs"><span class="nav-number">1.11.</span> <span class="nav-text">toRef与toRefs</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="二十七"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">二十七</p>
+  <div class="site-description" itemprop="description">在学习中复盘</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/52lhh" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;52lhh" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">二十七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
